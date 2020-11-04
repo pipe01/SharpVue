@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpVue.Ingest", "SharpVue.Ingest\SharpVue.Ingest.csproj", "{ABBB7315-F84C-4D38-B7D1-0568F6D77FF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpVue.Ingest", "SharpVue.Ingest\SharpVue.Ingest.csproj", "{ABBB7315-F84C-4D38-B7D1-0568F6D77FF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpVue.Common", "SharpVue.Common\SharpVue.Common.csproj", "{44F8A875-A4AF-460C-9D03-D86FA0D587E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpVue.Common", "SharpVue.Common\SharpVue.Common.csproj", "{44F8A875-A4AF-460C-9D03-D86FA0D587E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing", "Testing\Testing.csproj", "{9D00B5A2-E724-4BC8-A054-0BFCFF29B6E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{44F8A875-A4AF-460C-9D03-D86FA0D587E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44F8A875-A4AF-460C-9D03-D86FA0D587E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44F8A875-A4AF-460C-9D03-D86FA0D587E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D00B5A2-E724-4BC8-A054-0BFCFF29B6E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D00B5A2-E724-4BC8-A054-0BFCFF29B6E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D00B5A2-E724-4BC8-A054-0BFCFF29B6E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D00B5A2-E724-4BC8-A054-0BFCFF29B6E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

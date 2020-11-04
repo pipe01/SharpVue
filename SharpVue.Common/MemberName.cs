@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Text;
 
 namespace SharpVue.Common
@@ -12,14 +11,12 @@ namespace SharpVue.Common
         public MemberType Type { get; }
         public string Namespace { get; }
         public string Name { get; }
-        public int TypeParamCount { get; }
 
-        public MemberName(MemberType type, string @namespace, string name, int typeParamCount)
+        public MemberName(MemberType type, string @namespace, string name)
         {
             this.Type = type;
             this.Namespace = @namespace;
             this.Name = name;
-            this.TypeParamCount = typeParamCount;
         }
 
         public static MemberName Parse(string fullName)
@@ -38,7 +35,7 @@ namespace SharpVue.Common
                 _ => throw new FormatException($"Unknown member type '{fullName[0]}'")
             };
 
-            var parts = SplitFullName(fullName);
+            var parts = SplitFullName(fullName.AsSpan(2));
             var ns = new List<string>();
             string name = null;
 
@@ -56,9 +53,11 @@ namespace SharpVue.Common
                 }
             }
 
-            return default;
+            name = NormalizeTypeName(name);
 
-            static IReadOnlyList<string> SplitFullName(string name)
+            return new MemberName(type, string.Join('.', ns), name);
+
+            static IReadOnlyList<string> SplitFullName(ReadOnlySpan<char> name)
             {
                 var parts = new List<string>();
                 var str = new StringBuilder();
@@ -86,6 +85,18 @@ namespace SharpVue.Common
                     parts.Add(str.ToString());
 
                 return parts;
+            }
+
+            static string NormalizeTypeName(string name)
+            {
+                var apos = name.IndexOf('`');
+
+                if (apos >= 0)
+                {
+                    return name.Substring(0, apos);
+                }
+
+                return name;
             }
         }
     }

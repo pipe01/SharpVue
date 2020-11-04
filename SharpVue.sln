@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpVue.Common", "SharpVue
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing", "Testing\Testing.csproj", "{9D00B5A2-E724-4BC8-A054-0BFCFF29B6E1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpVue.Test.Common", "SharpVue.Test.Common\SharpVue.Test.Common.csproj", "{B3069462-DBB5-4974-BBBA-E4B001D49B90}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{9D00B5A2-E724-4BC8-A054-0BFCFF29B6E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D00B5A2-E724-4BC8-A054-0BFCFF29B6E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D00B5A2-E724-4BC8-A054-0BFCFF29B6E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3069462-DBB5-4974-BBBA-E4B001D49B90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3069462-DBB5-4974-BBBA-E4B001D49B90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3069462-DBB5-4974-BBBA-E4B001D49B90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3069462-DBB5-4974-BBBA-E4B001D49B90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

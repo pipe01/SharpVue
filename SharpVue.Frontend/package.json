@@ -7,7 +7,10 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "bootswatch": "^4.5.3",
     "core-js": "^3.6.5",
+    "pug": "^3.0.0",
+    "pug-plain-loader": "^1.0.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0"
   },

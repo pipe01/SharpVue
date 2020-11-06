@@ -1,7 +1,9 @@
 {
   "reference": [
     {
-      "fullName": "LogicAPI.Client.ClientMod",
+      "fullname": "LogicAPI.Client.ClientMod",
+      "name": "ClientMod",
+      "namespace": "LogicAPI.Client",
       "properties": [
         {
           "name": "Manifest",
@@ -15,7 +17,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Client.ClientMod\u00601",
+      "fullname": "LogicAPI.Client.ClientMod\u00601",
+      "name": "ClientMod\u00601",
+      "namespace": "LogicAPI.Client",
       "properties": [
         {
           "name": "Manifest",
@@ -29,11 +33,15 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Client.IAssets",
+      "fullname": "LogicAPI.Client.IAssets",
+      "name": "IAssets",
+      "namespace": "LogicAPI.Client",
       "properties": []
     },
     {
-      "fullName": "LogicAPI.Client.Networking.ClientConnection",
+      "fullname": "LogicAPI.Client.Networking.ClientConnection",
+      "name": "ClientConnection",
+      "namespace": "LogicAPI.Client.Networking",
       "properties": [
         {
           "name": "RemoteEndPoint",
@@ -44,7 +52,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Client.Networking.PacketReceivedDelegate",
+      "fullname": "LogicAPI.Client.Networking.PacketReceivedDelegate",
+      "name": "PacketReceivedDelegate",
+      "namespace": "LogicAPI.Client.Networking",
       "properties": [
         {
           "name": "Target",
@@ -61,7 +71,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Client.Networking.NetworkClient",
+      "fullname": "LogicAPI.Client.Networking.NetworkClient",
+      "name": "NetworkClient",
+      "namespace": "LogicAPI.Client.Networking",
       "properties": [
         {
           "name": "IsConnected",
@@ -93,7 +105,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Client.Networking.NetworkClient\u002BPacketReceivedDelegate",
+      "fullname": "LogicAPI.Client.Networking.NetworkClient\u002BPacketReceivedDelegate",
+      "name": "PacketReceivedDelegate",
+      "namespace": "LogicAPI.Client.Networking",
       "summary": "Used by \u003Csee cref=\u0022E:LogicAPI.Client.Networking.NetworkClient.PacketReceived\u0022 /\u003E.",
       "remarks": null,
       "returns": null,
@@ -116,7 +130,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Client.Networking.NetworkClient\u002BDisconnectedDelegate",
+      "fullname": "LogicAPI.Client.Networking.NetworkClient\u002BDisconnectedDelegate",
+      "name": "DisconnectedDelegate",
+      "namespace": "LogicAPI.Client.Networking",
       "summary": "Used by \u003Csee cref=\u0022E:LogicAPI.Client.Networking.NetworkClient.Disconnected\u0022 /\u003E.",
       "remarks": null,
       "returns": null,
@@ -136,21 +152,27 @@
       ]
     },
     {
-      "fullName": "LogicAPI.ConversionUtilities",
+      "fullname": "LogicAPI.ConversionUtilities",
+      "name": "ConversionUtilities",
+      "namespace": "LogicAPI",
       "summary": "Utilities for conversion between \u003Csee cref=\u0022T:UnityEngine.Vector3\u0022 /\u003E and \u003Csee cref=\u0022T:UnityEngine.Quaternion\u0022 /\u003E.",
       "remarks": null,
       "returns": null,
       "properties": []
     },
     {
-      "fullName": "LogicAPI.ModFormat",
+      "fullname": "LogicAPI.ModFormat",
+      "name": "ModFormat",
+      "namespace": "LogicAPI",
       "summary": "Represents the way a mod\u0027s files are stored and accessed.",
       "remarks": null,
       "returns": null,
       "properties": []
     },
     {
-      "fullName": "LogicAPI.MetaMod",
+      "fullname": "LogicAPI.MetaMod",
+      "name": "MetaMod",
+      "namespace": "LogicAPI",
       "summary": "Represents a loaded mod.",
       "remarks": null,
       "returns": null,
@@ -221,21 +243,27 @@
       ]
     },
     {
-      "fullName": "LogicAPI.AddressExtensions",
+      "fullname": "LogicAPI.AddressExtensions",
+      "name": "AddressExtensions",
+      "namespace": "LogicAPI",
       "summary": "Extensions for address classes",
       "remarks": null,
       "returns": null,
       "properties": []
     },
     {
-      "fullName": "LogicAPI.RoundingExtensions",
+      "fullname": "LogicAPI.RoundingExtensions",
+      "name": "RoundingExtensions",
+      "namespace": "LogicAPI",
       "summary": "Extensions for rounding values.",
       "remarks": null,
       "returns": null,
       "properties": []
     },
     {
-      "fullName": "LogicAPI.Game",
+      "fullname": "LogicAPI.Game",
+      "name": "Game",
+      "namespace": "LogicAPI",
       "properties": [
         {
           "name": "Version",
@@ -252,14 +280,18 @@
       ]
     },
     {
-      "fullName": "LogicAPI.IDispatcher",
+      "fullname": "LogicAPI.IDispatcher",
+      "name": "IDispatcher",
+      "namespace": "LogicAPI",
       "summary": "Utility for executing code on the main thread.",
       "remarks": null,
       "returns": null,
       "properties": []
     },
     {
-      "fullName": "LogicAPI.BenchmarkCase",
+      "fullname": "LogicAPI.BenchmarkCase",
+      "name": "BenchmarkCase",
+      "namespace": "LogicAPI",
       "summary": "Represents a benchmark case that can be run and analyzed by the server.",
       "remarks": null,
       "returns": null,
@@ -276,7 +308,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.IModFiles",
+      "fullname": "LogicAPI.IModFiles",
+      "name": "IModFiles",
+      "namespace": "LogicAPI",
       "summary": "Represents a way for mods to access their asset files.",
       "remarks": null,
       "returns": null,
@@ -293,14 +327,18 @@
       ]
     },
     {
-      "fullName": "LogicAPI.ModFilesExtensions",
+      "fullname": "LogicAPI.ModFilesExtensions",
+      "name": "ModFilesExtensions",
+      "namespace": "LogicAPI",
       "summary": "Extensions for \u003Csee cref=\u0022T:LogicAPI.IModFiles\u0022 /\u003E.",
       "remarks": null,
       "returns": null,
       "properties": []
     },
     {
-      "fullName": "LogicAPI.ModFile",
+      "fullname": "LogicAPI.ModFile",
+      "name": "ModFile",
+      "namespace": "LogicAPI",
       "summary": "Represents a file in any \u003Csee cref=\u0022T:LogicAPI.IModFiles\u0022 /\u003E.",
       "remarks": null,
       "returns": null,
@@ -344,7 +382,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.ModLoadException",
+      "fullname": "LogicAPI.ModLoadException",
+      "name": "ModLoadException",
+      "namespace": "LogicAPI",
       "properties": [
         {
           "name": "TargetSite",
@@ -397,7 +437,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.ScriptLoadException",
+      "fullname": "LogicAPI.ScriptLoadException",
+      "name": "ScriptLoadException",
+      "namespace": "LogicAPI",
       "properties": [
         {
           "name": "Errors",
@@ -456,21 +498,27 @@
       ]
     },
     {
-      "fullName": "LogicAPI.ModPaths",
+      "fullname": "LogicAPI.ModPaths",
+      "name": "ModPaths",
+      "namespace": "LogicAPI",
       "summary": "Contains information about all the paths in a mod\u0027s files.",
       "remarks": null,
       "returns": null,
       "properties": []
     },
     {
-      "fullName": "LogicAPI.Proxy",
+      "fullname": "LogicAPI.Proxy",
+      "name": "Proxy",
+      "namespace": "LogicAPI",
       "summary": "The base for a proxy class to be used in RPC. An instance of this class will be created when the\r\n            mod is loaded, and it will be reused for all future method invocations.",
       "remarks": null,
       "returns": null,
       "properties": []
     },
     {
-      "fullName": "LogicAPI.RPCAttribute",
+      "fullname": "LogicAPI.RPCAttribute",
+      "name": "RPCAttribute",
+      "namespace": "LogicAPI",
       "summary": "Attribute to override RPC configs defined in the current \u003Csee cref=\u0022T:LogicAPI.RPCConfig\u0022 /\u003E.",
       "remarks": null,
       "returns": null,
@@ -490,7 +538,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.RPCConfig",
+      "fullname": "LogicAPI.RPCConfig",
+      "name": "RPCConfig",
+      "namespace": "LogicAPI",
       "properties": [
         {
           "name": "Timeout",
@@ -522,21 +572,27 @@
       ]
     },
     {
-      "fullName": "LogicAPI.IWorldExtensions",
+      "fullname": "LogicAPI.IWorldExtensions",
+      "name": "IWorldExtensions",
+      "namespace": "LogicAPI",
       "summary": "Extensions to \u003Csee cref=\u0022T:LogicAPI.Services.IWorld\u0022 /\u003E.",
       "remarks": null,
       "returns": null,
       "properties": []
     },
     {
-      "fullName": "LogicAPI.Service",
+      "fullname": "LogicAPI.Service",
+      "name": "Service",
+      "namespace": "LogicAPI",
       "summary": "Represents a service provider. Refer to \u003Ca href=\u0022/articles/services.html\u0022\u003EConcepts/Services\u003C/a\u003E for more information\r\n            about services.",
       "remarks": null,
       "returns": null,
       "properties": []
     },
     {
-      "fullName": "LogicAPI.Services.IWorld",
+      "fullname": "LogicAPI.Services.IWorld",
+      "name": "IWorld",
+      "namespace": "LogicAPI.Services",
       "summary": "Represents the Logic World world. See \u003Csee cref=\u0022T:LogicAPI.IWorldExtensions\u0022 /\u003E for more methods.",
       "remarks": null,
       "returns": null,
@@ -589,14 +645,18 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.ComponentRequest",
+      "fullname": "LogicAPI.Networking.ComponentRequest",
+      "name": "ComponentRequest",
+      "namespace": "LogicAPI.Networking",
       "summary": "Used by the client to place many components at once. Used when they load a saved board.\r\n            The addresses here - except for Parent - are relative to each other and bear no relation to the addresses in World.",
       "remarks": null,
       "returns": null,
       "properties": []
     },
     {
-      "fullName": "LogicAPI.Networking.Connection",
+      "fullname": "LogicAPI.Networking.Connection",
+      "name": "Connection",
+      "namespace": "LogicAPI.Networking",
       "properties": [
         {
           "name": "RemoteEndPoint",
@@ -607,7 +667,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.ConnectionException",
+      "fullname": "LogicAPI.Networking.ConnectionException",
+      "name": "ConnectionException",
+      "namespace": "LogicAPI.Networking",
       "properties": [
         {
           "name": "TargetSite",
@@ -660,23 +722,33 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.IHailHandler",
+      "fullname": "LogicAPI.Networking.IHailHandler",
+      "name": "IHailHandler",
+      "namespace": "LogicAPI.Networking",
       "properties": []
     },
     {
-      "fullName": "LogicAPI.Networking.IReader",
+      "fullname": "LogicAPI.Networking.IReader",
+      "name": "IReader",
+      "namespace": "LogicAPI.Networking",
       "properties": []
     },
     {
-      "fullName": "LogicAPI.Networking.IWriter",
+      "fullname": "LogicAPI.Networking.IWriter",
+      "name": "IWriter",
+      "namespace": "LogicAPI.Networking",
       "properties": []
     },
     {
-      "fullName": "LogicAPI.Networking.NetworkDeliveryMethod",
+      "fullname": "LogicAPI.Networking.NetworkDeliveryMethod",
+      "name": "NetworkDeliveryMethod",
+      "namespace": "LogicAPI.Networking",
       "properties": []
     },
     {
-      "fullName": "LogicAPI.Networking.NetworkMessage",
+      "fullname": "LogicAPI.Networking.NetworkMessage",
+      "name": "NetworkMessage",
+      "namespace": "LogicAPI.Networking",
       "properties": [
         {
           "name": "Length",
@@ -693,7 +765,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.Packets.Packet",
+      "fullname": "LogicAPI.Networking.Packets.Packet",
+      "name": "Packet",
+      "namespace": "LogicAPI.Networking.Packets",
       "summary": "Base class for all packets.",
       "remarks": null,
       "returns": null,
@@ -710,7 +784,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.Packets.Server.CircuitStatesUpdatePacket",
+      "fullname": "LogicAPI.Networking.Packets.Server.CircuitStatesUpdatePacket",
+      "name": "CircuitStatesUpdatePacket",
+      "namespace": "LogicAPI.Networking.Packets.Server",
       "properties": [
         {
           "name": "DeliveryMethod",
@@ -724,7 +800,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.Packets.Server.ComponentPlacedNotificationPacket",
+      "fullname": "LogicAPI.Networking.Packets.Server.ComponentPlacedNotificationPacket",
+      "name": "ComponentPlacedNotificationPacket",
+      "namespace": "LogicAPI.Networking.Packets.Server",
       "properties": [
         {
           "name": "DeliveryMethod",
@@ -738,7 +816,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.Packets.Server.DebugMessagePacket",
+      "fullname": "LogicAPI.Networking.Packets.Server.DebugMessagePacket",
+      "name": "DebugMessagePacket",
+      "namespace": "LogicAPI.Networking.Packets.Server",
       "properties": [
         {
           "name": "DeliveryMethod",
@@ -752,7 +832,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.Packets.Server.ExtraDataUpdatePacket",
+      "fullname": "LogicAPI.Networking.Packets.Server.ExtraDataUpdatePacket",
+      "name": "ExtraDataUpdatePacket",
+      "namespace": "LogicAPI.Networking.Packets.Server",
       "properties": [
         {
           "name": "DeliveryMethod",
@@ -766,7 +848,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.Packets.Server.PlayerListPacket",
+      "fullname": "LogicAPI.Networking.Packets.Server.PlayerListPacket",
+      "name": "PlayerListPacket",
+      "namespace": "LogicAPI.Networking.Packets.Server",
       "properties": [
         {
           "name": "DeliveryMethod",
@@ -780,7 +864,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.Packets.Server.PlayerPositionUpdatePacket",
+      "fullname": "LogicAPI.Networking.Packets.Server.PlayerPositionUpdatePacket",
+      "name": "PlayerPositionUpdatePacket",
+      "namespace": "LogicAPI.Networking.Packets.Server",
       "properties": [
         {
           "name": "DeliveryMethod",
@@ -791,7 +877,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.Packets.Server.RpcConfirmPacket",
+      "fullname": "LogicAPI.Networking.Packets.Server.RpcConfirmPacket",
+      "name": "RpcConfirmPacket",
+      "namespace": "LogicAPI.Networking.Packets.Server",
       "properties": [
         {
           "name": "DeliveryMethod",
@@ -805,7 +893,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.Packets.Server.SetPlayerPositionDataPacket",
+      "fullname": "LogicAPI.Networking.Packets.Server.SetPlayerPositionDataPacket",
+      "name": "SetPlayerPositionDataPacket",
+      "namespace": "LogicAPI.Networking.Packets.Server",
       "properties": [
         {
           "name": "DeliveryMethod",
@@ -819,7 +909,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.Packets.Server.StartMovingRequestPacket",
+      "fullname": "LogicAPI.Networking.Packets.Server.StartMovingRequestPacket",
+      "name": "StartMovingRequestPacket",
+      "namespace": "LogicAPI.Networking.Packets.Server",
       "properties": [
         {
           "name": "DeliveryMethod",
@@ -833,7 +925,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.Packets.Server.WorldUpdatePacket",
+      "fullname": "LogicAPI.Networking.Packets.Server.WorldUpdatePacket",
+      "name": "WorldUpdatePacket",
+      "namespace": "LogicAPI.Networking.Packets.Server",
       "properties": [
         {
           "name": "DeliveryMethod",
@@ -847,7 +941,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.Packets.Initialization.ConnectionApprovalPacket",
+      "fullname": "LogicAPI.Networking.Packets.Initialization.ConnectionApprovalPacket",
+      "name": "ConnectionApprovalPacket",
+      "namespace": "LogicAPI.Networking.Packets.Initialization",
       "properties": [
         {
           "name": "DeliveryMethod",
@@ -861,7 +957,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.Packets.Initialization.ConnectionEstablishedPacket",
+      "fullname": "LogicAPI.Networking.Packets.Initialization.ConnectionEstablishedPacket",
+      "name": "ConnectionEstablishedPacket",
+      "namespace": "LogicAPI.Networking.Packets.Initialization",
       "properties": [
         {
           "name": "Dummy",
@@ -884,7 +982,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.Packets.Initialization.WorldInitializationPacket",
+      "fullname": "LogicAPI.Networking.Packets.Initialization.WorldInitializationPacket",
+      "name": "WorldInitializationPacket",
+      "namespace": "LogicAPI.Networking.Packets.Initialization",
       "properties": [
         {
           "name": "DeliveryMethod",
@@ -898,7 +998,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.Packets.Initialization.ClientLoadedWorldPacket",
+      "fullname": "LogicAPI.Networking.Packets.Initialization.ClientLoadedWorldPacket",
+      "name": "ClientLoadedWorldPacket",
+      "namespace": "LogicAPI.Networking.Packets.Initialization",
       "properties": [
         {
           "name": "DeliveryMethod",
@@ -912,7 +1014,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.Packets.Client.ChangeComponentDataPacket",
+      "fullname": "LogicAPI.Networking.Packets.Client.ChangeComponentDataPacket",
+      "name": "ChangeComponentDataPacket",
+      "namespace": "LogicAPI.Networking.Packets.Client",
       "properties": [
         {
           "name": "DeliveryMethod",
@@ -926,7 +1030,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.Packets.Client.ChangeInputExclusivityPacket",
+      "fullname": "LogicAPI.Networking.Packets.Client.ChangeInputExclusivityPacket",
+      "name": "ChangeInputExclusivityPacket",
+      "namespace": "LogicAPI.Networking.Packets.Client",
       "properties": [
         {
           "name": "DeliveryMethod",
@@ -940,7 +1046,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.Packets.Client.ChatMessagePacket",
+      "fullname": "LogicAPI.Networking.Packets.Client.ChatMessagePacket",
+      "name": "ChatMessagePacket",
+      "namespace": "LogicAPI.Networking.Packets.Client",
       "properties": [
         {
           "name": "DeliveryMethod",
@@ -954,7 +1062,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.Packets.Client.ExtraDataChangePacket",
+      "fullname": "LogicAPI.Networking.Packets.Client.ExtraDataChangePacket",
+      "name": "ExtraDataChangePacket",
+      "namespace": "LogicAPI.Networking.Packets.Client",
       "properties": [
         {
           "name": "DeliveryMethod",
@@ -968,7 +1078,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.Packets.Client.ExtraDataRequestPacket",
+      "fullname": "LogicAPI.Networking.Packets.Client.ExtraDataRequestPacket",
+      "name": "ExtraDataRequestPacket",
+      "namespace": "LogicAPI.Networking.Packets.Client",
       "properties": [
         {
           "name": "DeliveryMethod",
@@ -982,7 +1094,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.Packets.Client.PlayerPositionPacket",
+      "fullname": "LogicAPI.Networking.Packets.Client.PlayerPositionPacket",
+      "name": "PlayerPositionPacket",
+      "namespace": "LogicAPI.Networking.Packets.Client",
       "properties": [
         {
           "name": "DeliveryMethod",
@@ -996,7 +1110,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.Packets.Client.RpcCallPacket",
+      "fullname": "LogicAPI.Networking.Packets.Client.RpcCallPacket",
+      "name": "RpcCallPacket",
+      "namespace": "LogicAPI.Networking.Packets.Client",
       "properties": [
         {
           "name": "DeliveryMethod",
@@ -1010,7 +1126,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.Packets.Client.RunCommandPacket",
+      "fullname": "LogicAPI.Networking.Packets.Client.RunCommandPacket",
+      "name": "RunCommandPacket",
+      "namespace": "LogicAPI.Networking.Packets.Client",
       "properties": [
         {
           "name": "DeliveryMethod",
@@ -1024,7 +1142,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.Packets.Client.World.BeginMovingNewComponentPacket",
+      "fullname": "LogicAPI.Networking.Packets.Client.World.BeginMovingNewComponentPacket",
+      "name": "BeginMovingNewComponentPacket",
+      "namespace": "LogicAPI.Networking.Packets.Client.World",
       "properties": [
         {
           "name": "DeliveryMethod",
@@ -1038,7 +1158,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.Packets.Client.World.ChangeComponentPositionRotationPacket",
+      "fullname": "LogicAPI.Networking.Packets.Client.World.ChangeComponentPositionRotationPacket",
+      "name": "ChangeComponentPositionRotationPacket",
+      "namespace": "LogicAPI.Networking.Packets.Client.World",
       "properties": [
         {
           "name": "DeliveryMethod",
@@ -1052,7 +1174,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.Packets.Client.World.CloneComponentPacket",
+      "fullname": "LogicAPI.Networking.Packets.Client.World.CloneComponentPacket",
+      "name": "CloneComponentPacket",
+      "namespace": "LogicAPI.Networking.Packets.Client.World",
       "properties": [
         {
           "name": "DeliveryMethod",
@@ -1066,7 +1190,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.Packets.Client.World.CreateComponentPacket",
+      "fullname": "LogicAPI.Networking.Packets.Client.World.CreateComponentPacket",
+      "name": "CreateComponentPacket",
+      "namespace": "LogicAPI.Networking.Packets.Client.World",
       "properties": [
         {
           "name": "DeliveryMethod",
@@ -1080,7 +1206,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.Packets.Client.World.CreateWirePacket",
+      "fullname": "LogicAPI.Networking.Packets.Client.World.CreateWirePacket",
+      "name": "CreateWirePacket",
+      "namespace": "LogicAPI.Networking.Packets.Client.World",
       "properties": [
         {
           "name": "DeliveryMethod",
@@ -1094,7 +1222,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.Packets.Client.World.DeleteComponentPacket",
+      "fullname": "LogicAPI.Networking.Packets.Client.World.DeleteComponentPacket",
+      "name": "DeleteComponentPacket",
+      "namespace": "LogicAPI.Networking.Packets.Client.World",
       "properties": [
         {
           "name": "DeliveryMethod",
@@ -1108,7 +1238,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.Packets.Client.World.DeleteWirePacket",
+      "fullname": "LogicAPI.Networking.Packets.Client.World.DeleteWirePacket",
+      "name": "DeleteWirePacket",
+      "namespace": "LogicAPI.Networking.Packets.Client.World",
       "properties": [
         {
           "name": "DeliveryMethod",
@@ -1122,7 +1254,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Networking.Packets.Client.World.RotateWirePacket",
+      "fullname": "LogicAPI.Networking.Packets.Client.World.RotateWirePacket",
+      "name": "RotateWirePacket",
+      "namespace": "LogicAPI.Networking.Packets.Client.World",
       "properties": [
         {
           "name": "DeliveryMethod",
@@ -1136,7 +1270,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Modding.BaseMod",
+      "fullname": "LogicAPI.Modding.BaseMod",
+      "name": "BaseMod",
+      "namespace": "LogicAPI.Modding",
       "summary": "The base class for all mods.",
       "remarks": null,
       "returns": null,
@@ -1153,7 +1289,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Modding.ModManifest",
+      "fullname": "LogicAPI.Modding.ModManifest",
+      "name": "ModManifest",
+      "namespace": "LogicAPI.Modding",
       "summary": "Represents a mod\u0027s manifest, loaded from its \u0022manifest.succ\u0022 file.",
       "remarks": null,
       "returns": null,
@@ -1224,7 +1362,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Interfaces.IComponentInfo",
+      "fullname": "LogicAPI.Interfaces.IComponentInfo",
+      "name": "IComponentInfo",
+      "namespace": "LogicAPI.Interfaces",
       "summary": "Represents the information from which a component can be created.",
       "remarks": null,
       "returns": null,
@@ -1304,7 +1444,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Events.EventHandlerAttribute",
+      "fullname": "LogicAPI.Events.EventHandlerAttribute",
+      "name": "EventHandlerAttribute",
+      "namespace": "LogicAPI.Events",
       "summary": "Marks this method as the handler for an event.",
       "remarks": null,
       "returns": null,
@@ -1327,18 +1469,24 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Events.HandlerPriority",
+      "fullname": "LogicAPI.Events.HandlerPriority",
+      "name": "HandlerPriority",
+      "namespace": "LogicAPI.Events",
       "properties": []
     },
     {
-      "fullName": "LogicAPI.EventsSystem.Event",
+      "fullname": "LogicAPI.EventsSystem.Event",
+      "name": "Event",
+      "namespace": "LogicAPI.EventsSystem",
       "summary": "Base class for all events.",
       "remarks": null,
       "returns": null,
       "properties": []
     },
     {
-      "fullName": "LogicAPI.Data.Component",
+      "fullname": "LogicAPI.Data.Component",
+      "name": "Component",
+      "namespace": "LogicAPI.Data",
       "summary": "Represents a physical LW component.",
       "remarks": null,
       "returns": null,
@@ -1499,7 +1647,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Data.ComponentAddress",
+      "fullname": "LogicAPI.Data.ComponentAddress",
+      "name": "ComponentAddress",
+      "namespace": "LogicAPI.Data",
       "summary": "Represents a \u003Csee cref=\u0022T:LogicAPI.Data.Component\u0022 /\u003E\u0027s address.",
       "remarks": null,
       "returns": null,
@@ -1525,7 +1675,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Data.ComponentType",
+      "fullname": "LogicAPI.Data.ComponentType",
+      "name": "ComponentType",
+      "namespace": "LogicAPI.Data",
       "summary": "Represents a specific type of component. They can be used to look up ComponentInfos.",
       "remarks": null,
       "returns": null,
@@ -1551,7 +1703,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Data.HailPayload",
+      "fullname": "LogicAPI.Data.HailPayload",
+      "name": "HailPayload",
+      "namespace": "LogicAPI.Data",
       "properties": [
         {
           "name": "Challenge",
@@ -1580,7 +1734,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Data.PegAddress",
+      "fullname": "LogicAPI.Data.PegAddress",
+      "name": "PegAddress",
+      "namespace": "LogicAPI.Data",
       "summary": "Represents an address that points to a component\u0027s peg.",
       "remarks": null,
       "returns": null,
@@ -1627,7 +1783,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Data.InputAddress",
+      "fullname": "LogicAPI.Data.InputAddress",
+      "name": "InputAddress",
+      "namespace": "LogicAPI.Data",
       "summary": "Represents an address that points to a component\u0027s input peg.",
       "remarks": null,
       "returns": null,
@@ -1671,7 +1829,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Data.OutputAddress",
+      "fullname": "LogicAPI.Data.OutputAddress",
+      "name": "OutputAddress",
+      "namespace": "LogicAPI.Data",
       "summary": "Represents an address that points to a component\u0027s output peg.",
       "remarks": null,
       "returns": null,
@@ -1715,7 +1875,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Data.InputInfo",
+      "fullname": "LogicAPI.Data.InputInfo",
+      "name": "InputInfo",
+      "namespace": "LogicAPI.Data",
       "summary": "Represents a component\u0027s input peg.",
       "remarks": null,
       "returns": null,
@@ -1750,7 +1912,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Data.OutputInfo",
+      "fullname": "LogicAPI.Data.OutputInfo",
+      "name": "OutputInfo",
+      "namespace": "LogicAPI.Data",
       "summary": "Represents a component\u0027s output peg.",
       "remarks": null,
       "returns": null,
@@ -1776,7 +1940,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Data.PlayerData",
+      "fullname": "LogicAPI.Data.PlayerData",
+      "name": "PlayerData",
+      "namespace": "LogicAPI.Data",
       "properties": [
         {
           "name": "Name",
@@ -1799,7 +1965,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Data.PlayerAppearanceData",
+      "fullname": "LogicAPI.Data.PlayerAppearanceData",
+      "name": "PlayerAppearanceData",
+      "namespace": "LogicAPI.Data",
       "properties": [
         {
           "name": "BackgroundColor",
@@ -1858,7 +2026,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Data.PlayerPositionData",
+      "fullname": "LogicAPI.Data.PlayerPositionData",
+      "name": "PlayerPositionData",
+      "namespace": "LogicAPI.Data",
       "properties": [
         {
           "name": "BaseWorldRotation",
@@ -1905,7 +2075,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Data.PlayerID",
+      "fullname": "LogicAPI.Data.PlayerID",
+      "name": "PlayerID",
+      "namespace": "LogicAPI.Data",
       "summary": "Represents a player\u0027s ID.",
       "remarks": null,
       "returns": null,
@@ -1922,7 +2094,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Data.Wire",
+      "fullname": "LogicAPI.Data.Wire",
+      "name": "Wire",
+      "namespace": "LogicAPI.Data",
       "summary": "Represents a wire between two pegs with a state and a rotation.\u003Cbr /\u003E\r\n            Size: 32 bytes",
       "remarks": null,
       "returns": null,
@@ -1975,7 +2149,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Data.WireAddress",
+      "fullname": "LogicAPI.Data.WireAddress",
+      "name": "WireAddress",
+      "namespace": "LogicAPI.Data",
       "summary": "Represents a \u003Csee cref=\u0022T:LogicAPI.Data.Wire\u0022 /\u003E\u0027s address.",
       "remarks": null,
       "returns": null,
@@ -2001,7 +2177,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Data.WireData",
+      "fullname": "LogicAPI.Data.WireData",
+      "name": "WireData",
+      "namespace": "LogicAPI.Data",
       "summary": "Same data as Wire but without the unnecessary StateID field. Used when the client makes wire requests to the server.",
       "remarks": null,
       "returns": null,
@@ -2027,7 +2205,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Server.IOverrideableGameValues",
+      "fullname": "LogicAPI.Server.IOverrideableGameValues",
+      "name": "IOverrideableGameValues",
+      "namespace": "LogicAPI.Server",
       "properties": [
         {
           "name": "ServerTPS",
@@ -2110,7 +2290,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Server.IGameValues",
+      "fullname": "LogicAPI.Server.IGameValues",
+      "name": "IGameValues",
+      "namespace": "LogicAPI.Server",
       "properties": [
         {
           "name": "DefaultSave",
@@ -2181,7 +2363,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Server.ServerMod",
+      "fullname": "LogicAPI.Server.ServerMod",
+      "name": "ServerMod",
+      "namespace": "LogicAPI.Server",
       "summary": "The base class for all server mods",
       "remarks": null,
       "returns": null,
@@ -2198,11 +2382,15 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Server.Services.IWorldManager",
+      "fullname": "LogicAPI.Server.Services.IWorldManager",
+      "name": "IWorldManager",
+      "namespace": "LogicAPI.Server.Services",
       "properties": []
     },
     {
-      "fullName": "LogicAPI.Server.Networking.NetworkServer",
+      "fullname": "LogicAPI.Server.Networking.NetworkServer",
+      "name": "NetworkServer",
+      "namespace": "LogicAPI.Server.Networking",
       "summary": "Represents an abstract network server that handles client connections, as well as sending and receiving packets.",
       "remarks": null,
       "returns": null,
@@ -2228,7 +2416,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Server.Networking.ServerConnection",
+      "fullname": "LogicAPI.Server.Networking.ServerConnection",
+      "name": "ServerConnection",
+      "namespace": "LogicAPI.Server.Networking",
       "summary": "Represents a connection from a client to the local server.",
       "remarks": null,
       "returns": null,
@@ -2242,11 +2432,15 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Server.Networking.ClientVerification.IClientVerifier",
+      "fullname": "LogicAPI.Server.Networking.ClientVerification.IClientVerifier",
+      "name": "IClientVerifier",
+      "namespace": "LogicAPI.Server.Networking.ClientVerification",
       "properties": []
     },
     {
-      "fullName": "LogicAPI.Server.Networking.ClientVerification.VerificationContext",
+      "fullname": "LogicAPI.Server.Networking.ClientVerification.VerificationContext",
+      "name": "VerificationContext",
+      "namespace": "LogicAPI.Server.Networking.ClientVerification",
       "properties": [
         {
           "name": "RemoteConnection",
@@ -2281,7 +2475,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Server.Events.ComponentDeletedEvent",
+      "fullname": "LogicAPI.Server.Events.ComponentDeletedEvent",
+      "name": "ComponentDeletedEvent",
+      "namespace": "LogicAPI.Server.Events",
       "summary": "Raised when a component is about to be deleted.",
       "remarks": null,
       "returns": null,
@@ -2316,11 +2512,15 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Server.Events.ComponentDeletionCause",
+      "fullname": "LogicAPI.Server.Events.ComponentDeletionCause",
+      "name": "ComponentDeletionCause",
+      "namespace": "LogicAPI.Server.Events",
       "properties": []
     },
     {
-      "fullName": "LogicAPI.Server.Events.ComponentPlacedEvent",
+      "fullname": "LogicAPI.Server.Events.ComponentPlacedEvent",
+      "name": "ComponentPlacedEvent",
+      "namespace": "LogicAPI.Server.Events",
       "summary": "Raised when a component is about to be placed.",
       "remarks": null,
       "returns": null,
@@ -2346,11 +2546,15 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Server.Events.ComponentPlacingCause",
+      "fullname": "LogicAPI.Server.Events.ComponentPlacingCause",
+      "name": "ComponentPlacingCause",
+      "namespace": "LogicAPI.Server.Events",
       "properties": []
     },
     {
-      "fullName": "LogicAPI.Server.Networking.NetworkServer\u002BPacketReceivedDelegate",
+      "fullname": "LogicAPI.Server.Networking.NetworkServer\u002BPacketReceivedDelegate",
+      "name": "PacketReceivedDelegate",
+      "namespace": "LogicAPI.Server.Networking",
       "summary": "Used by \u003Csee cref=\u0022E:LogicAPI.Server.Networking.NetworkServer.PacketReceived\u0022 /\u003E.",
       "remarks": null,
       "returns": null,
@@ -2373,7 +2577,9 @@
       ]
     },
     {
-      "fullName": "LogicAPI.Server.Networking.NetworkServer\u002BApprovalRequestedDelegate",
+      "fullname": "LogicAPI.Server.Networking.NetworkServer\u002BApprovalRequestedDelegate",
+      "name": "ApprovalRequestedDelegate",
+      "namespace": "LogicAPI.Server.Networking",
       "summary": "Used by \u003Csee cref=\u0022E:LogicAPI.Server.Networking.NetworkServer.ApprovalRequested\u0022 /\u003E.",
       "remarks": null,
       "returns": null,

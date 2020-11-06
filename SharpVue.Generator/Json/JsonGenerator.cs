@@ -7,7 +7,7 @@ using System.IO;
 using System.Reflection;
 using System.Text.Json;
 
-namespace SharpVue.Generator
+namespace SharpVue.Generator.Json
 {
     public class JsonGenerator : IGenerator
     {
@@ -22,18 +22,7 @@ namespace SharpVue.Generator
             using var outFile = File.OpenWrite(Path.Combine(outFolder, "data.json"));
             using var writer = new Utf8JsonWriter(outFile, new JsonWriterOptions { Indented = true });
 
-            writer.WriteStartObject();
-            {
-                writer.WritePropertyName("reference");
 
-                writer.WriteStartArray();
-                foreach (var type in ws.ReferenceTypes)
-                {
-                    WriteReferenceType(writer, type, ws);
-                }
-                writer.WriteEndArray();
-            }
-            writer.WriteEndObject();
         }
 
         private static void WriteReferenceType(Utf8JsonWriter writer, Type type, Workspace ws)
@@ -41,6 +30,8 @@ namespace SharpVue.Generator
             writer.WriteStartObject();
             {
                 writer.WriteString("fullname", type.FullName);
+                writer.WriteString("name", type.Name);
+                writer.WriteString("namespace", type.Namespace);
 
                 if (ws.ReferenceData.TryGetValue(type.GetKey(), out var data))
                     WriteMemberData(writer, data);

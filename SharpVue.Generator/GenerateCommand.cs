@@ -1,4 +1,5 @@
-﻿using SharpVue.Loading;
+﻿using SharpVue.Generator.Json;
+using SharpVue.Loading;
 using System;
 using System.IO;
 

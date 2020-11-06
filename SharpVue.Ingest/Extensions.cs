@@ -6,7 +6,8 @@ namespace SharpVue.Ingest
     {
         public static string ReadAsString(this XmlReader reader)
         {
-            return reader.ReadElementContentAsString().Trim();
+            //TODO Parse <see> and stuff
+            return reader.ReadInnerXml().Trim();
         }
     }
 }

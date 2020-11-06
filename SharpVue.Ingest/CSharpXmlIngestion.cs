@@ -1,5 +1,4 @@
 ﻿using SharpVue.Common.Documentation;
-using System;
 using System.Collections.Generic;
 using System.Xml;
 
@@ -7,8 +6,7 @@ namespace SharpVue.Ingest
 {
     public class CSharpXmlIngestion : Ingestion
     {
-
-        protected override IEnumerable<MemberData> Load(XmlNodeReader reader)
+        public override IEnumerable<MemberData> Load(XmlNodeReader reader)
         {
             MemberData? currentMember = null;
 

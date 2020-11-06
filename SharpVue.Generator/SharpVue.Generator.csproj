@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SharpVue.Common\SharpVue.Common.csproj" />
     <ProjectReference Include="..\SharpVue.Loading\SharpVue.Loading.csproj" />
   </ItemGroup>
 

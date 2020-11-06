@@ -15,23 +15,23 @@ namespace SharpVue.Common.Documentation
         public string Name { get; }
         public string FullName { get; }
 
-        public string Original { get; }
+        public string XmlKey { get; }
 
-        private MemberName(MemberKind type, string root, string name, string fullName, string original)
+        private MemberName(MemberKind type, string root, string name, string fullName, string xmlKey)
         {
             this.Kind = type;
             this.Root = root;
             this.Name = name;
             this.FullName = fullName;
-            this.Original = original;
+            this.XmlKey = xmlKey;
         }
 
-        public static MemberName Parse(string fullName)
+        public static MemberName Parse(string xmlKey)
         {
-            if (fullName.Length < MinimumNameLength)
+            if (xmlKey.Length < MinimumNameLength)
                 throw new FormatException("Member name is too short");
 
-            var kind = fullName[0] switch
+            var kind = xmlKey[0] switch
             {
                 'M' => MemberKind.Method,
                 'T' => MemberKind.Type,
@@ -39,10 +39,10 @@ namespace SharpVue.Common.Documentation
                 'P' => MemberKind.Property,
                 'C' => MemberKind.Constructor,
                 'E' => MemberKind.Event,
-                _ => throw new FormatException($"Unknown member type '{fullName[0]}'")
+                _ => throw new FormatException($"Unknown member type '{xmlKey[0]}'")
             };
 
-            var parts = SplitFullName(fullName.AsSpan(2));
+            var parts = SplitFullName(xmlKey.AsSpan(2));
             var root = new List<string>();
             string? name = null;
 
@@ -65,7 +65,7 @@ namespace SharpVue.Common.Documentation
 
             name = NormalizeTypeName(name);
 
-            return new MemberName(kind, string.Join('.', root), name, fullName.Substring(2), fullName);
+            return new MemberName(kind, string.Join('.', root), name, xmlKey.Substring(2), xmlKey);
 
             static IReadOnlyList<string> SplitFullName(ReadOnlySpan<char> name)
             {

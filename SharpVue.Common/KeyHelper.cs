@@ -5,27 +5,27 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace SharpVue.Ingest
+namespace SharpVue.Common
 {
-    // Implementations from https://github.com/ZacharyPatten/Towel/blob/master/Sources/Towel/Meta.cs
-    internal static class KeyHelper
+    // Based on https://github.com/ZacharyPatten/Towel/blob/master/Sources/Towel/Meta.cs
+    public static class KeyHelper
     {
         private static readonly IDictionary<MemberInfo, string> KeyCache = new Dictionary<MemberInfo, string>();
 
-        public static string GetKey(MemberInfo member)
+        public static string GetKey(this MemberInfo member)
         {
             if (KeyCache.TryGetValue(member, out var key))
                 return key;
 
             key = member switch
             {
-                Type type       => "T:" + XmlDocumentationKeyHelper(type.FullName, null),
-                PropertyInfo _  => "P:" + XmlDocumentationKeyHelper(member.DeclaringType.FullName, member.Name),
-                FieldInfo _     => "F:" + XmlDocumentationKeyHelper(member.DeclaringType.FullName, member.Name),
-                EventInfo _     => "E:" + XmlDocumentationKeyHelper(member.DeclaringType.FullName, member.Name),
+                Type type      => "T:" + XmlDocumentationKeyHelper(type.FullName, null),
+                PropertyInfo _ => "P:" + XmlDocumentationKeyHelper(member.DeclaringType.FullName, member.Name),
+                FieldInfo _    => "F:" + XmlDocumentationKeyHelper(member.DeclaringType.FullName, member.Name),
+                EventInfo _    => "E:" + XmlDocumentationKeyHelper(member.DeclaringType.FullName, member.Name),
 
-                MethodInfo method    => GetKey(method),
-                ConstructorInfo ctor => GetKey(ctor),
+                MethodInfo method    => method.GetKey(),
+                ConstructorInfo ctor => ctor.GetKey(),
 
                 _ => throw new ArgumentException("Cannot get key of " + member.GetType().Name),
             };
@@ -34,7 +34,7 @@ namespace SharpVue.Ingest
             return key;
         }
 
-        private static string GetKey(MethodInfo methodInfo)
+        public static string GetKey(this MethodInfo methodInfo)
         {
             var typeGenericMap = methodInfo.DeclaringType.GetGenericArguments().ToTypeArgumentDictionary();
             var methodGenericMap = methodInfo.GetGenericArguments().ToTypeArgumentDictionary();
@@ -43,7 +43,7 @@ namespace SharpVue.Ingest
 
             var key = new StringBuilder();
             key.Append("M:");
-            key.Append(GetXmlName(methodInfo.DeclaringType, false, typeGenericMap, methodGenericMap));
+            key.Append(methodInfo.DeclaringType.GetXmlName(false, typeGenericMap, methodGenericMap));
             key.Append(".");
             key.Append(methodInfo.Name);
 
@@ -53,7 +53,7 @@ namespace SharpVue.Ingest
             if (parameterInfos.Length > 0)
             {
                 key.Append('(');
-                key.AppendJoin(',', parameterInfos.Select(x => GetXmlName(x.ParameterType, true, typeGenericMap, methodGenericMap)));
+                key.AppendJoin(',', parameterInfos.Select(x => x.ParameterType.GetXmlName(true, typeGenericMap, methodGenericMap)));
                 key.Append(')');
             }
 
@@ -61,13 +61,13 @@ namespace SharpVue.Ingest
                 methodInfo.Name == "op_Explicit")
             {
                 key.Append("~");
-                key.Append(GetXmlName(methodInfo.ReturnType, true, typeGenericMap, methodGenericMap));
+                key.Append(methodInfo.ReturnType.GetXmlName(true, typeGenericMap, methodGenericMap));
             }
 
             return key.ToString();
         }
 
-        private static string GetKey(ConstructorInfo constructorInfo)
+        public static string GetKey(this ConstructorInfo constructorInfo)
         {
             var typeGenericMap = constructorInfo.DeclaringType.GetGenericArguments().ToTypeArgumentDictionary();
 
@@ -89,7 +89,7 @@ namespace SharpVue.Ingest
             return key.ToString();
         }
 
-        public static string GetXmlName(
+        private static string GetXmlName(
             this Type type,
             bool isMethodParameter,
             IDictionary<string, int> typeGenericMap,
@@ -106,8 +106,7 @@ namespace SharpVue.Ingest
             }
             else if (type.HasElementType)
             {
-                string elementTypeString = GetXmlName(
-                    type.GetElementType(),
+                string elementTypeString = type.GetElementType().GetXmlName(
                     isMethodParameter,
                     typeGenericMap,
                     methodGenericMap);

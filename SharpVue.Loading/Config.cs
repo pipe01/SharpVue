@@ -8,6 +8,7 @@ namespace SharpVue.Loading
     public class Config
     {
         public string[] Assemblies { get; set; } = Array.Empty<string>();
+        public string[] Dependencies { get; set; } = Array.Empty<string>();
         public string[] Articles { get; set; } = new[] { "articles/**/*.md" };
         public string OutFolder { get; set; } = "dist";
 

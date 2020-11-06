@@ -1,10 +1,6 @@
 ﻿using SharpVue.Loading;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SharpVue.Generator
 {
@@ -14,8 +10,7 @@ namespace SharpVue.Generator
 
         public void Execute()
         {
-            if (ConfigFile == null)
-                ConfigFile = Path.GetFullPath(Workspace.ConfigName);
+            ConfigFile ??= Path.GetFullPath(Workspace.ConfigName);
 
             if (!File.Exists(ConfigFile))
             {
@@ -24,6 +19,8 @@ namespace SharpVue.Generator
             }
 
             var ws = new Workspace(ConfigFile);
+            var gen = new JsonGenerator();
+            gen.Generate(ws);
         }
     }
 }

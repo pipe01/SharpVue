@@ -1,0 +1,2399 @@
+{
+  "reference": [
+    {
+      "fullName": "LogicAPI.Client.ClientMod",
+      "properties": [
+        {
+          "name": "Manifest",
+          "returntype": "LogicAPI.Modding.ModManifest",
+          "getter": true,
+          "setter": false,
+          "summary": "This mod\u0027s manifest, as defined in the \u0022manifest.json\u0022 file.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Client.ClientMod\u00601",
+      "properties": [
+        {
+          "name": "Manifest",
+          "returntype": "LogicAPI.Modding.ModManifest",
+          "getter": true,
+          "setter": false,
+          "summary": "This mod\u0027s manifest, as defined in the \u0022manifest.json\u0022 file.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Client.IAssets",
+      "properties": []
+    },
+    {
+      "fullName": "LogicAPI.Client.Networking.ClientConnection",
+      "properties": [
+        {
+          "name": "RemoteEndPoint",
+          "returntype": "System.Net.IPEndPoint",
+          "getter": true,
+          "setter": false
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Client.Networking.PacketReceivedDelegate",
+      "properties": [
+        {
+          "name": "Target",
+          "returntype": "System.Object",
+          "getter": true,
+          "setter": false
+        },
+        {
+          "name": "Method",
+          "returntype": "System.Reflection.MethodInfo",
+          "getter": true,
+          "setter": false
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Client.Networking.NetworkClient",
+      "properties": [
+        {
+          "name": "IsConnected",
+          "returntype": "System.Boolean",
+          "getter": true,
+          "setter": false,
+          "summary": "True if the client is connected to a server.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "RemoteEndpoint",
+          "returntype": "System.Net.IPEndPoint",
+          "getter": true,
+          "setter": false,
+          "summary": "The endpoint that we\u0027re connected to. Returns null if \u003Csee cref=\u0022P:LogicAPI.Client.Networking.NetworkClient.IsConnected\u0022 /\u003E is \u003Csee langword=\u0022false\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "Port",
+          "returntype": "System.Int32",
+          "getter": true,
+          "setter": false,
+          "summary": "The port the client is bound to.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Client.Networking.NetworkClient\u002BPacketReceivedDelegate",
+      "summary": "Used by \u003Csee cref=\u0022E:LogicAPI.Client.Networking.NetworkClient.PacketReceived\u0022 /\u003E.",
+      "remarks": null,
+      "returns": null,
+      "parameters": {
+        "packet": "The packet data."
+      },
+      "properties": [
+        {
+          "name": "Target",
+          "returntype": "System.Object",
+          "getter": true,
+          "setter": false
+        },
+        {
+          "name": "Method",
+          "returntype": "System.Reflection.MethodInfo",
+          "getter": true,
+          "setter": false
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Client.Networking.NetworkClient\u002BDisconnectedDelegate",
+      "summary": "Used by \u003Csee cref=\u0022E:LogicAPI.Client.Networking.NetworkClient.Disconnected\u0022 /\u003E.",
+      "remarks": null,
+      "returns": null,
+      "properties": [
+        {
+          "name": "Target",
+          "returntype": "System.Object",
+          "getter": true,
+          "setter": false
+        },
+        {
+          "name": "Method",
+          "returntype": "System.Reflection.MethodInfo",
+          "getter": true,
+          "setter": false
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.ConversionUtilities",
+      "summary": "Utilities for conversion between \u003Csee cref=\u0022T:UnityEngine.Vector3\u0022 /\u003E and \u003Csee cref=\u0022T:UnityEngine.Quaternion\u0022 /\u003E.",
+      "remarks": null,
+      "returns": null,
+      "properties": []
+    },
+    {
+      "fullName": "LogicAPI.ModFormat",
+      "summary": "Represents the way a mod\u0027s files are stored and accessed.",
+      "remarks": null,
+      "returns": null,
+      "properties": []
+    },
+    {
+      "fullName": "LogicAPI.MetaMod",
+      "summary": "Represents a loaded mod.",
+      "remarks": null,
+      "returns": null,
+      "properties": [
+        {
+          "name": "Files",
+          "returntype": "LogicAPI.IModFiles",
+          "getter": true,
+          "setter": false,
+          "summary": "Provides an abstraction to the mod\u0027s files.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "Manifest",
+          "returntype": "LogicAPI.Modding.ModManifest",
+          "getter": true,
+          "setter": false,
+          "summary": "Contains the mod manifest\u0027s data, like its ID and name.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "Format",
+          "returntype": "LogicAPI.ModFormat",
+          "getter": true,
+          "setter": false,
+          "summary": "How the mod\u0027s files are stored.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "ModInstance",
+          "returntype": "LogicAPI.Modding.BaseMod",
+          "getter": true,
+          "setter": false,
+          "summary": "The mod\u0027s instance, if the mod has one.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "HasAssembly",
+          "returntype": "System.Boolean",
+          "getter": true,
+          "setter": false,
+          "summary": "Will be \u003Csee langword=\u0022true\u0022 /\u003E if the mod contains any loaded C# scripts.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "CodeAssembly",
+          "returntype": "System.Reflection.Assembly",
+          "getter": true,
+          "setter": false,
+          "summary": "\u003Csee cref=\u0022T:System.Reflection.Assembly\u0022 /\u003E compiled from the mod\u0027s scripts. Will be \u003Csee langword=\u0022null\u0022 /\u003E if \u003Csee cref=\u0022P:LogicAPI.MetaMod.HasAssembly\u0022 /\u003E is \u003Csee langword=\u0022false\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "Tampered",
+          "returntype": "System.Boolean",
+          "getter": true,
+          "setter": false,
+          "summary": "Mods in the .lwmod format (downloaded from logicworld.net) will be checked for modifications on load. If they have been modified after download,\r\n            this property will return \u003Csee langword=\u0022true\u0022 /\u003E. Folder mods will always return \u003Csee langword=\u0022false\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.AddressExtensions",
+      "summary": "Extensions for address classes",
+      "remarks": null,
+      "returns": null,
+      "properties": []
+    },
+    {
+      "fullName": "LogicAPI.RoundingExtensions",
+      "summary": "Extensions for rounding values.",
+      "remarks": null,
+      "returns": null,
+      "properties": []
+    },
+    {
+      "fullName": "LogicAPI.Game",
+      "properties": [
+        {
+          "name": "Version",
+          "returntype": "System.Version",
+          "getter": true,
+          "setter": false
+        },
+        {
+          "name": "VersionString",
+          "returntype": "System.String",
+          "getter": true,
+          "setter": false
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.IDispatcher",
+      "summary": "Utility for executing code on the main thread.",
+      "remarks": null,
+      "returns": null,
+      "properties": []
+    },
+    {
+      "fullName": "LogicAPI.BenchmarkCase",
+      "summary": "Represents a benchmark case that can be run and analyzed by the server.",
+      "remarks": null,
+      "returns": null,
+      "properties": [
+        {
+          "name": "Name",
+          "returntype": "System.String",
+          "getter": true,
+          "setter": false,
+          "summary": "The name to be used for running this command, e.g. \u0022runcircuit\u0022.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.IModFiles",
+      "summary": "Represents a way for mods to access their asset files.",
+      "remarks": null,
+      "returns": null,
+      "properties": [
+        {
+          "name": "Path",
+          "returntype": "System.String",
+          "getter": true,
+          "setter": false,
+          "summary": "The path to the container of the files, this could be either a folder or a compressed archive.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.ModFilesExtensions",
+      "summary": "Extensions for \u003Csee cref=\u0022T:LogicAPI.IModFiles\u0022 /\u003E.",
+      "remarks": null,
+      "returns": null,
+      "properties": []
+    },
+    {
+      "fullName": "LogicAPI.ModFile",
+      "summary": "Represents a file in any \u003Csee cref=\u0022T:LogicAPI.IModFiles\u0022 /\u003E.",
+      "remarks": null,
+      "returns": null,
+      "properties": [
+        {
+          "name": "Path",
+          "returntype": "System.String",
+          "getter": true,
+          "setter": false,
+          "summary": "The path to this file, relative to the file system root.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "FileSystem",
+          "returntype": "LogicAPI.IModFiles",
+          "getter": true,
+          "setter": false,
+          "summary": "The \u003Csee cref=\u0022T:LogicAPI.IModFiles\u0022 /\u003E instance that contains this file.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "FileName",
+          "returntype": "System.String",
+          "getter": true,
+          "setter": false,
+          "summary": "Tne file\u0027s name, i.e. \u0027myfile.txt\u0027.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "Extension",
+          "returntype": "System.String",
+          "getter": true,
+          "setter": false,
+          "summary": "The file\u0027s extension, i.e. \u0027.txt\u0027.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.ModLoadException",
+      "properties": [
+        {
+          "name": "TargetSite",
+          "returntype": "System.Reflection.MethodBase",
+          "getter": true,
+          "setter": false
+        },
+        {
+          "name": "StackTrace",
+          "returntype": "System.String",
+          "getter": true,
+          "setter": false
+        },
+        {
+          "name": "Message",
+          "returntype": "System.String",
+          "getter": true,
+          "setter": false
+        },
+        {
+          "name": "Data",
+          "returntype": "System.Collections.IDictionary",
+          "getter": true,
+          "setter": false
+        },
+        {
+          "name": "InnerException",
+          "returntype": "System.Exception",
+          "getter": true,
+          "setter": false
+        },
+        {
+          "name": "HelpLink",
+          "returntype": "System.String",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "Source",
+          "returntype": "System.String",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "HResult",
+          "returntype": "System.Int32",
+          "getter": true,
+          "setter": true
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.ScriptLoadException",
+      "properties": [
+        {
+          "name": "Errors",
+          "returntype": "System.Collections.Generic.IReadOnlyList\u00601[[System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+          "getter": true,
+          "setter": false
+        },
+        {
+          "name": "Message",
+          "returntype": "System.String",
+          "getter": true,
+          "setter": false
+        },
+        {
+          "name": "TargetSite",
+          "returntype": "System.Reflection.MethodBase",
+          "getter": true,
+          "setter": false
+        },
+        {
+          "name": "StackTrace",
+          "returntype": "System.String",
+          "getter": true,
+          "setter": false
+        },
+        {
+          "name": "Data",
+          "returntype": "System.Collections.IDictionary",
+          "getter": true,
+          "setter": false
+        },
+        {
+          "name": "InnerException",
+          "returntype": "System.Exception",
+          "getter": true,
+          "setter": false
+        },
+        {
+          "name": "HelpLink",
+          "returntype": "System.String",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "Source",
+          "returntype": "System.String",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "HResult",
+          "returntype": "System.Int32",
+          "getter": true,
+          "setter": true
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.ModPaths",
+      "summary": "Contains information about all the paths in a mod\u0027s files.",
+      "remarks": null,
+      "returns": null,
+      "properties": []
+    },
+    {
+      "fullName": "LogicAPI.Proxy",
+      "summary": "The base for a proxy class to be used in RPC. An instance of this class will be created when the\r\n            mod is loaded, and it will be reused for all future method invocations.",
+      "remarks": null,
+      "returns": null,
+      "properties": []
+    },
+    {
+      "fullName": "LogicAPI.RPCAttribute",
+      "summary": "Attribute to override RPC configs defined in the current \u003Csee cref=\u0022T:LogicAPI.RPCConfig\u0022 /\u003E.",
+      "remarks": null,
+      "returns": null,
+      "properties": [
+        {
+          "name": "WaitForResponse",
+          "returntype": "System.Boolean",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "TypeId",
+          "returntype": "System.Object",
+          "getter": true,
+          "setter": false
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.RPCConfig",
+      "properties": [
+        {
+          "name": "Timeout",
+          "returntype": "System.Int32",
+          "getter": true,
+          "setter": true,
+          "summary": "Time to wait for remote to acknowledge the call in milliseconds.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "RetryIfTimedout",
+          "returntype": "System.Boolean",
+          "getter": true,
+          "setter": true,
+          "summary": "If the call times out, automatically retry.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "WaitForResponse",
+          "returntype": "System.Boolean",
+          "getter": true,
+          "setter": true,
+          "summary": "If true, the method call won\u0027t return until a response is received from remote.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.IWorldExtensions",
+      "summary": "Extensions to \u003Csee cref=\u0022T:LogicAPI.Services.IWorld\u0022 /\u003E.",
+      "remarks": null,
+      "returns": null,
+      "properties": []
+    },
+    {
+      "fullName": "LogicAPI.Service",
+      "summary": "Represents a service provider. Refer to \u003Ca href=\u0022/articles/services.html\u0022\u003EConcepts/Services\u003C/a\u003E for more information\r\n            about services.",
+      "remarks": null,
+      "returns": null,
+      "properties": []
+    },
+    {
+      "fullName": "LogicAPI.Services.IWorld",
+      "summary": "Represents the Logic World world. See \u003Csee cref=\u0022T:LogicAPI.IWorldExtensions\u0022 /\u003E for more methods.",
+      "remarks": null,
+      "returns": null,
+      "properties": [
+        {
+          "name": "WorldTypeID",
+          "returntype": "System.String",
+          "getter": true,
+          "setter": true,
+          "summary": "The name of the scene that is loaded, as a background to the components and wires and stuff.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "AllComponents",
+          "returntype": "System.Collections.Generic.IReadOnlyDictionary\u00602[[LogicAPI.Data.ComponentAddress, LogicAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[LogicAPI.Data.Component, LogicAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+          "getter": true,
+          "setter": false,
+          "summary": "All of the components in this world, mapped from their address.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "TopLevelComponents",
+          "returntype": "System.Collections.Generic.IReadOnlyList\u00601[[LogicAPI.Data.ComponentAddress, LogicAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+          "getter": true,
+          "setter": false,
+          "summary": "All of the top-level (no parent) components in this world.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "AllWires",
+          "returntype": "System.Collections.Generic.IReadOnlyDictionary\u00602[[LogicAPI.Data.WireAddress, LogicAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[LogicAPI.Data.Wire, LogicAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+          "getter": true,
+          "setter": false,
+          "summary": "All the wires in this world, mapped from their address.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "PegWires",
+          "returntype": "System.Collections.Generic.IReadOnlyDictionary\u00602[[LogicAPI.Data.PegAddress, LogicAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Collections.Generic.HashSet\u00601[[LogicAPI.Data.WireAddress, LogicAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Collections, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a]]",
+          "getter": true,
+          "setter": false,
+          "summary": "A dictionary mapping peg addresses to a set of wires they have connected.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.ComponentRequest",
+      "summary": "Used by the client to place many components at once. Used when they load a saved board.\r\n            The addresses here - except for Parent - are relative to each other and bear no relation to the addresses in World.",
+      "remarks": null,
+      "returns": null,
+      "properties": []
+    },
+    {
+      "fullName": "LogicAPI.Networking.Connection",
+      "properties": [
+        {
+          "name": "RemoteEndPoint",
+          "returntype": "System.Net.IPEndPoint",
+          "getter": true,
+          "setter": false
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.ConnectionException",
+      "properties": [
+        {
+          "name": "TargetSite",
+          "returntype": "System.Reflection.MethodBase",
+          "getter": true,
+          "setter": false
+        },
+        {
+          "name": "StackTrace",
+          "returntype": "System.String",
+          "getter": true,
+          "setter": false
+        },
+        {
+          "name": "Message",
+          "returntype": "System.String",
+          "getter": true,
+          "setter": false
+        },
+        {
+          "name": "Data",
+          "returntype": "System.Collections.IDictionary",
+          "getter": true,
+          "setter": false
+        },
+        {
+          "name": "InnerException",
+          "returntype": "System.Exception",
+          "getter": true,
+          "setter": false
+        },
+        {
+          "name": "HelpLink",
+          "returntype": "System.String",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "Source",
+          "returntype": "System.String",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "HResult",
+          "returntype": "System.Int32",
+          "getter": true,
+          "setter": true
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.IHailHandler",
+      "properties": []
+    },
+    {
+      "fullName": "LogicAPI.Networking.IReader",
+      "properties": []
+    },
+    {
+      "fullName": "LogicAPI.Networking.IWriter",
+      "properties": []
+    },
+    {
+      "fullName": "LogicAPI.Networking.NetworkDeliveryMethod",
+      "properties": []
+    },
+    {
+      "fullName": "LogicAPI.Networking.NetworkMessage",
+      "properties": [
+        {
+          "name": "Length",
+          "returntype": "System.Int32",
+          "getter": true,
+          "setter": false
+        },
+        {
+          "name": "DeliveryMethod",
+          "returntype": "LogicAPI.Networking.NetworkDeliveryMethod",
+          "getter": true,
+          "setter": true
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.Packets.Packet",
+      "summary": "Base class for all packets.",
+      "remarks": null,
+      "returns": null,
+      "properties": [
+        {
+          "name": "DeliveryMethod",
+          "returntype": "LogicAPI.Networking.NetworkDeliveryMethod",
+          "getter": true,
+          "setter": false,
+          "summary": "The delivery method to use when sending this packet. Defaults to \u003Csee cref=\u0022F:LogicAPI.Networking.NetworkDeliveryMethod.ReliableOrdered\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.Packets.Server.CircuitStatesUpdatePacket",
+      "properties": [
+        {
+          "name": "DeliveryMethod",
+          "returntype": "LogicAPI.Networking.NetworkDeliveryMethod",
+          "getter": true,
+          "setter": false,
+          "summary": "The delivery method to use when sending this packet. Defaults to \u003Csee cref=\u0022F:LogicAPI.Networking.NetworkDeliveryMethod.ReliableOrdered\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.Packets.Server.ComponentPlacedNotificationPacket",
+      "properties": [
+        {
+          "name": "DeliveryMethod",
+          "returntype": "LogicAPI.Networking.NetworkDeliveryMethod",
+          "getter": true,
+          "setter": false,
+          "summary": "The delivery method to use when sending this packet. Defaults to \u003Csee cref=\u0022F:LogicAPI.Networking.NetworkDeliveryMethod.ReliableOrdered\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.Packets.Server.DebugMessagePacket",
+      "properties": [
+        {
+          "name": "DeliveryMethod",
+          "returntype": "LogicAPI.Networking.NetworkDeliveryMethod",
+          "getter": true,
+          "setter": false,
+          "summary": "The delivery method to use when sending this packet. Defaults to \u003Csee cref=\u0022F:LogicAPI.Networking.NetworkDeliveryMethod.ReliableOrdered\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.Packets.Server.ExtraDataUpdatePacket",
+      "properties": [
+        {
+          "name": "DeliveryMethod",
+          "returntype": "LogicAPI.Networking.NetworkDeliveryMethod",
+          "getter": true,
+          "setter": false,
+          "summary": "The delivery method to use when sending this packet. Defaults to \u003Csee cref=\u0022F:LogicAPI.Networking.NetworkDeliveryMethod.ReliableOrdered\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.Packets.Server.PlayerListPacket",
+      "properties": [
+        {
+          "name": "DeliveryMethod",
+          "returntype": "LogicAPI.Networking.NetworkDeliveryMethod",
+          "getter": true,
+          "setter": false,
+          "summary": "The delivery method to use when sending this packet. Defaults to \u003Csee cref=\u0022F:LogicAPI.Networking.NetworkDeliveryMethod.ReliableOrdered\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.Packets.Server.PlayerPositionUpdatePacket",
+      "properties": [
+        {
+          "name": "DeliveryMethod",
+          "returntype": "LogicAPI.Networking.NetworkDeliveryMethod",
+          "getter": true,
+          "setter": false
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.Packets.Server.RpcConfirmPacket",
+      "properties": [
+        {
+          "name": "DeliveryMethod",
+          "returntype": "LogicAPI.Networking.NetworkDeliveryMethod",
+          "getter": true,
+          "setter": false,
+          "summary": "The delivery method to use when sending this packet. Defaults to \u003Csee cref=\u0022F:LogicAPI.Networking.NetworkDeliveryMethod.ReliableOrdered\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.Packets.Server.SetPlayerPositionDataPacket",
+      "properties": [
+        {
+          "name": "DeliveryMethod",
+          "returntype": "LogicAPI.Networking.NetworkDeliveryMethod",
+          "getter": true,
+          "setter": false,
+          "summary": "The delivery method to use when sending this packet. Defaults to \u003Csee cref=\u0022F:LogicAPI.Networking.NetworkDeliveryMethod.ReliableOrdered\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.Packets.Server.StartMovingRequestPacket",
+      "properties": [
+        {
+          "name": "DeliveryMethod",
+          "returntype": "LogicAPI.Networking.NetworkDeliveryMethod",
+          "getter": true,
+          "setter": false,
+          "summary": "The delivery method to use when sending this packet. Defaults to \u003Csee cref=\u0022F:LogicAPI.Networking.NetworkDeliveryMethod.ReliableOrdered\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.Packets.Server.WorldUpdatePacket",
+      "properties": [
+        {
+          "name": "DeliveryMethod",
+          "returntype": "LogicAPI.Networking.NetworkDeliveryMethod",
+          "getter": true,
+          "setter": false,
+          "summary": "The delivery method to use when sending this packet. Defaults to \u003Csee cref=\u0022F:LogicAPI.Networking.NetworkDeliveryMethod.ReliableOrdered\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.Packets.Initialization.ConnectionApprovalPacket",
+      "properties": [
+        {
+          "name": "DeliveryMethod",
+          "returntype": "LogicAPI.Networking.NetworkDeliveryMethod",
+          "getter": true,
+          "setter": false,
+          "summary": "The delivery method to use when sending this packet. Defaults to \u003Csee cref=\u0022F:LogicAPI.Networking.NetworkDeliveryMethod.ReliableOrdered\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.Packets.Initialization.ConnectionEstablishedPacket",
+      "properties": [
+        {
+          "name": "Dummy",
+          "returntype": "System.Int32",
+          "getter": true,
+          "setter": true,
+          "summary": "Necessary because for some reason Unity crashes when serializing an empty packet. Not actually used.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "DeliveryMethod",
+          "returntype": "LogicAPI.Networking.NetworkDeliveryMethod",
+          "getter": true,
+          "setter": false,
+          "summary": "The delivery method to use when sending this packet. Defaults to \u003Csee cref=\u0022F:LogicAPI.Networking.NetworkDeliveryMethod.ReliableOrdered\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.Packets.Initialization.WorldInitializationPacket",
+      "properties": [
+        {
+          "name": "DeliveryMethod",
+          "returntype": "LogicAPI.Networking.NetworkDeliveryMethod",
+          "getter": true,
+          "setter": false,
+          "summary": "The delivery method to use when sending this packet. Defaults to \u003Csee cref=\u0022F:LogicAPI.Networking.NetworkDeliveryMethod.ReliableOrdered\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.Packets.Initialization.ClientLoadedWorldPacket",
+      "properties": [
+        {
+          "name": "DeliveryMethod",
+          "returntype": "LogicAPI.Networking.NetworkDeliveryMethod",
+          "getter": true,
+          "setter": false,
+          "summary": "The delivery method to use when sending this packet. Defaults to \u003Csee cref=\u0022F:LogicAPI.Networking.NetworkDeliveryMethod.ReliableOrdered\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.Packets.Client.ChangeComponentDataPacket",
+      "properties": [
+        {
+          "name": "DeliveryMethod",
+          "returntype": "LogicAPI.Networking.NetworkDeliveryMethod",
+          "getter": true,
+          "setter": false,
+          "summary": "The delivery method to use when sending this packet. Defaults to \u003Csee cref=\u0022F:LogicAPI.Networking.NetworkDeliveryMethod.ReliableOrdered\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.Packets.Client.ChangeInputExclusivityPacket",
+      "properties": [
+        {
+          "name": "DeliveryMethod",
+          "returntype": "LogicAPI.Networking.NetworkDeliveryMethod",
+          "getter": true,
+          "setter": false,
+          "summary": "The delivery method to use when sending this packet. Defaults to \u003Csee cref=\u0022F:LogicAPI.Networking.NetworkDeliveryMethod.ReliableOrdered\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.Packets.Client.ChatMessagePacket",
+      "properties": [
+        {
+          "name": "DeliveryMethod",
+          "returntype": "LogicAPI.Networking.NetworkDeliveryMethod",
+          "getter": true,
+          "setter": false,
+          "summary": "The delivery method to use when sending this packet. Defaults to \u003Csee cref=\u0022F:LogicAPI.Networking.NetworkDeliveryMethod.ReliableOrdered\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.Packets.Client.ExtraDataChangePacket",
+      "properties": [
+        {
+          "name": "DeliveryMethod",
+          "returntype": "LogicAPI.Networking.NetworkDeliveryMethod",
+          "getter": true,
+          "setter": false,
+          "summary": "The delivery method to use when sending this packet. Defaults to \u003Csee cref=\u0022F:LogicAPI.Networking.NetworkDeliveryMethod.ReliableOrdered\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.Packets.Client.ExtraDataRequestPacket",
+      "properties": [
+        {
+          "name": "DeliveryMethod",
+          "returntype": "LogicAPI.Networking.NetworkDeliveryMethod",
+          "getter": true,
+          "setter": false,
+          "summary": "The delivery method to use when sending this packet. Defaults to \u003Csee cref=\u0022F:LogicAPI.Networking.NetworkDeliveryMethod.ReliableOrdered\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.Packets.Client.PlayerPositionPacket",
+      "properties": [
+        {
+          "name": "DeliveryMethod",
+          "returntype": "LogicAPI.Networking.NetworkDeliveryMethod",
+          "getter": true,
+          "setter": false,
+          "summary": "The delivery method to use when sending this packet. Defaults to \u003Csee cref=\u0022F:LogicAPI.Networking.NetworkDeliveryMethod.ReliableOrdered\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.Packets.Client.RpcCallPacket",
+      "properties": [
+        {
+          "name": "DeliveryMethod",
+          "returntype": "LogicAPI.Networking.NetworkDeliveryMethod",
+          "getter": true,
+          "setter": false,
+          "summary": "The delivery method to use when sending this packet. Defaults to \u003Csee cref=\u0022F:LogicAPI.Networking.NetworkDeliveryMethod.ReliableOrdered\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.Packets.Client.RunCommandPacket",
+      "properties": [
+        {
+          "name": "DeliveryMethod",
+          "returntype": "LogicAPI.Networking.NetworkDeliveryMethod",
+          "getter": true,
+          "setter": false,
+          "summary": "The delivery method to use when sending this packet. Defaults to \u003Csee cref=\u0022F:LogicAPI.Networking.NetworkDeliveryMethod.ReliableOrdered\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.Packets.Client.World.BeginMovingNewComponentPacket",
+      "properties": [
+        {
+          "name": "DeliveryMethod",
+          "returntype": "LogicAPI.Networking.NetworkDeliveryMethod",
+          "getter": true,
+          "setter": false,
+          "summary": "The delivery method to use when sending this packet. Defaults to \u003Csee cref=\u0022F:LogicAPI.Networking.NetworkDeliveryMethod.ReliableOrdered\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.Packets.Client.World.ChangeComponentPositionRotationPacket",
+      "properties": [
+        {
+          "name": "DeliveryMethod",
+          "returntype": "LogicAPI.Networking.NetworkDeliveryMethod",
+          "getter": true,
+          "setter": false,
+          "summary": "The delivery method to use when sending this packet. Defaults to \u003Csee cref=\u0022F:LogicAPI.Networking.NetworkDeliveryMethod.ReliableOrdered\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.Packets.Client.World.CloneComponentPacket",
+      "properties": [
+        {
+          "name": "DeliveryMethod",
+          "returntype": "LogicAPI.Networking.NetworkDeliveryMethod",
+          "getter": true,
+          "setter": false,
+          "summary": "The delivery method to use when sending this packet. Defaults to \u003Csee cref=\u0022F:LogicAPI.Networking.NetworkDeliveryMethod.ReliableOrdered\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.Packets.Client.World.CreateComponentPacket",
+      "properties": [
+        {
+          "name": "DeliveryMethod",
+          "returntype": "LogicAPI.Networking.NetworkDeliveryMethod",
+          "getter": true,
+          "setter": false,
+          "summary": "The delivery method to use when sending this packet. Defaults to \u003Csee cref=\u0022F:LogicAPI.Networking.NetworkDeliveryMethod.ReliableOrdered\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.Packets.Client.World.CreateWirePacket",
+      "properties": [
+        {
+          "name": "DeliveryMethod",
+          "returntype": "LogicAPI.Networking.NetworkDeliveryMethod",
+          "getter": true,
+          "setter": false,
+          "summary": "The delivery method to use when sending this packet. Defaults to \u003Csee cref=\u0022F:LogicAPI.Networking.NetworkDeliveryMethod.ReliableOrdered\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.Packets.Client.World.DeleteComponentPacket",
+      "properties": [
+        {
+          "name": "DeliveryMethod",
+          "returntype": "LogicAPI.Networking.NetworkDeliveryMethod",
+          "getter": true,
+          "setter": false,
+          "summary": "The delivery method to use when sending this packet. Defaults to \u003Csee cref=\u0022F:LogicAPI.Networking.NetworkDeliveryMethod.ReliableOrdered\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.Packets.Client.World.DeleteWirePacket",
+      "properties": [
+        {
+          "name": "DeliveryMethod",
+          "returntype": "LogicAPI.Networking.NetworkDeliveryMethod",
+          "getter": true,
+          "setter": false,
+          "summary": "The delivery method to use when sending this packet. Defaults to \u003Csee cref=\u0022F:LogicAPI.Networking.NetworkDeliveryMethod.ReliableOrdered\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Networking.Packets.Client.World.RotateWirePacket",
+      "properties": [
+        {
+          "name": "DeliveryMethod",
+          "returntype": "LogicAPI.Networking.NetworkDeliveryMethod",
+          "getter": true,
+          "setter": false,
+          "summary": "The delivery method to use when sending this packet. Defaults to \u003Csee cref=\u0022F:LogicAPI.Networking.NetworkDeliveryMethod.ReliableOrdered\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Modding.BaseMod",
+      "summary": "The base class for all mods.",
+      "remarks": null,
+      "returns": null,
+      "properties": [
+        {
+          "name": "Manifest",
+          "returntype": "LogicAPI.Modding.ModManifest",
+          "getter": true,
+          "setter": false,
+          "summary": "This mod\u0027s manifest, as defined in the \u0022manifest.json\u0022 file.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Modding.ModManifest",
+      "summary": "Represents a mod\u0027s manifest, loaded from its \u0022manifest.succ\u0022 file.",
+      "remarks": null,
+      "returns": null,
+      "properties": [
+        {
+          "name": "ID",
+          "returntype": "System.String",
+          "getter": true,
+          "setter": false,
+          "summary": "The mod\u0027s ID.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "Name",
+          "returntype": "System.String",
+          "getter": true,
+          "setter": false,
+          "summary": "The mod\u0027s name.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "Author",
+          "returntype": "System.String",
+          "getter": true,
+          "setter": false,
+          "summary": "The mod\u0027s author.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "Version",
+          "returntype": "System.Version",
+          "getter": true,
+          "setter": false,
+          "summary": "The mod\u0027s version.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "ClientOnly",
+          "returntype": "System.Boolean",
+          "getter": true,
+          "setter": false,
+          "summary": "Whether or not this mod is a client-only mod.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "Priority",
+          "returntype": "System.Int32",
+          "getter": true,
+          "setter": false,
+          "summary": "The mod\u0027s loading priority, between -100 and 100. Mods with a higher priority will be loaded first.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "Dependencies",
+          "returntype": "System.String[]",
+          "getter": true,
+          "setter": false,
+          "summary": "The IDs of the mods that this mod depends on.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Interfaces.IComponentInfo",
+      "summary": "Represents the information from which a component can be created.",
+      "remarks": null,
+      "returns": null,
+      "properties": [
+        {
+          "name": "TextID",
+          "returntype": "System.String",
+          "getter": true,
+          "setter": false,
+          "summary": "The component\u0027s ID, including its mod\u0027s ID.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "LogicCodeType",
+          "returntype": "System.Type",
+          "getter": true,
+          "setter": false,
+          "summary": "The type that contains the server-side code for this component. Is always null on the client.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "LogicScript",
+          "returntype": "System.String",
+          "getter": true,
+          "setter": false,
+          "summary": "Name of the LogicScript (.lsx) file this component will execute. Is always null on the client.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "ClientCodeType",
+          "returntype": "System.Type",
+          "getter": true,
+          "setter": false,
+          "summary": "The type that contains the client-side code for this component. Is always null on the server.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "CodeInfoInts",
+          "returntype": "System.Int32[]",
+          "getter": true,
+          "setter": false,
+          "summary": "Data that component code can use.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "CodeInfoFloats",
+          "returntype": "System.Single[]",
+          "getter": true,
+          "setter": false,
+          "summary": "Data that component code can use.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "CodeInfoStrings",
+          "returntype": "System.String[]",
+          "getter": true,
+          "setter": false,
+          "summary": "Data that component code can use.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "CodeInfoBools",
+          "returntype": "System.Boolean[]",
+          "getter": true,
+          "setter": false,
+          "summary": "Data that component code can use.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Events.EventHandlerAttribute",
+      "summary": "Marks this method as the handler for an event.",
+      "remarks": null,
+      "returns": null,
+      "properties": [
+        {
+          "name": "Priority",
+          "returntype": "LogicAPI.Events.HandlerPriority",
+          "getter": true,
+          "setter": true,
+          "summary": "The priority of this handler. Handlers with a higher priority will be executed first. Defaults to \u003Csee cref=\u0022F:LogicAPI.Events.HandlerPriority.Normal\u0022 /\u003E.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "TypeId",
+          "returntype": "System.Object",
+          "getter": true,
+          "setter": false
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Events.HandlerPriority",
+      "properties": []
+    },
+    {
+      "fullName": "LogicAPI.EventsSystem.Event",
+      "summary": "Base class for all events.",
+      "remarks": null,
+      "returns": null,
+      "properties": []
+    },
+    {
+      "fullName": "LogicAPI.Data.Component",
+      "summary": "Represents a physical LW component.",
+      "remarks": null,
+      "returns": null,
+      "properties": [
+        {
+          "name": "Size",
+          "returntype": "System.Int32",
+          "getter": true,
+          "setter": false,
+          "summary": null,
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "Type",
+          "returntype": "LogicAPI.Data.ComponentType",
+          "getter": true,
+          "setter": false,
+          "summary": "The type this component is, i.e. board, inverter.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "InputInfos",
+          "returntype": "LogicAPI.Data.InputInfo[]",
+          "getter": true,
+          "setter": true,
+          "summary": "This component\u0027s inputs data.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "OutputInfos",
+          "returntype": "LogicAPI.Data.OutputInfo[]",
+          "getter": true,
+          "setter": true,
+          "summary": "This component\u0027s outputs data",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "CustomData",
+          "returntype": "System.Byte[]",
+          "getter": true,
+          "setter": true,
+          "summary": "This component\u0027s custom data, to be synced between the client and the server.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "Parent",
+          "returntype": "LogicAPI.Data.ComponentAddress",
+          "getter": true,
+          "setter": true,
+          "summary": "This component\u0027s parent component address, or \u003Csee langword=\u0022null\u0022 /\u003E if none.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "Children",
+          "returntype": "System.Collections.Generic.HashSet\u00601[[LogicAPI.Data.ComponentAddress, LogicAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+          "getter": true,
+          "setter": false,
+          "summary": "This component\u0027s children addresses.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "LocalPosition",
+          "returntype": "UnityEngine.Vector3",
+          "getter": true,
+          "setter": false,
+          "summary": "This component\u0027s position, relative to its parent.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "LocalRotation",
+          "returntype": "UnityEngine.Quaternion",
+          "getter": true,
+          "setter": false,
+          "summary": "This component\u0027s rotation, relative to its parent.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "WorldPosition",
+          "returntype": "UnityEngine.Vector3",
+          "getter": true,
+          "setter": false,
+          "summary": "This component\u0027s computed global position.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "WorldRotation",
+          "returntype": "UnityEngine.Quaternion",
+          "getter": true,
+          "setter": false,
+          "summary": "This component\u0027s computed global rotation.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "right",
+          "returntype": "UnityEngine.Vector3",
+          "getter": true,
+          "setter": false,
+          "summary": "The worldspace direction of this component\u0027s X positive axis.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "up",
+          "returntype": "UnityEngine.Vector3",
+          "getter": true,
+          "setter": false,
+          "summary": "The worldspace direction of this component\u0027s Y positive axis.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "forward",
+          "returntype": "UnityEngine.Vector3",
+          "getter": true,
+          "setter": false,
+          "summary": "The worldspace direction of this component\u0027s Z positive axis.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "localRight",
+          "returntype": "UnityEngine.Vector3",
+          "getter": true,
+          "setter": false,
+          "summary": "The localspace direction of this component\u0027s X positive axis.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "localUp",
+          "returntype": "UnityEngine.Vector3",
+          "getter": true,
+          "setter": false,
+          "summary": "The localspace direction of this component\u0027s Y positive axis.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "localForward",
+          "returntype": "UnityEngine.Vector3",
+          "getter": true,
+          "setter": false,
+          "summary": "The localspace direction of this component\u0027s Z positive axis.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Data.ComponentAddress",
+      "summary": "Represents a \u003Csee cref=\u0022T:LogicAPI.Data.Component\u0022 /\u003E\u0027s address.",
+      "remarks": null,
+      "returns": null,
+      "properties": [
+        {
+          "name": "ID",
+          "returntype": "System.UInt32",
+          "getter": true,
+          "setter": false,
+          "summary": "This address\u0027 numeric ID.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "Size",
+          "returntype": "System.Int32",
+          "getter": true,
+          "setter": false,
+          "summary": null,
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Data.ComponentType",
+      "summary": "Represents a specific type of component. They can be used to look up ComponentInfos.",
+      "remarks": null,
+      "returns": null,
+      "properties": [
+        {
+          "name": "NumericID",
+          "returntype": "System.UInt16",
+          "getter": true,
+          "setter": false,
+          "summary": "This component type\u0027s number ID.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "Size",
+          "returntype": "System.Int32",
+          "getter": true,
+          "setter": false,
+          "summary": null,
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Data.HailPayload",
+      "properties": [
+        {
+          "name": "Challenge",
+          "returntype": "System.String",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "UserID",
+          "returntype": "System.UInt32",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "Username",
+          "returntype": "System.String",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "IssuedAt",
+          "returntype": "System.Int64",
+          "getter": true,
+          "setter": true
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Data.PegAddress",
+      "summary": "Represents an address that points to a component\u0027s peg.",
+      "remarks": null,
+      "returns": null,
+      "seealso": [
+        "T:LogicAPI.Data.OutputInfo"
+      ],
+      "properties": [
+        {
+          "name": "ComponentAddress",
+          "returntype": "LogicAPI.Data.ComponentAddress",
+          "getter": true,
+          "setter": false,
+          "summary": "The component this peg is attached to\u0027s address.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "PegNumber",
+          "returntype": "System.Byte",
+          "getter": true,
+          "setter": false,
+          "summary": "This peg\u0027s zero-based index out of all the component\u0027s pegs.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "IsInput",
+          "returntype": "System.Boolean",
+          "getter": true,
+          "setter": false,
+          "summary": "Whether or not this peg is an input peg.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "Size",
+          "returntype": "System.Int32",
+          "getter": true,
+          "setter": false,
+          "summary": null,
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Data.InputAddress",
+      "summary": "Represents an address that points to a component\u0027s input peg.",
+      "remarks": null,
+      "returns": null,
+      "properties": [
+        {
+          "name": "IsInput",
+          "returntype": "System.Boolean",
+          "getter": true,
+          "setter": false,
+          "summary": null,
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "ComponentAddress",
+          "returntype": "LogicAPI.Data.ComponentAddress",
+          "getter": true,
+          "setter": false,
+          "summary": "The component this peg is attached to\u0027s address.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "PegNumber",
+          "returntype": "System.Byte",
+          "getter": true,
+          "setter": false,
+          "summary": "This peg\u0027s zero-based index out of all the component\u0027s pegs.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "Size",
+          "returntype": "System.Int32",
+          "getter": true,
+          "setter": false,
+          "summary": null,
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Data.OutputAddress",
+      "summary": "Represents an address that points to a component\u0027s output peg.",
+      "remarks": null,
+      "returns": null,
+      "properties": [
+        {
+          "name": "IsInput",
+          "returntype": "System.Boolean",
+          "getter": true,
+          "setter": false,
+          "summary": null,
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "ComponentAddress",
+          "returntype": "LogicAPI.Data.ComponentAddress",
+          "getter": true,
+          "setter": false,
+          "summary": "The component this peg is attached to\u0027s address.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "PegNumber",
+          "returntype": "System.Byte",
+          "getter": true,
+          "setter": false,
+          "summary": "This peg\u0027s zero-based index out of all the component\u0027s pegs.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "Size",
+          "returntype": "System.Int32",
+          "getter": true,
+          "setter": false,
+          "summary": null,
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Data.InputInfo",
+      "summary": "Represents a component\u0027s input peg.",
+      "remarks": null,
+      "returns": null,
+      "properties": [
+        {
+          "name": "Exclusive",
+          "returntype": "System.Boolean",
+          "getter": true,
+          "setter": false,
+          "summary": "Whether or not this input peg is in exclusive mode.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "StateID",
+          "returntype": "System.Int32",
+          "getter": true,
+          "setter": false,
+          "summary": "This peg\u0027s state ID.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "Size",
+          "returntype": "System.Int32",
+          "getter": true,
+          "setter": false,
+          "summary": "The approximate size of this object when serialized in bytes.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Data.OutputInfo",
+      "summary": "Represents a component\u0027s output peg.",
+      "remarks": null,
+      "returns": null,
+      "properties": [
+        {
+          "name": "StateID",
+          "returntype": "System.Int32",
+          "getter": true,
+          "setter": false,
+          "summary": "This peg\u0027s state ID.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "Size",
+          "returntype": "System.Int32",
+          "getter": true,
+          "setter": false,
+          "summary": "The approximate size of this object when serialized in bytes.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Data.PlayerData",
+      "properties": [
+        {
+          "name": "Name",
+          "returntype": "System.String",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "AppearanceData",
+          "returntype": "LogicAPI.Data.PlayerAppearanceData",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "PositionData",
+          "returntype": "LogicAPI.Data.PlayerPositionData",
+          "getter": true,
+          "setter": true
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Data.PlayerAppearanceData",
+      "properties": [
+        {
+          "name": "BackgroundColor",
+          "returntype": "JimmysUnityUtilities.Color24",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "ForegroundColor",
+          "returntype": "JimmysUnityUtilities.Color24",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "FlipTexture",
+          "returntype": "System.Boolean",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "TextureRotation",
+          "returntype": "System.Single",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "TextureScaling",
+          "returntype": "UnityEngine.Vector2",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "TextureRadialShear",
+          "returntype": "System.Single",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "TextureRadialShearOffset",
+          "returntype": "UnityEngine.Vector2",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "SHINYBOBBY",
+          "returntype": "System.Boolean",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "Default",
+          "returntype": "LogicAPI.Data.PlayerAppearanceData",
+          "getter": true,
+          "setter": false
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Data.PlayerPositionData",
+      "properties": [
+        {
+          "name": "BaseWorldRotation",
+          "returntype": "UnityEngine.Quaternion",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "HeadPosition",
+          "returntype": "UnityEngine.Vector3",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "HeadHorizontalRotation",
+          "returntype": "System.Single",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "HeadVerticalRotation",
+          "returntype": "System.Single",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "Scale",
+          "returntype": "System.Single",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "Flying",
+          "returntype": "System.Boolean",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "TeleportFromPreviousPosition",
+          "returntype": "System.Boolean",
+          "getter": true,
+          "setter": true
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Data.PlayerID",
+      "summary": "Represents a player\u0027s ID.",
+      "remarks": null,
+      "returns": null,
+      "properties": [
+        {
+          "name": "Name",
+          "returntype": "System.String",
+          "getter": true,
+          "setter": false,
+          "summary": "The username of the player this ID is identifying.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Data.Wire",
+      "summary": "Represents a wire between two pegs with a state and a rotation.\u003Cbr /\u003E\r\n            Size: 32 bytes",
+      "remarks": null,
+      "returns": null,
+      "properties": [
+        {
+          "name": "Point1",
+          "returntype": "LogicAPI.Data.PegAddress",
+          "getter": true,
+          "setter": false,
+          "summary": "This wire\u0027s first point.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "Point2",
+          "returntype": "LogicAPI.Data.PegAddress",
+          "getter": true,
+          "setter": false,
+          "summary": "This wire\u0027s second point.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "StateID",
+          "returntype": "System.Int32",
+          "getter": true,
+          "setter": true,
+          "summary": "This wire\u0027s state ID.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "Rotation",
+          "returntype": "System.Single",
+          "getter": true,
+          "setter": true,
+          "summary": "This wire\u0027s rotation.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "Size",
+          "returntype": "System.Int32",
+          "getter": true,
+          "setter": false,
+          "summary": null,
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Data.WireAddress",
+      "summary": "Represents a \u003Csee cref=\u0022T:LogicAPI.Data.Wire\u0022 /\u003E\u0027s address.",
+      "remarks": null,
+      "returns": null,
+      "properties": [
+        {
+          "name": "ID",
+          "returntype": "System.UInt32",
+          "getter": true,
+          "setter": false,
+          "summary": "This address\u0027 numeric ID.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "Size",
+          "returntype": "System.Int32",
+          "getter": true,
+          "setter": false,
+          "summary": null,
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Data.WireData",
+      "summary": "Same data as Wire but without the unnecessary StateID field. Used when the client makes wire requests to the server.",
+      "remarks": null,
+      "returns": null,
+      "properties": [
+        {
+          "name": "Point1",
+          "returntype": "LogicAPI.Data.PegAddress",
+          "getter": true,
+          "setter": false
+        },
+        {
+          "name": "Point2",
+          "returntype": "LogicAPI.Data.PegAddress",
+          "getter": true,
+          "setter": false
+        },
+        {
+          "name": "Rotation",
+          "returntype": "System.Single",
+          "getter": true,
+          "setter": false
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Server.IOverrideableGameValues",
+      "properties": [
+        {
+          "name": "ServerTPS",
+          "returntype": "System.Double",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "SimulationTPS",
+          "returntype": "System.Double",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "MaxAllowedTimeStepSeconds",
+          "returntype": "System.Single",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "PauseSimulationWhenServerEmpty",
+          "returntype": "System.Boolean",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "SaveOnClose",
+          "returntype": "System.Boolean",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "SaveWhenServerEmpties",
+          "returntype": "System.Boolean",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "DoAutosave",
+          "returntype": "System.Boolean",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "AutosaveIntervalSeconds",
+          "returntype": "System.Single",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "DoAutoBackup",
+          "returntype": "System.Boolean",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "AutoBackupIntervalSeconds",
+          "returntype": "System.Single",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "BackupOnSave",
+          "returntype": "System.Boolean",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "MaxBackups",
+          "returntype": "System.Int32",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "BackupsPath",
+          "returntype": "System.String",
+          "getter": true,
+          "setter": true
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Server.IGameValues",
+      "properties": [
+        {
+          "name": "DefaultSave",
+          "returntype": "System.String",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "DefaultPort",
+          "returntype": "System.Int32",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "MaxPlayers",
+          "returntype": "System.Int32",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "UseWhitelist",
+          "returntype": "System.Boolean",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "Whitelisted_IDs",
+          "returntype": "LogicAPI.Data.PlayerID[]",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "Banned_IDs",
+          "returntype": "LogicAPI.Data.PlayerID[]",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "Banned_IPs",
+          "returntype": "System.String[]",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "Admin_IDs",
+          "returntype": "LogicAPI.Data.PlayerID[]",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "OfflineMode",
+          "returntype": "System.Boolean",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "UsePassword",
+          "returntype": "System.Boolean",
+          "getter": true,
+          "setter": true
+        },
+        {
+          "name": "Password",
+          "returntype": "System.String",
+          "getter": true,
+          "setter": true
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Server.ServerMod",
+      "summary": "The base class for all server mods",
+      "remarks": null,
+      "returns": null,
+      "properties": [
+        {
+          "name": "Manifest",
+          "returntype": "LogicAPI.Modding.ModManifest",
+          "getter": true,
+          "setter": false,
+          "summary": "This mod\u0027s manifest, as defined in the \u0022manifest.json\u0022 file.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Server.Services.IWorldManager",
+      "properties": []
+    },
+    {
+      "fullName": "LogicAPI.Server.Networking.NetworkServer",
+      "summary": "Represents an abstract network server that handles client connections, as well as sending and receiving packets.",
+      "remarks": null,
+      "returns": null,
+      "properties": [
+        {
+          "name": "ConnectionsCount",
+          "returntype": "System.Int32",
+          "getter": true,
+          "setter": false,
+          "summary": "Number of connected remote clients.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "IsAnyClientConnected",
+          "returntype": "System.Boolean",
+          "getter": true,
+          "setter": false,
+          "summary": "Returns true if \u003Csee cref=\u0022P:LogicAPI.Server.Networking.NetworkServer.ConnectionsCount\u0022 /\u003E \u0026gt; 0.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Server.Networking.ServerConnection",
+      "summary": "Represents a connection from a client to the local server.",
+      "remarks": null,
+      "returns": null,
+      "properties": [
+        {
+          "name": "RemoteEndPoint",
+          "returntype": "System.Net.IPEndPoint",
+          "getter": true,
+          "setter": false
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Server.Networking.ClientVerification.IClientVerifier",
+      "properties": []
+    },
+    {
+      "fullName": "LogicAPI.Server.Networking.ClientVerification.VerificationContext",
+      "properties": [
+        {
+          "name": "RemoteConnection",
+          "returntype": "LogicAPI.Networking.Connection",
+          "getter": true,
+          "setter": false
+        },
+        {
+          "name": "PlayerID",
+          "returntype": "LogicAPI.Data.PlayerID",
+          "getter": true,
+          "setter": false
+        },
+        {
+          "name": "ApprovalPacket",
+          "returntype": "LogicAPI.Networking.Packets.Initialization.ConnectionApprovalPacket",
+          "getter": true,
+          "setter": false
+        },
+        {
+          "name": "Server",
+          "returntype": "LogicAPI.Server.Networking.NetworkServer",
+          "getter": true,
+          "setter": false
+        },
+        {
+          "name": "Config",
+          "returntype": "LogicAPI.Server.IGameValues",
+          "getter": true,
+          "setter": false
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Server.Events.ComponentDeletedEvent",
+      "summary": "Raised when a component is about to be deleted.",
+      "remarks": null,
+      "returns": null,
+      "properties": [
+        {
+          "name": "Cause",
+          "returntype": "LogicAPI.Server.Events.ComponentDeletionCause",
+          "getter": true,
+          "setter": false,
+          "summary": "The cause of the deletion, e.g. has it been deleted by a player?",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "Component",
+          "returntype": "LogicAPI.Data.Component",
+          "getter": true,
+          "setter": false,
+          "summary": "Information about the component that is being deleted.",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "Address",
+          "returntype": "LogicAPI.Data.ComponentAddress",
+          "getter": true,
+          "setter": false,
+          "summary": "Address of the component that\u0027s being deleted.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Server.Events.ComponentDeletionCause",
+      "properties": []
+    },
+    {
+      "fullName": "LogicAPI.Server.Events.ComponentPlacedEvent",
+      "summary": "Raised when a component is about to be placed.",
+      "remarks": null,
+      "returns": null,
+      "properties": [
+        {
+          "name": "Cause",
+          "returntype": "LogicAPI.Server.Events.ComponentPlacingCause",
+          "getter": true,
+          "setter": false,
+          "summary": "The cause of the placement, e.g. has it been placed by a player?",
+          "remarks": null,
+          "returns": null
+        },
+        {
+          "name": "Component",
+          "returntype": "LogicAPI.Data.Component",
+          "getter": true,
+          "setter": false,
+          "summary": "Information about the component that is being placed.",
+          "remarks": null,
+          "returns": null
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Server.Events.ComponentPlacingCause",
+      "properties": []
+    },
+    {
+      "fullName": "LogicAPI.Server.Networking.NetworkServer\u002BPacketReceivedDelegate",
+      "summary": "Used by \u003Csee cref=\u0022E:LogicAPI.Server.Networking.NetworkServer.PacketReceived\u0022 /\u003E.",
+      "remarks": null,
+      "returns": null,
+      "parameters": {
+        "packet": "The packet data."
+      },
+      "properties": [
+        {
+          "name": "Target",
+          "returntype": "System.Object",
+          "getter": true,
+          "setter": false
+        },
+        {
+          "name": "Method",
+          "returntype": "System.Reflection.MethodInfo",
+          "getter": true,
+          "setter": false
+        }
+      ]
+    },
+    {
+      "fullName": "LogicAPI.Server.Networking.NetworkServer\u002BApprovalRequestedDelegate",
+      "summary": "Used by \u003Csee cref=\u0022E:LogicAPI.Server.Networking.NetworkServer.ApprovalRequested\u0022 /\u003E.",
+      "remarks": null,
+      "returns": null,
+      "parameters": {
+        "sender": "The remote connection that wants to connect."
+      },
+      "properties": [
+        {
+          "name": "Target",
+          "returntype": "System.Object",
+          "getter": true,
+          "setter": false
+        },
+        {
+          "name": "Method",
+          "returntype": "System.Reflection.MethodInfo",
+          "getter": true,
+          "setter": false
+        }
+      ]
+    }
+  ]
+}

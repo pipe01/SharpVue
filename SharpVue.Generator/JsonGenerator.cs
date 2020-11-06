@@ -4,7 +4,6 @@ using SharpVue.Loading;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Text.Json;
 
@@ -41,7 +40,7 @@ namespace SharpVue.Generator
         {
             writer.WriteStartObject();
             {
-                writer.WriteString("fullName", type.FullName);
+                writer.WriteString("fullname", type.FullName);
 
                 if (ws.ReferenceData.TryGetValue(type.GetKey(), out var data))
                     WriteMemberData(writer, data);

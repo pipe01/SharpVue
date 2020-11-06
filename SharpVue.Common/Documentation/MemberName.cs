@@ -1,22 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
-namespace SharpVue.Common
+namespace SharpVue.Common.Documentation
 {
+    [DebuggerDisplay("{Kind} {FullName}")]
     public readonly struct MemberName
     {
         private const int MinimumNameLength = 3;
 
-        public MemberType Type { get; }
-        public string Namespace { get; }
+        public MemberKind Kind { get; }
+        public string Root { get; }
         public string Name { get; }
+        public string FullName { get; }
 
-        public MemberName(MemberType type, string @namespace, string name)
+        public string Original { get; }
+
+        private MemberName(MemberKind type, string root, string name, string fullName, string original)
         {
-            this.Type = type;
-            this.Namespace = @namespace;
+            this.Kind = type;
+            this.Root = root;
             this.Name = name;
+            this.FullName = fullName;
+            this.Original = original;
         }
 
         public static MemberName Parse(string fullName)
@@ -24,20 +31,20 @@ namespace SharpVue.Common
             if (fullName.Length < MinimumNameLength)
                 throw new FormatException("Member name is too short");
 
-            var type = fullName[0] switch
+            var kind = fullName[0] switch
             {
-                'M' => MemberType.Method,
-                'T' => MemberType.Type,
-                'F' => MemberType.Field,
-                'P' => MemberType.Property,
-                'C' => MemberType.Constructor,
-                'E' => MemberType.Event,
+                'M' => MemberKind.Method,
+                'T' => MemberKind.Type,
+                'F' => MemberKind.Field,
+                'P' => MemberKind.Property,
+                'C' => MemberKind.Constructor,
+                'E' => MemberKind.Event,
                 _ => throw new FormatException($"Unknown member type '{fullName[0]}'")
             };
 
             var parts = SplitFullName(fullName.AsSpan(2));
-            var ns = new List<string>();
-            string name = null;
+            var root = new List<string>();
+            string? name = null;
 
             for (int i = 0; i < parts.Count; i++)
             {
@@ -49,13 +56,16 @@ namespace SharpVue.Common
                 }
                 else
                 {
-                    ns.Add(part);
+                    root.Add(part);
                 }
             }
 
+            if (name == null)
+                throw new Exception(); // Should never be reached
+
             name = NormalizeTypeName(name);
 
-            return new MemberName(type, string.Join('.', ns), name);
+            return new MemberName(kind, string.Join('.', root), name, fullName.Substring(2), fullName);
 
             static IReadOnlyList<string> SplitFullName(ReadOnlySpan<char> name)
             {

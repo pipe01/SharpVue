@@ -330,4 +330,4 @@ ASALocalRun/
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
 
-Testing/*.cs
+Testing/**/*

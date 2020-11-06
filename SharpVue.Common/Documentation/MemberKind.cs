@@ -1,6 +1,6 @@
-﻿namespace SharpVue.Common
+﻿namespace SharpVue.Common.Documentation
 {
-    public enum MemberType
+    public enum MemberKind
     {
         Method,
         Type,

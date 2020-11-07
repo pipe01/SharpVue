@@ -9,6 +9,7 @@ export interface Type {
     fullName: string;
     name: string;
     namespace: string;
+    assembly: string;
     inherits: string[];
     implements: string[];
     properties: Property[];

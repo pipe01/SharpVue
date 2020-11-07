@@ -3,6 +3,9 @@ h1.full-name {{item.kind}} {{brokenName}}
 dl
     dt Namespace:
     dd {{item.namespace}}
+dl
+    dt Assembly:
+    dd {{item.assembly}}
 
 dl(v-if="item.inherits.length > 0")
     dt Inheritance:

@@ -17,6 +17,9 @@ namespace SharpVue.Generator.Json
         [JsonPropertyName("namespace")]
         public string? Namespace { get; set; }
 
+        [JsonPropertyName("assembly")]
+        public string? Assembly { get; set; }
+
         [JsonPropertyName("inherits")]
         public List<string>? Inherits { get; set; }
 

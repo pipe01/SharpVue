@@ -1,6 +1,6 @@
 <template lang="pug">
 router-link(v-if="isKnownType" :to="'/ref/' + to") {{name}}
-span(v-else) {{to}}
+a(v-else :href="'https://docs.microsoft.com/dotnet/api/' + to" target="_blank") {{to}}
 </template>
 
 <script lang="ts">

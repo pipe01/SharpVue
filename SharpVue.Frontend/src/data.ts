@@ -34,6 +34,7 @@ export interface Property extends Descriptable, Member {
 }
 
 export interface Method extends Descriptable, Member {
+    prettyName: Content;
     parameters: Parameter[];
 }
 

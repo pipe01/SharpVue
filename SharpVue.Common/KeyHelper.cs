@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace SharpVue.Common
@@ -19,12 +18,12 @@ namespace SharpVue.Common
 
             key = member switch
             {
-                Type type      => "T:" + XmlDocumentationKeyHelper(type.FullName, null),
+                Type type => "T:" + XmlDocumentationKeyHelper(type.FullName, null),
                 PropertyInfo _ => "P:" + XmlDocumentationKeyHelper(member.DeclaringType.FullName, member.Name),
-                FieldInfo _    => "F:" + XmlDocumentationKeyHelper(member.DeclaringType.FullName, member.Name),
-                EventInfo _    => "E:" + XmlDocumentationKeyHelper(member.DeclaringType.FullName, member.Name),
+                FieldInfo _ => "F:" + XmlDocumentationKeyHelper(member.DeclaringType.FullName, member.Name),
+                EventInfo _ => "E:" + XmlDocumentationKeyHelper(member.DeclaringType.FullName, member.Name),
 
-                MethodInfo method    => method.GetKey(),
+                MethodInfo method => method.GetKey(),
                 ConstructorInfo ctor => ctor.GetKey(),
 
                 _ => throw new ArgumentException("Cannot get key of " + member.GetType().Name),
@@ -41,7 +40,7 @@ namespace SharpVue.Common
 
             var parameterInfos = methodInfo.GetParameters();
 
-            var key = new StringBuilder();
+            using var _ = StringBuilderPool.Rent(out var key);
             key.Append("M:");
             key.Append(methodInfo.DeclaringType.GetXmlName(false, typeGenericMap, methodGenericMap));
             key.Append(".");
@@ -71,7 +70,7 @@ namespace SharpVue.Common
         {
             var typeGenericMap = constructorInfo.DeclaringType.GetGenericArguments().ToTypeArgumentDictionary();
 
-            var key = new StringBuilder();
+            using var _ = StringBuilderPool.Rent(out var key);
 
             var parameterInfos = constructorInfo.GetParameters();
 
@@ -95,7 +94,7 @@ namespace SharpVue.Common
             IDictionary<string, int> typeGenericMap,
             IDictionary<string, int>? methodGenericMap = null)
         {
-            var str = new StringBuilder();
+            using var _ = StringBuilderPool.Rent(out var str);
 
             if (type.IsGenericParameter)
             {

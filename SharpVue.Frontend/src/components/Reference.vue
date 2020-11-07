@@ -1,6 +1,11 @@
 <template lang="pug">
+//- Reference type
 router-link.code-word(v-if="isDocsType" :to="'/ref/' + to") {{name}}
+
+//- Unity3D engine type
 a.code-word(v-else-if="to.startsWith('Unity')" :href="'https://docs.unity3d.com/ScriptReference/' + unityName(to) + '.html'" target="_blank") {{to}}
+
+//- Other .NET type
 a.code-word(v-else :href="'https://docs.microsoft.com/dotnet/api/' + to.replace('`', '-')" target="_blank") {{keywordType ?? to}}
 </template>
 
@@ -23,6 +28,8 @@ const keywordTypes: { [type: string]: string } = {
     "System.UInt16": "ushort",
     "System.UInt32": "uint",
     "System.UInt64": "ulong",
+    "System.Object": "object",
+    "System.Void": "void"
 }
 
 export default defineComponent({

@@ -3,13 +3,19 @@ using SharpVue.Common.Documentation;
 using SharpVue.Loading;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using System.Text;
 
 namespace SharpVue.Generator.Json
 {
     public class Method : Returner
     {
         public string? Name { get; set; }
+        /// <summary>
+        /// Method name with generic parameter names included
+        /// </summary>
+        public Content? PrettyName { get; set; }
         public string? InheritedFrom { get; set; }
         public List<Parameter> Parameters { get; set; } = new List<Parameter>();
 
@@ -20,6 +26,7 @@ namespace SharpVue.Generator.Json
             var json = new Method
             {
                 Name = method.Name,
+                PrettyName = BuildPrettyName(method),
                 InheritedFrom = method.DeclaringType != declaringType ? method.DeclaringType?.FullName : null,
                 ReturnType = method.ReturnType.GenerateNameContent(),
                 Returns = data?.Returns,
@@ -36,6 +43,31 @@ namespace SharpVue.Generator.Json
             }
 
             return json;
+        }
+
+        private static Content BuildPrettyName(MethodInfo method)
+        {
+            var c = new Content();
+
+            c.AddPlainText(method.Name);
+
+            if (method.ContainsGenericParameters)
+            {
+                c.AddPlainText("<" + string.Join(", ", method.GetGenericArguments().Select(o => o.Name)) + ">");
+            }
+
+            c.AddPlainText("(");
+
+            var args = method.GetParameters();
+            for (int i = 0; i < args.Length; i++)
+            {
+                args[i].ParameterType.GenerateNameContent(c);
+                c.AddPlainText(" " + args[i].Name + (i < args.Length - 1 ? ", " : null));
+            }
+
+            c.AddPlainText(")");
+
+            return c;
         }
     }
 

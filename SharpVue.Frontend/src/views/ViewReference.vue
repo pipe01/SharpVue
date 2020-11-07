@@ -4,7 +4,7 @@ main.row
         .sidebar
             Sidebar
     .col-sm-9.main
-        TypeReference(v-if="item" :item="item")
+        TypeReference(v-if="item" :type="item")
 </template>
 
 <script lang="ts">

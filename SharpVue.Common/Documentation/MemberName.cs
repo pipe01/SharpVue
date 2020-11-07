@@ -70,7 +70,7 @@ namespace SharpVue.Common.Documentation
             static IReadOnlyList<string> SplitFullName(ReadOnlySpan<char> name)
             {
                 var parts = new List<string>();
-                var str = new StringBuilder();
+                using var _ = StringBuilderPool.Rent(out var str);
 
                 for (int i = 0; i < name.Length; i++)
                 {

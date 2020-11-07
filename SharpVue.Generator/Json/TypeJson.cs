@@ -48,8 +48,18 @@ namespace SharpVue.Generator.Json
 
             foreach (var method in type.GetMethods())
             {
+                if (method.IsSpecialName && (
+                    method.Name.StartsWith("get_")
+                    || method.Name.StartsWith("set_")
+                    || method.Name.StartsWith("add_")
+                    || method.Name.StartsWith("remove_")))
+                {
+                    continue;
+                }
+
                 json.Methods.Add(Method.FromMethod(method, type, ws));
             }
+            json.Methods.Sort((a, b) => a.Name!.CompareTo(b.Name));
 
             return json;
         }

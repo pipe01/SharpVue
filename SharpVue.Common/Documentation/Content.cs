@@ -7,6 +7,10 @@ namespace SharpVue.Common.Documentation
     {
         public IList<Insertion> Insertions { get; }
 
+        public Content() : this(new List<Insertion>())
+        {
+        }
+
         public Content(IList<Insertion> insertions)
         {
             this.Insertions = insertions;
@@ -19,7 +23,16 @@ namespace SharpVue.Common.Documentation
             => Insertions.Add(new Insertion(InsertionType.PlainText, text, null));
 
         public void AddReferenceType(Type type)
-            => Insertions.Add(new Insertion(InsertionType.ReferenceType, type.FullName!, type.FullName));
+        {
+            if (type.IsGenericParameter)
+            {
+                AddPlainText(type.Name);
+            }
+            else
+            {
+                Insertions.Add(new Insertion(InsertionType.ReferenceType, type.FullName!, type.FullName));
+            }
+        }
     }
 
     public class Insertion

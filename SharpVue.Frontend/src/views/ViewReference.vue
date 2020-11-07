@@ -1,9 +1,9 @@
 <template lang="pug">
 main.row
-    .col-sm-3.bg-dark
+    .col-lg-3.bg-dark
         .sidebar
             Sidebar
-    .col-sm-9.main
+    .col-lg-9.main
         TypeReference(v-if="item" :type="item")
 </template>
 
@@ -50,6 +50,15 @@ main {
 .sidebar {
     position: sticky;
     top: 0;
+    max-height: 90vh;
+    overflow-y: auto;
+    word-break: break-word;
+}
+
+@media (max-width: 992px) {
+    .sidebar {
+        max-height: 50vh;
+    }
 }
 
 ul {

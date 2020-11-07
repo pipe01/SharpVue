@@ -112,7 +112,7 @@ template.mb-4(v-if="type.methods.length > 0")
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, PropType, ref } from 'vue'
+import { computed, defineComponent, inject, onMounted, PropType, ref, watch } from 'vue'
 import { useRoute } from 'vue-router';
 
 import { Type } from '@/data'
@@ -133,6 +133,9 @@ export default defineComponent({
         const showInherited = ref(true);
 
         const route = useRoute();
+        const appName = inject("appName");
+
+        watch(() => props.type, () => document.title = `${props.type?.fullName} - ${appName} documentation`, { immediate: true });
 
         onMounted(() => {
             const member = route.params["member"];

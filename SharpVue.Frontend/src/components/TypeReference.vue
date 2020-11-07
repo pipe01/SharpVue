@@ -18,23 +18,31 @@ dl(v-if="type.inherits.length > 0")
             reference(:to="cls")
             span(v-if="i < type.inherits.length - 1") &nbsp;&rarr;&nbsp;
 
-    //- TODO Hide if there are no inherited members
-    .form-check
-        input.form-check-input#showInherited(type="checkbox" v-model="showInherited")
-        label.form-check-label(for="showInherited") Show inherited members
-
+//- Interfaces
+dl(v-if="type.implements && type.implements.length > 0")
+    dt Implemented interfaces:
+    dd 
+        template(v-for="(t, i) in type.implements")
+            reference(:to="t")
+            span(v-if="i < type.implements.length - 1") ,
 
 //- Summary
 Content(v-model="type.summary")
 
 hr
 
+//- Show inherited members checkbox
+//- TODO Hide if there are no inherited members
+.form-check(v-if="type.inherits.length > 0")
+    input.form-check-input#showInherited(type="checkbox" v-model="showInherited")
+    label.form-check-label.text-muted(for="showInherited") Show inherited members
+
 //- Properties
 template.mb-4(v-if="type.properties.length > 0")
     h2 Properties
 
     template(v-for="prop in type.properties")
-        div(v-if="!prop.inheritedFrom || showInherited")
+        div(v-if="!prop.inheritedFrom || showInherited" :id="prop.name")
             //- Name
             router-link.unlink(:to="'/ref/' + type.fullName + '/' + prop.name")
                 h4
@@ -65,7 +73,7 @@ template.mb-4(v-if="type.methods.length > 0")
     h2 Methods
     
     template(v-for="method in type.methods")
-        div(v-if="!method.inheritedFrom || showInherited")
+        div(v-if="!method.inheritedFrom || showInherited" :id="method.name + '!' + method.parameters.length")
             //- Name
             router-link.unlink(:to="'/ref/' + type.fullName + '/' + method.name + '!' + method.parameters.length")
                 h4
@@ -75,7 +83,7 @@ template.mb-4(v-if="type.methods.length > 0")
             
             //- Type
             dl
-                dt Value type:
+                dt Return type:
                 dd
                     Content(v-model="method.returnType" element="span")
 
@@ -89,21 +97,23 @@ template.mb-4(v-if="type.methods.length > 0")
             Content(v-model="method.summary")
 
             //- Parameters
-            span.font-weight-bold Parameters:
-            table.table
-                tbody
-                    tr.param(v-for="param in method.parameters")
-                        td
-                            Content(v-model="param.type")
-                        td {{param.name}}
-                        td
-                            Content(v-model="param.description")
+            template(v-if="method.parameters.length > 0")
+                span.font-weight-bold Parameters:
+                table.table
+                    tbody
+                        tr.param(v-for="param in method.parameters")
+                            td
+                                Content(v-model="param.type")
+                            td {{param.name}}
+                            td
+                                Content(v-model="param.description")
 
     hr
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType, ref } from 'vue'
+import { computed, defineComponent, onMounted, PropType, ref } from 'vue'
+import { useRoute } from 'vue-router';
 
 import { Type } from '@/data'
 import Content from "@/components/Content.vue";
@@ -121,6 +131,18 @@ export default defineComponent({
         const brokenName = computed(() => props.type && Array.from(props.type.name.matchAll(/[A-Z][^A-Z]*/g)).join("\u200b"));
 
         const showInherited = ref(true);
+
+        const route = useRoute();
+
+        onMounted(() => {
+            const member = route.params["member"];
+
+            if (member) {
+                const el = document.getElementById(member as string);
+                el?.scrollIntoView();
+                el?.classList.add("highlight");
+            }
+        })
 
         return { brokenName, showInherited }
     }
@@ -154,5 +176,15 @@ tr.param {
     & > :nth-child(3) {
         width: 55%;
     }
+}
+
+.highlight {
+    animation: glow 4s;
+}
+
+@keyframes glow {
+    0% { background: rgba(yellow, .2); }
+    25% { background: rgba(yellow, .1); }
+    100% { background: none; }
 }
 </style>

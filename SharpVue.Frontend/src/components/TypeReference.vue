@@ -46,7 +46,7 @@ template.mb-4(v-if="type.properties.length > 0")
             //- Name
             router-link.unlink(:to="'/ref/' + type.fullName + '/' + prop.name")
                 h4
-                    | {{type.name}}.{{prop.name}}
+                    | {{prop.name}}
                     span.text-muted(v-if="prop.getter && !prop.setter") &nbsp;(read-only)
                     span.text-muted(v-if="!prop.getter && prop.setter") &nbsp;(write-only)
                     span.text-muted(v-if="prop.inheritedFrom") &nbsp;(inherited)
@@ -77,7 +77,6 @@ template.mb-4(v-if="type.methods.length > 0")
             //- Name
             router-link.unlink(:to="'/ref/' + type.fullName + '/' + method.name + '!' + method.parameters.length")
                 h4
-                    | {{type.name}}.
                     Content(v-model="method.prettyName" element="span")
                     span.text-muted(v-if="method.inheritedFrom") &nbsp;(inherited)
             

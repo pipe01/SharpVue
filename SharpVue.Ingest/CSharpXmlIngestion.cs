@@ -37,15 +37,15 @@ namespace SharpVue.Ingest
                             break;
 
                         case "exception":
-                            currentMember.Exceptions[MemberName.Parse(reader.GetAttribute("cref"))] = reader.ReadAsString();
+                            currentMember.Exceptions[MemberName.Parse(reader.GetAttribute("cref"))] = reader.ReadContent();
                             break;
 
                         case "param":
-                            currentMember.Parameters[reader.GetAttribute("name")] = reader.ReadAsString();
+                            currentMember.Parameters[reader.GetAttribute("name")] = reader.ReadContent();
                             break;
 
                         case "typeparam":
-                            currentMember.TypeParameters[reader.GetAttribute("name")] = reader.ReadAsString();
+                            currentMember.TypeParameters[reader.GetAttribute("name")] = reader.ReadContent();
                             break;
 
                         case "returns":

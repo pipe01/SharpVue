@@ -6,16 +6,12 @@ using System;
 
 namespace SharpVue.Generator.Json
 {
-    public class Property
+    public class Property : Returner
     {
         public string? Name { get; set; }
-        public Content? ReturnType { get; set; }
         public bool Getter { get; set; }
         public bool Setter { get; set; }
         public string? InheritedFrom { get; set; }
-        public Content? Summary { get; set; }
-        public Content? Remarks { get; set; }
-        public Content? Returns { get; set; }
 
         public static Property FromProperty(PropertyInfo prop, Type declaringType, Workspace ws)
         {

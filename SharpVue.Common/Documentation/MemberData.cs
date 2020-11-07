@@ -11,9 +11,9 @@ namespace SharpVue.Common.Documentation
         public Content? Summary { get; set; }
         public Content? Remarks { get; set; }
         public Content? Returns { get; set; }
-        public IDictionary<string, string> Parameters { get; } = new Dictionary<string, string>();
-        public IDictionary<string, string> TypeParameters { get; } = new Dictionary<string, string>();
-        public IDictionary<MemberName, string> Exceptions { get; } = new Dictionary<MemberName, string>();
+        public IDictionary<string, Content> Parameters { get; } = new Dictionary<string, Content>();
+        public IDictionary<string, Content> TypeParameters { get; } = new Dictionary<string, Content>();
+        public IDictionary<MemberName, Content> Exceptions { get; } = new Dictionary<MemberName, Content>();
         public IList<MemberName> SeeAlso { get; } = new List<MemberName>();
         public IList<MemberData> Children { get; } = new List<MemberData>();
 

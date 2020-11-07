@@ -1,32 +1,46 @@
 import data from "@/data.json";
 
+interface Descriptable {
+    name: string;
+    summary?: Content | null;
+    remarks?: Content | null;
+}
+
+interface Member {
+    returns?: Content | null;
+    returnType: Content;
+    inheritedFrom: string;
+}
+
 export interface Namespace {
     fullName: string;
     types: Type[];
 }
 
-export interface Type {
+export interface Type extends Descriptable {
     fullName: string;
-    name: string;
     namespace: string;
     assembly: string;
-    summary: Content;
 
     inherits: string[];
     implements: string[];
     properties: Property[];
+    methods: Method[];
 }
 
-export interface Property {
-    name: string;
-    summary: Content;
-    remarks: Content;
-    returns: Content;
-    
-    returnType: string;
+export interface Property extends Descriptable, Member {
     getter: boolean;
     setter: boolean;
-    inheritedFrom: string;
+}
+
+export interface Method extends Descriptable, Member {
+    parameters: Parameter[];
+}
+
+export interface Parameter {
+    name: string;
+    type: Content;
+    description?: Content | null;
 }
 
 export interface Content {
@@ -36,7 +50,7 @@ export interface Content {
 export interface ContentInsertion {
     type: InsertionType;
     text: string;
-    data?: string;
+    data?: string | null;
 }
 
 export enum InsertionType {

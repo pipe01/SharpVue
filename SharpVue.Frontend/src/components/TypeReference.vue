@@ -49,6 +49,7 @@ template.mb-4(v-if="item.properties.length > 0")
                 dd
                     Content(v-model="prop.returnType" element="span")
 
+            //- Inheritance
             dl(v-if="prop.inheritedFrom")
                 dt Inherited from:
                 dd

@@ -140,13 +140,15 @@ export default defineComponent({
 
         watch(() => props.type, () => document.title = `${props.type?.fullName} - ${appName} documentation`, { immediate: true });
 
-        watch(() => route.params["member"], () => {
-            nextTick(() => {
-                const el = document.getElementById(route.params["member"] as string);
-            
-                el?.scrollIntoView();
-                el?.classList.add("highlight");
-            })
+        watch(() => route.params["member"], (newValue, oldValue) => {
+            if (newValue) {
+                nextTick(() => {
+                    const el = document.getElementById(newValue as string);
+                
+                    el?.scrollIntoView({ behavior: "smooth" });
+                    el?.classList.add("highlight");
+                })
+            }
         }, { immediate: true })
 
         return { brokenName, showInherited }
@@ -184,12 +186,12 @@ tr.param {
 }
 
 .highlight {
-    animation: glow 4s;
+    animation: glow 1s 2;
 }
 
 @keyframes glow {
-    0% { background: rgba(yellow, .2); }
-    25% { background: rgba(yellow, .1); }
+    0% { background: none; }
+    50% { background: rgba(yellow, .1); }
     100% { background: none; }
 }
 </style>

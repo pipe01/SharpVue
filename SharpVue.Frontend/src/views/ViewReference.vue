@@ -1,8 +1,8 @@
 <template lang="pug">
 main.row
-    .col-sm-4.bg-dark.sidebar
+    .col-sm-3.bg-dark.sidebar
         Sidebar
-    .col-sm-8.main
+    .col-sm-9.main
         TypeReference(v-if="item" :item="item")
 </template>
 

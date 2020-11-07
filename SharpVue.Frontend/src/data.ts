@@ -26,6 +26,7 @@ export interface Property {
     returnType: string;
     getter: boolean;
     setter: boolean;
+    inheritedFrom: string;
 }
 
 export interface Content {
@@ -35,7 +36,7 @@ export interface Content {
 export interface ContentInsertion {
     type: InsertionType;
     text: string;
-    data: string | undefined;
+    data: string | null;
 }
 
 export enum InsertionType {

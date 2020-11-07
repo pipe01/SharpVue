@@ -1,6 +1,6 @@
 <template lang="pug">
-router-link(v-if="isKnownType" :to="'/ref/' + to") {{name}}
-a(v-else :href="'https://docs.microsoft.com/dotnet/api/' + to" target="_blank") {{to}}
+router-link.code-word(v-if="isDocsType" :to="'/ref/' + to") {{name}}
+a.code-word(v-else :href="'https://docs.microsoft.com/dotnet/api/' + to" target="_blank") {{to}}
 </template>
 
 <script lang="ts">
@@ -13,7 +13,7 @@ export default defineComponent({
     },
 
     setup(props) {
-        const isKnownType = computed(() => props.to! in allTypes);
+        const isDocsType = computed(() => props.to! in allTypes);
         const name = computed(() => {
             if (!props.to)
                 return null;
@@ -22,7 +22,7 @@ export default defineComponent({
             return parts[parts.length - 1];
         })
 
-        return { isKnownType, name }
+        return { isDocsType, name }
     }
 })
 </script>

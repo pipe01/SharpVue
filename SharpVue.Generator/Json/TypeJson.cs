@@ -1,10 +1,9 @@
-﻿using SharpVue.Loading;
+﻿using SharpVue.Common;
+using SharpVue.Common.Documentation;
+using SharpVue.Loading;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json.Serialization;
-using SharpVue.Common;
-using SharpVue.Common.Documentation;
 
 namespace SharpVue.Generator.Json
 {
@@ -13,6 +12,7 @@ namespace SharpVue.Generator.Json
         public string? FullName { get; set; }
         public string? Name { get; set; }
         public Content? Summary { get; set; }
+        public Content? Remarks { get; set; }
         public string? Kind { get; set; }
         public string? Namespace { get; set; }
         public string? Assembly { get; set; }
@@ -31,20 +31,21 @@ namespace SharpVue.Generator.Json
                 Inherits = new List<string>(type.GetBaseTypes()),
                 Implements = new List<string>(type.GetInterfaces().Select(o => o.FullName!)),
                 Kind = type.IsClass ? "class" :
-                               type.IsValueType ? "struct" :
-                               type.IsEnum ? "enum" :
-                               type.IsInterface ? "interface" : "type"
+                        type.IsEnum ? "enum" :
+                        type.IsValueType ? "struct" :
+                        type.IsInterface ? "interface" : "type"
             };
 
             if (ws.ReferenceData.TryGetValue(type.GetKey(), out var data))
             {
                 json.Summary = data.Summary;
+                json.Remarks = data.Remarks;
             }
 
-            //foreach (var prop in type.GetProperties())
-            //{
-
-            //}
+            foreach (var prop in type.GetProperties())
+            {
+                json.Properties.Add(Property.FromProperty(prop, type, ws));
+            }
 
             return json;
         }

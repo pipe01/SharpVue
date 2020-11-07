@@ -1,12 +1,16 @@
 <template lang="pug">
 h1.full-name {{item.kind}} {{brokenName}}
+//- Full namespace name
 dl
     dt Namespace:
     dd {{item.namespace}}
+
+//- Assembly name
 dl
     dt Assembly:
     dd {{item.assembly}}
 
+//- Inheritance
 dl(v-if="item.inherits.length > 0")
     dt Inheritance:
     dd
@@ -14,11 +18,46 @@ dl(v-if="item.inherits.length > 0")
             reference(:to="cls")
             span(v-if="i < item.inherits.length - 1") &nbsp;&rarr;&nbsp;
 
-Content(v-if="item.summary" v-model="item.summary")
+    .form-check
+        input.form-check-input#showInherited(type="checkbox" v-model="showInherited")
+        label.form-check-label(for="showInherited") Show inherited members
+
+
+//- Summary
+Content(v-model="item.summary")
+
+hr
+
+//- Properties
+template.mb-4(v-if="item.properties.length > 0")
+    h2 Properties
+
+    template(v-for="prop in item.properties")
+        div(v-if="!prop.inheritedFrom || showInherited")
+            //- Name
+            router-link.unlink(:to="'/ref/' + item.fullName + '/' + prop.name")
+                h4
+                    | {{item.name}}.{{prop.name}}
+                    template(v-if="prop.inheritedFrom")
+                        span.text-muted &nbsp;(inherited)
+            
+            //- Type
+            dl
+                dt Value type:
+                dd
+                    reference(:to="prop.returnType")
+
+            dl(v-if="prop.inheritedFrom")
+                dt Inherited from:
+                dd
+                    reference(:to="prop.inheritedFrom")
+
+            //- Summary
+            Content(v-model="prop.summary")
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType } from 'vue'
+import { computed, defineComponent, PropType, ref } from 'vue'
 
 import { Type } from '@/data'
 import Content from "@/components/Content.vue";
@@ -35,7 +74,9 @@ export default defineComponent({
         // Break full name by words and join them with zero-width spaces to improve word-wrap
         const brokenName = computed(() => props.item && Array.from(props.item.fullName.matchAll(/[A-Z][^A-Z]*/g)).join("\u200b"));
 
-        return { brokenName }
+        const showInherited = ref(true);
+
+        return { brokenName, showInherited }
     }
 })
 </script>
@@ -51,5 +92,9 @@ dt {
 
 .full-name {
     word-break: break-word;
+}
+
+.unlink {
+    color: unset;
 }
 </style>

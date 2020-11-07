@@ -1,6 +1,6 @@
 <template lang="pug">
 main.row
-    .col-lg-3.bg-dark
+    .col-lg-3(:class="[dark ? 'bg-dark' : 'bg-light']")
         .sidebar
             Sidebar
     .col-lg-9.main
@@ -8,7 +8,7 @@ main.row
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue';
+import { computed, defineComponent, inject } from 'vue';
 import { useRoute } from 'vue-router';
 
 import Sidebar from "@/components/Sidebar.vue";
@@ -34,7 +34,7 @@ export default defineComponent({
             return allTypes[fullName];
         });
 
-        return { item }
+        return { item, dark: inject<any>("config").dark }
     }
 })
 </script>

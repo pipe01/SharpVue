@@ -1,4 +1,21 @@
 <template lang="pug">
+mixin common
+    //- Type
+    dl
+        dt Value type:
+        dd
+            Content(v-model="member.returnType" element="span")
+
+    //- Inheritance
+    dl(v-if="member.inheritedFrom")
+        dt Inherited from:
+        dd
+            reference(:to="member.inheritedFrom")
+
+    //- Summary
+    Content(v-model="member.summary")
+
+
 h1.full-name {{type.kind}} {{brokenName}}
 //- Full namespace name
 dl
@@ -24,7 +41,7 @@ dl(v-if="type.implements && type.implements.length > 0")
     dd 
         template(v-for="(t, i) in type.implements")
             reference(:to="t")
-            span(v-if="i < type.implements.length - 1") ,
+            span(v-if="i < type.implements.length - 1") , 
 
 //- Summary
 Content(v-model="type.summary")
@@ -41,66 +58,39 @@ hr
 template.mb-4(v-if="type.properties.length > 0")
     h2 Properties
 
-    template(v-for="prop in type.properties")
-        div(v-if="!prop.inheritedFrom || showInherited" :id="prop.name")
+    template(v-for="member in type.properties")
+        div(v-if="!member.inheritedFrom || showInherited" :id="member.name" :key="type.fullName + member.name")
             //- Name
-            router-link.unlink(:to="'/ref/' + type.fullName + '/' + prop.name")
+            router-link.unlink(:to="'/ref/' + type.fullName + '/' + member.name")
                 h4
-                    | {{prop.name}}
-                    span.text-muted(v-if="prop.getter && !prop.setter") &nbsp;(read-only)
-                    span.text-muted(v-if="!prop.getter && prop.setter") &nbsp;(write-only)
-                    span.text-muted(v-if="prop.inheritedFrom") &nbsp;(inherited)
+                    | {{member.name}}
+                    span.text-muted(v-if="member.getter && !member.setter") &nbsp;(read-only)
+                    span.text-muted(v-if="!member.getter && member.setter") &nbsp;(write-only)
+                    span.text-muted(v-if="member.inheritedFrom") &nbsp;(inherited)
             
-            //- Type
-            dl
-                dt Value type:
-                dd
-                    Content(v-model="prop.returnType" element="span")
-
-            //- Inheritance
-            dl(v-if="prop.inheritedFrom")
-                dt Inherited from:
-                dd
-                    reference(:to="prop.inheritedFrom")
-
-            //- Summary
-            Content(v-model="prop.summary")
-    
+            +common
     hr
 
 //- Methods
 template.mb-4(v-if="type.methods.length > 0")
     h2 Methods
     
-    template(v-for="method in type.methods")
-        div(v-if="!method.inheritedFrom || showInherited" :id="method.name + '!' + method.parameters.length")
+    template(v-for="member in type.methods")
+        div(v-if="!member.inheritedFrom || showInherited" :id="member.name + '!' + member.parameters.length" :key="type.fullName + member.name")
             //- Name
-            router-link.unlink(:to="'/ref/' + type.fullName + '/' + method.name + '!' + method.parameters.length")
+            router-link.unlink(:to="'/ref/' + type.fullName + '/' + member.name + '!' + member.parameters.length")
                 h4
-                    Content(v-model="method.prettyName" element="span")
-                    span.text-muted(v-if="method.inheritedFrom") &nbsp;(inherited)
+                    Content(v-model="member.prettyName" element="span")
+                    span.text-muted(v-if="member.inheritedFrom") &nbsp;(inherited)
             
-            //- Type
-            dl
-                dt Return type:
-                dd
-                    Content(v-model="method.returnType" element="span")
-
-            //- Inheritance
-            dl(v-if="method.inheritedFrom")
-                dt Inherited from:
-                dd
-                    reference(:to="method.inheritedFrom")
-
-            //- Summary
-            Content(v-model="method.summary")
-
+            +common
+            
             //- Parameters
-            template(v-if="method.parameters.length > 0")
+            template(v-if="member.parameters.length > 0")
                 span.font-weight-bold Parameters:
                 table.table
                     tbody
-                        tr.param(v-for="param in method.parameters")
+                        tr.param(v-for="param in member.parameters")
                             td
                                 Content(v-model="param.type")
                             td {{param.name}}
@@ -108,10 +98,24 @@ template.mb-4(v-if="type.methods.length > 0")
                                 Content(v-model="param.description")
 
     hr
+
+//- Fields
+template.mb-4(v-if="type.fields.length > 0")
+    h2 Fields
+    
+    template(v-for="member in type.fields")
+        div(v-if="!member.inheritedFrom || showInherited" :id="member.name" :key="type.fullName + member.name")
+            //- Name
+            router-link.unlink(:to="'/ref/' + type.fullName + '/' + member.name")
+                h4
+                    | {{member.name}}
+                    span.text-muted(v-if="member.inheritedFrom") &nbsp;(inherited)
+
+            +common
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, inject, onMounted, PropType, ref, watch } from 'vue'
+import { computed, defineComponent, inject, nextTick, onMounted, onUpdated, PropType, ref, watch } from 'vue'
 import { useRoute } from 'vue-router';
 
 import { Type } from '@/data'
@@ -136,15 +140,14 @@ export default defineComponent({
 
         watch(() => props.type, () => document.title = `${props.type?.fullName} - ${appName} documentation`, { immediate: true });
 
-        onMounted(() => {
-            const member = route.params["member"];
-
-            if (member) {
-                const el = document.getElementById(member as string);
+        watch(() => route.params["member"], () => {
+            nextTick(() => {
+                const el = document.getElementById(route.params["member"] as string);
+            
                 el?.scrollIntoView();
                 el?.classList.add("highlight");
-            }
-        })
+            })
+        }, { immediate: true })
 
         return { brokenName, showInherited }
     }

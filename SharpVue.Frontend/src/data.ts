@@ -6,7 +6,7 @@ interface Descriptable {
     remarks?: Content | null;
 }
 
-interface Member {
+interface Member extends Descriptable {
     returns?: Content | null;
     returnType: Content;
     inheritedFrom: string;
@@ -19,6 +19,7 @@ export interface Namespace {
 
 export interface Type extends Descriptable {
     fullName: string;
+    kind: "class" | "enum" | "struct" | "interface" | "type";
     namespace: string;
     assembly: string;
 
@@ -28,12 +29,12 @@ export interface Type extends Descriptable {
     methods: Method[];
 }
 
-export interface Property extends Descriptable, Member {
+export interface Property extends Member {
     getter: boolean;
     setter: boolean;
 }
 
-export interface Method extends Descriptable, Member {
+export interface Method extends Member {
     prettyName: Content;
     parameters: Parameter[];
 }
@@ -42,6 +43,10 @@ export interface Parameter {
     name: string;
     type: Content;
     description?: Content | null;
+}
+
+export interface Field extends Member {
+    readOnly: boolean;
 }
 
 export interface Content {

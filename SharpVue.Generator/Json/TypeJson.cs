@@ -1,4 +1,5 @@
 ﻿using SharpVue.Common;
+using SharpVue.Common.Documentation;
 using SharpVue.Loading;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,6 @@ namespace SharpVue.Generator.Json
     public class TypeJson : Descriptable
     {
         public string? FullName { get; set; }
-        public string? Name { get; set; }
         public string? Kind { get; set; }
         public string? Namespace { get; set; }
         public string? Assembly { get; set; }
@@ -17,13 +17,18 @@ namespace SharpVue.Generator.Json
         public List<string>? Implements { get; set; }
         public List<Property> Properties { get; set; } = new List<Property>();
         public List<Method> Methods { get; set; } = new List<Method>();
+        public List<Field> Fields { get; set; } = new List<Field>();
+
+        public TypeJson(MemberData? data, string name) : base(data, name)
+        {
+
+        }
 
         public static TypeJson FromType(Type type, Workspace ws)
         {
-            var json = new TypeJson
+            var json = new TypeJson(ws.GetDataFor(type), type.GetPrettyName())
             {
                 FullName = type.FullName,
-                Name = type.GetPrettyName(),
                 Namespace = type.Namespace,
                 Assembly = type.Assembly.GetName().Name + ".dll",
                 Inherits = new List<string>(type.GetBaseTypes()),
@@ -33,12 +38,6 @@ namespace SharpVue.Generator.Json
                         type.IsValueType ? "struct" :
                         type.IsInterface ? "interface" : "type"
             };
-
-            if (ws.ReferenceData.TryGetValue(type.GetKey(), out var data))
-            {
-                json.Summary = data.Summary;
-                json.Remarks = data.Remarks;
-            }
 
             foreach (var prop in type.GetProperties())
             {
@@ -60,6 +59,12 @@ namespace SharpVue.Generator.Json
                 json.Methods.Add(Method.FromMethod(method, type, ws));
             }
             json.Methods.Sort((a, b) => a.Name!.CompareTo(b.Name));
+
+            foreach (var field in type.GetFields())
+            {
+                json.Fields.Add(Field.FromField(field, type, ws));
+            }
+            json.Fields.Sort((a, b) => a.Name!.CompareTo(b.Name));
 
             return json;
         }

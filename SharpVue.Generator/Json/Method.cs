@@ -5,39 +5,32 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace SharpVue.Generator.Json
 {
     public class Method : Returner
     {
-        public string? Name { get; set; }
         /// <summary>
         /// Method name with generic parameter names included
         /// </summary>
         public Content? PrettyName { get; set; }
-        public string? InheritedFrom { get; set; }
         public List<Parameter> Parameters { get; set; } = new List<Parameter>();
+
+        public Method(MemberData? data, string name, MemberInfo member, Type declaringType, Type returnType) : base(data, name, member, declaringType, returnType)
+        {
+        }
 
         public static Method FromMethod(MethodInfo method, Type declaringType, Workspace ws)
         {
-            var data = ws.ReferenceData.TryGetValue(method.GetKey(), out var d) ? d : null;
-
-            var json = new Method
+            var json = new Method(ws.GetDataFor(method), method.Name, method, declaringType, method.ReturnType)
             {
-                Name = method.Name,
                 PrettyName = BuildPrettyName(method),
-                InheritedFrom = method.DeclaringType != declaringType ? method.DeclaringType?.FullName : null,
-                ReturnType = method.ReturnType.GenerateNameContent(),
-                Returns = data?.Returns,
-                Summary = data?.Summary,
-                Remarks = data?.Remarks,
             };
 
             foreach (var param in method.GetParameters())
             {
                 Content? content = null;
-                data?.Parameters.TryGetValue(param.Name!, out content);
+                json.Data?.Parameters.TryGetValue(param.Name!, out content);
 
                 json.Parameters.Add(Parameter.FromParameter(param, content));
             }

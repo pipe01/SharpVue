@@ -125,6 +125,9 @@ namespace SharpVue.Loading
             }
         }
 
+        public MemberData? GetDataFor(MemberInfo member)
+            => ReferenceData.TryGetValue(member.GetKey(), out var data) ? data : null;
+
         public void Dispose()
         {
             this.LoadContext.Dispose();

@@ -5,8 +5,8 @@ namespace SharpVue.Generator.Json
 {
     public class TypeJson
     {
-        [JsonPropertyName("fullname")]
-        public string? Fullname { get; set; }
+        [JsonPropertyName("fullName")]
+        public string? FullName { get; set; }
 
         [JsonPropertyName("name")]
         public string? Name { get; set; }

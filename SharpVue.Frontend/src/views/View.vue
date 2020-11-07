@@ -2,9 +2,7 @@
 div
     .row.h-100
         .col-sm-2.bg-light.sidebar
-            ul
-                li(v-for="item in all")
-                    | {{item.name}}
+            ListItem(:namespace="data")
         .col-sm-10.main
             - var n = 0;
             ul
@@ -13,17 +11,27 @@ div
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
 
-import * as data from "@/data.json";
+import ListItem from "@/components/SidebarListItem.vue";
+
+import data from "@/data.json";
+import { Namespace } from "@/data-type";
 
 export default defineComponent({
+    components: {
+        ListItem
+    },
+    
     setup() {
-        const current = ref(data.reference[0]);
+        const typed = data as unknown as Namespace
+        
+        for (const item in typed.children) {
+            console.log(item);
+            
+        }
 
-        const namespaces = data.reference.map(o => o.namespace);
-
-        return { current, all: data.reference }
+        return { data: typed, k: Object.keys(data.children) }
     }
 })
 </script>

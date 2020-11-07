@@ -7,8 +7,8 @@ namespace SharpVue.Generator.Json
         [JsonPropertyName("name")]
         public string? Name { get; set; }
 
-        [JsonPropertyName("returntype")]
-        public string? Returntype { get; set; }
+        [JsonPropertyName("returnType")]
+        public string? ReturnType { get; set; }
 
         [JsonPropertyName("getter")]
         public bool Getter { get; set; }
@@ -20,9 +20,9 @@ namespace SharpVue.Generator.Json
         public string? Summary { get; set; }
 
         [JsonPropertyName("remarks")]
-        public object? Remarks { get; set; }
+        public string? Remarks { get; set; }
 
         [JsonPropertyName("returns")]
-        public object? Returns { get; set; }
+        public string? Returns { get; set; }
     }
 }

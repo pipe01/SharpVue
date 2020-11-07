@@ -1,14 +1,19 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text.Json.Serialization;
 
 namespace SharpVue.Generator.Json
 {
+    [DebuggerDisplay("Namespace {FullName}")]
     public class Namespace
     {
+        [JsonPropertyName("fullName")]
+        public string? FullName { get; set; }
+
         [JsonPropertyName("types")]
         public List<TypeJson> Types { get; } = new List<TypeJson>();
 
         [JsonPropertyName("children")]
-        public List<Namespace> Children { get; } = new List<Namespace>();
+        public Dictionary<string, Namespace> Children { get; } = new Dictionary<string, Namespace>();
     }
 }

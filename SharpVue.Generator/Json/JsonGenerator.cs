@@ -4,8 +4,10 @@ using SharpVue.Loading;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace SharpVue.Generator.Json
 {
@@ -20,107 +22,44 @@ namespace SharpVue.Generator.Json
             Directory.CreateDirectory(outFolder);
 
             using var outFile = File.OpenWrite(Path.Combine(outFolder, "data.json"));
-            using var writer = new Utf8JsonWriter(outFile, new JsonWriterOptions { Indented = true });
 
+            var allNamespaces = ws.ReferenceTypes.Select(o => o.Namespace).Distinct();
+            var rootNamespace = new Namespace();
 
-        }
-
-        private static void WriteReferenceType(Utf8JsonWriter writer, Type type, Workspace ws)
-        {
-            writer.WriteStartObject();
+            foreach (var type in ws.ReferenceTypes)
             {
-                writer.WriteString("fullname", type.FullName);
-                writer.WriteString("name", type.Name);
-                writer.WriteString("namespace", type.Namespace);
+                if (type.Namespace == null)
+                    continue;
 
-                if (ws.ReferenceData.TryGetValue(type.GetKey(), out var data))
-                    WriteMemberData(writer, data);
+                var parts = type.Namespace.Split('.');
+                var parent = rootNamespace;
 
-                WriteChildren();
-            }
-            writer.WriteEndObject();
-
-            void WriteChildren()
-            {
-                WriteProperties(type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static));
-            }
-
-            void WriteProperties(IEnumerable<PropertyInfo> props)
-            {
-                writer.WritePropertyName("properties");
-                writer.WriteStartArray();
-
-                foreach (var prop in props)
+                for (int i = 0; i < parts.Length; i++)
                 {
-                    writer.WriteStartObject();
+                    var part = parts[i];
+
+                    if (!parent.Children.TryGetValue(part, out var ns))
                     {
-                        writer.WriteString("name", prop.Name);
-                        writer.WriteString("returntype", prop.PropertyType.FullName);
-                        writer.WriteBoolean("getter", prop.GetGetMethod() != null);
-                        writer.WriteBoolean("setter", prop.GetSetMethod() != null);
-
-                        if (ws.ReferenceData.TryGetValue(prop.GetKey(), out var data))
-                            WriteMemberData(writer, data);
+                        parent = parent.Children[part] = new Namespace
+                        {
+                            FullName = parent.FullName == null ? part : parent.FullName + "." + part
+                        };
                     }
-                    writer.WriteEndObject();
+                    else
+                    {
+                        parent = ns;
+                    }
                 }
 
-                writer.WriteEndArray();
-            }
-        }
-
-        private static void WriteMemberData(Utf8JsonWriter writer, MemberData data)
-        {
-            writer.WriteString("summary", data.Summary);
-            writer.WriteString("remarks", data.Remarks);
-            writer.WriteString("returns", data.Returns);
-
-            if (data.Parameters.Count > 0)
-            {
-                writer.WritePropertyName("parameters");
-                writer.WriteStartObject();
-                foreach (var param in data.Parameters)
+                parent.Types.Add(new TypeJson
                 {
-                    writer.WriteString(param.Key, param.Value);
-                }
-                writer.WriteEndObject();
+                    FullName = type.FullName,
+                    Name = type.Name,
+                    Namespace = type.Namespace,
+                });
             }
 
-            if (data.TypeParameters.Count > 0)
-            {
-                writer.WritePropertyName("typeparams");
-                writer.WriteStartObject();
-                foreach (var param in data.TypeParameters)
-                {
-                    writer.WriteString(param.Key, param.Value);
-                }
-                writer.WriteEndObject();
-            }
-
-            if (data.Exceptions.Count > 0)
-            {
-                writer.WritePropertyName("exceptions");
-                writer.WriteStartArray();
-                foreach (var param in data.Exceptions)
-                {
-                    writer.WriteStartObject();
-                    writer.WriteString("type", param.Key.FullName);
-                    writer.WriteString("when", param.Value);
-                    writer.WriteEndObject();
-                }
-                writer.WriteEndArray();
-            }
-
-            if (data.SeeAlso.Count > 0)
-            {
-                writer.WritePropertyName("seealso");
-                writer.WriteStartArray();
-                foreach (var item in data.SeeAlso)
-                {
-                    writer.WriteStringValue(item.XmlKey);
-                }
-                writer.WriteEndArray();
-            }
+            JsonSerializer.Serialize(new Utf8JsonWriter(outFile), rootNamespace);
         }
     }
 }

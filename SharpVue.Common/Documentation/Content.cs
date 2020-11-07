@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SharpVue.Common.Documentation
 {
@@ -10,9 +11,18 @@ namespace SharpVue.Common.Documentation
         {
             this.Insertions = insertions;
         }
+
+        public void Add(InsertionType type, string text, string? data = null)
+            => Insertions.Add(new Insertion(type, text, data));
+
+        public void AddPlainText(string text)
+            => Insertions.Add(new Insertion(InsertionType.PlainText, text, null));
+
+        public void AddReferenceType(Type type)
+            => Insertions.Add(new Insertion(InsertionType.ReferenceType, type.FullName!, type.FullName));
     }
 
-    public readonly struct Insertion
+    public class Insertion
     {
         public InsertionType Type { get; }
         public string Text { get; }
@@ -31,5 +41,6 @@ namespace SharpVue.Common.Documentation
         PlainText,
         SiteLink,
         LangKeyword,
+        ReferenceType,
     }
 }

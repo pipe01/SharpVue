@@ -25,7 +25,7 @@ namespace SharpVue.Generator.Json
             var json = new TypeJson
             {
                 FullName = type.FullName,
-                Name = type.Name,
+                Name = type.GetPrettyName(),
                 Namespace = type.Namespace,
                 Assembly = type.Assembly.GetName().Name + ".dll",
                 Inherits = new List<string>(type.GetBaseTypes()),
@@ -46,6 +46,7 @@ namespace SharpVue.Generator.Json
             {
                 json.Properties.Add(Property.FromProperty(prop, type, ws));
             }
+            json.Properties.Sort((a, b) => a.Name!.CompareTo(b.Name));
 
             return json;
         }

@@ -1,4 +1,5 @@
 ﻿using SharpVue.Loading;
+using SharpVue.Logging;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace SharpVue.Generator.Json
     {
         public void Generate(Workspace ws)
         {
+            Logger.Verbose("Generating JSON output");
+
             string outFolder = Path.Combine(ws.BaseFolder, ws.Config.OutFolder);
 
             if (Directory.Exists(outFolder))
@@ -22,6 +25,8 @@ namespace SharpVue.Generator.Json
 
             foreach (var group in ws.ReferenceTypes.GroupBy(o => o.Namespace).Where(o => o.Key != null).OrderBy(o => o.Key))
             {
+                Logger.Debug("Writing namespace {0}", group.Key);
+
                 var ns = new Namespace
                 {
                     FullName = group.Key
@@ -29,6 +34,8 @@ namespace SharpVue.Generator.Json
 
                 foreach (var type in group)
                 {
+                    Logger.Debug("Writing type {0}", type.FullName);
+
                     var jsonType = TypeJson.FromType(type, ws);
 
                     ns.Types.Add(jsonType);
@@ -40,7 +47,11 @@ namespace SharpVue.Generator.Json
 
             JsonSerializer.Serialize(new Utf8JsonWriter(outFile), namespaces, new JsonSerializerOptions
             {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                IgnoreNullValues = true,
+#if DEBUG
+                WriteIndented = true,
+#endif
             });
         }
     }

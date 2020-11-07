@@ -1,5 +1,7 @@
-﻿using System;
+﻿using SharpVue.Common.Documentation;
+using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace SharpVue.Generator
 {
@@ -17,6 +19,82 @@ namespace SharpVue.Generator
                     yield return t.FullName!;
 
             } while (t != null);
+        }
+
+        public static string GetPrettyName(this Type type)
+        {
+            if (type.ContainsGenericParameters)
+            {
+                var backtick = type.Name.IndexOf('`');
+
+                var name = new StringBuilder();
+                name.Append(type.Name, 0, backtick);
+                name.Append("<");
+
+                var args = type.GetGenericArguments();
+                for (int i = 0; i < args.Length; i++)
+                {
+                    name.Append(args[i].Name);
+
+                    if (i < args.Length - 1)
+                        name.Append(", ");
+                }
+
+                name.Append(">");
+
+                return name.ToString();
+            }
+            else
+            {
+                return type.Name;
+            }
+        }
+
+        public static Content GenerateNameContent(this Type type)
+        {
+            var c = new Content(new List<Insertion>());
+
+            AddInsertions(type, c);
+
+            return c;
+
+            static void AddInsertions(Type type, Content c)
+            {
+                if (type.IsGenericType)
+                {
+                    string name = type.Name;
+
+                    c.Add(InsertionType.ReferenceType, $"{type.Namespace}.{type.Name}", type.GetGenericTypeDefinition().FullName);
+                    c.AddPlainText("<");
+
+                    var args = type.GetGenericArguments();
+                    for (int i = 0; i < args.Length; i++)
+                    {
+                        var arg = args[i];
+
+                        AddInsertions(arg, c);
+
+                        if (i < args.Length - 1)
+                            c.AddPlainText(", ");
+                    }
+
+                    c.AddPlainText(">");
+                }
+                else if (type.IsArray)
+                {
+                    AddInsertions(type.GetElementType()!, c);
+
+                    c.AddPlainText("[]");
+                }
+                else if (type.IsGenericParameter)
+                {
+                    c.AddPlainText(type.Name);
+                }
+                else
+                {
+                    c.AddReferenceType(type);
+                }
+            }
         }
     }
 }

@@ -9,7 +9,7 @@ namespace SharpVue.Generator.Json
     public class Property
     {
         public string? Name { get; set; }
-        public string? ReturnType { get; set; }
+        public Content? ReturnType { get; set; }
         public bool Getter { get; set; }
         public bool Setter { get; set; }
         public string? InheritedFrom { get; set; }
@@ -24,7 +24,7 @@ namespace SharpVue.Generator.Json
             return new Property
             {
                 Name = prop.Name,
-                ReturnType = prop.PropertyType.FullName,
+                ReturnType = prop.PropertyType.GenerateNameContent(),
                 Getter = prop.GetGetMethod() != null,
                 Setter = prop.GetSetMethod() != null,
                 InheritedFrom = prop.DeclaringType != declaringType ? prop.DeclaringType?.FullName : null,

@@ -36,7 +36,7 @@ export interface Content {
 export interface ContentInsertion {
     type: InsertionType;
     text: string;
-    data: string | null;
+    data?: string;
 }
 
 export enum InsertionType {

@@ -1,7 +1,8 @@
 <template lang="pug">
 main.row
-    .col-sm-3.bg-dark.sidebar
-        Sidebar
+    .col-sm-3.bg-dark
+        .sidebar
+            Sidebar
     .col-sm-9.main
         TypeReference(v-if="item" :item="item")
 </template>
@@ -22,7 +23,7 @@ export default defineComponent({
 
     setup() {
         const route = useRoute();
-        route.hash = "#nice";
+        
         const item = computed(() => {
             const fullName = route.params["item"] as string;
 
@@ -46,9 +47,9 @@ main {
     max-width: 1600px;
 }
 
-.sidebar, .main {
-    height: 100%;
-    overflow-y: auto;
+.sidebar {
+    position: sticky;
+    top: 0;
 }
 
 ul {

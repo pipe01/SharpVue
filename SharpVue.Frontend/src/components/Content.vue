@@ -12,6 +12,10 @@ component(:is="element" v-if="modelValue")
         //- Lang keyword
         template(v-else-if="ins.type == 2")
             span.code-word {{ins.text}}
+
+        //- Type reference
+        template(v-else-if="ins.type == 3")
+            reference(:to="ins.data")
 </template>
 
 <script lang="ts">

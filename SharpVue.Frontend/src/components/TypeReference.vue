@@ -18,6 +18,7 @@ dl(v-if="item.inherits.length > 0")
             reference(:to="cls")
             span(v-if="i < item.inherits.length - 1") &nbsp;&rarr;&nbsp;
 
+    //- TODO Hide if there are no inherited members
     .form-check
         input.form-check-input#showInherited(type="checkbox" v-model="showInherited")
         label.form-check-label(for="showInherited") Show inherited members
@@ -38,14 +39,15 @@ template.mb-4(v-if="item.properties.length > 0")
             router-link.unlink(:to="'/ref/' + item.fullName + '/' + prop.name")
                 h4
                     | {{item.name}}.{{prop.name}}
-                    template(v-if="prop.inheritedFrom")
-                        span.text-muted &nbsp;(inherited)
+                    span.text-muted(v-if="prop.getter && !prop.setter") &nbsp;(read-only)
+                    span.text-muted(v-if="!prop.getter && prop.setter") &nbsp;(write-only)
+                    span.text-muted(v-if="prop.inheritedFrom") &nbsp;(inherited)
             
             //- Type
             dl
                 dt Value type:
                 dd
-                    reference(:to="prop.returnType")
+                    Content(v-model="prop.returnType" element="span")
 
             dl(v-if="prop.inheritedFrom")
                 dt Inherited from:
@@ -72,7 +74,7 @@ export default defineComponent({
 
     setup(props) {
         // Break full name by words and join them with zero-width spaces to improve word-wrap
-        const brokenName = computed(() => props.item && Array.from(props.item.fullName.matchAll(/[A-Z][^A-Z]*/g)).join("\u200b"));
+        const brokenName = computed(() => props.item && Array.from(props.item.name.matchAll(/[A-Z][^A-Z]*/g)).join("\u200b"));
 
         const showInherited = ref(true);
 

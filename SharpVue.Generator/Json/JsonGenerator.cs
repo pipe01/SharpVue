@@ -23,43 +23,36 @@ namespace SharpVue.Generator.Json
 
             using var outFile = File.OpenWrite(Path.Combine(outFolder, "data.json"));
 
-            var allNamespaces = ws.ReferenceTypes.Select(o => o.Namespace).Distinct();
-            var rootNamespace = new Namespace();
+            var namespaces = new List<Namespace>();
 
-            foreach (var type in ws.ReferenceTypes)
+            foreach (var group in ws.ReferenceTypes.GroupBy(o => o.Namespace).Where(o => o.Key != null).OrderBy(o => o.Key))
             {
-                if (type.Namespace == null)
-                    continue;
-
-                var parts = type.Namespace.Split('.');
-                var parent = rootNamespace;
-
-                for (int i = 0; i < parts.Length; i++)
+                var ns = new Namespace
                 {
-                    var part = parts[i];
+                    FullName = group.Key
+                };
 
-                    if (!parent.Children.TryGetValue(part, out var ns))
+                foreach (var type in group)
+                {
+                    ns.Types.Add(new TypeJson
                     {
-                        parent = parent.Children[part] = new Namespace
-                        {
-                            FullName = parent.FullName == null ? part : parent.FullName + "." + part
-                        };
-                    }
-                    else
-                    {
-                        parent = ns;
-                    }
+                        FullName = type.FullName,
+                        Name = type.Name,
+                        Namespace = type.Namespace,
+                        Inherits = new List<string>(type.GetBaseTypes()),
+                        Implements = new List<string>(type.GetInterfaces().Select(o => o.FullName!)),
+                        Kind = type.IsClass ? "class" :
+                               type.IsValueType ? "struct" :
+                               type.IsEnum ? "enum" :
+                               type.IsInterface ? "interface" : "type"
+                    });
                 }
+                ns.Types.Sort((a, b) => a.Name!.CompareTo(b.Name));
 
-                parent.Types.Add(new TypeJson
-                {
-                    FullName = type.FullName,
-                    Name = type.Name,
-                    Namespace = type.Namespace,
-                });
+                namespaces.Add(ns);
             }
 
-            JsonSerializer.Serialize(new Utf8JsonWriter(outFile), rootNamespace);
+            JsonSerializer.Serialize(new Utf8JsonWriter(outFile), namespaces);
         }
     }
 }

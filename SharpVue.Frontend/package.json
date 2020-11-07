@@ -11,6 +11,8 @@
     "core-js": "^3.6.5",
     "pug": "^3.0.0",
     "pug-plain-loader": "^1.0.0",
+    "sass": "^1.29.0",
+    "sass-loader": "^10.0.5",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0"
   },

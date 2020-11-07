@@ -12,8 +12,5 @@ namespace SharpVue.Generator.Json
 
         [JsonPropertyName("types")]
         public List<TypeJson> Types { get; } = new List<TypeJson>();
-
-        [JsonPropertyName("children")]
-        public Dictionary<string, Namespace> Children { get; } = new Dictionary<string, Namespace>();
     }
 }

@@ -3,7 +3,7 @@
     nav.navbar.navbar-dark.bg-dark
         ul.navbar-nav
             li.nav-item
-                router-link.nav-link(to="/view") View documentation
+                router-link.nav-link(to="/ref") API reference
 
     router-view.flex-grow-1
 </template>

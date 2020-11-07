@@ -2,9 +2,9 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 
 const routes = [
     {
-        path: '/view',
-        name: 'View',
-        component: () => import('../views/View.vue')
+        path: '/ref/:item?',
+        name: 'ViewReference',
+        component: () => import('../views/ViewReference.vue')
     }
 ]
 

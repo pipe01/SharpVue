@@ -1,4 +1,4 @@
-import data from "@/data.json";
+import data from "@/gen/data.json";
 
 interface Descriptable {
     name: string;

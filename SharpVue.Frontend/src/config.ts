@@ -1,6 +1,6 @@
 import { App } from 'vue';
 
-import config from "./config.json";
+import config from "./gen/config.json";
 
 require("bootswatch/dist/" + config.theme + "/bootstrap.min.css")
 

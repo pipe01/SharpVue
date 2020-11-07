@@ -6,7 +6,7 @@ ul
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import data from "@/data.json";
+import data from "@/gen/data.json";
 
 import NamespaceItem from "@/components/NamespaceItem.vue";
 

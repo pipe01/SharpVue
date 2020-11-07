@@ -8,9 +8,9 @@ namespace SharpVue.Common.Documentation
     {
         public MemberName Name { get; }
         public MemberKind Kind => Name.Kind;
-        public string? Summary { get; set; }
-        public string? Remarks { get; set; }
-        public string? Returns { get; set; }
+        public Content? Summary { get; set; }
+        public Content? Remarks { get; set; }
+        public Content? Returns { get; set; }
         public IDictionary<string, string> Parameters { get; } = new Dictionary<string, string>();
         public IDictionary<string, string> TypeParameters { get; } = new Dictionary<string, string>();
         public IDictionary<MemberName, string> Exceptions { get; } = new Dictionary<MemberName, string>();

@@ -22,6 +22,7 @@ export default defineComponent({
 
     setup() {
         const route = useRoute();
+        route.hash = "#nice";
         const item = computed(() => {
             const fullName = route.params["item"] as string;
 

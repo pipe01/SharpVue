@@ -13,13 +13,20 @@ dl(v-if="item.inherits.length > 0")
         template(v-for="(cls, i) in item.inherits")
             reference(:to="cls")
             span(v-if="i < item.inherits.length - 1") &nbsp;&rarr;&nbsp;
+
+Content(v-if="item.summary" v-model="item.summary")
 </template>
 
 <script lang="ts">
-import { Type } from '@/data'
 import { computed, defineComponent, PropType } from 'vue'
 
+import { Type } from '@/data'
+import Content from "@/components/Content.vue";
+
 export default defineComponent({
+    components: {
+        Content
+    },
     props: {
         item: Object as PropType<Type>
     },

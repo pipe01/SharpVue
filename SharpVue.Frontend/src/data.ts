@@ -10,6 +10,8 @@ export interface Type {
     name: string;
     namespace: string;
     assembly: string;
+    summary: Content;
+
     inherits: string[];
     implements: string[];
     properties: Property[];
@@ -17,17 +19,32 @@ export interface Type {
 
 export interface Property {
     name: string;
-    summary: string;
-    remarks: string;
-    returns: string;
+    summary: Content;
+    remarks: Content;
+    returns: Content;
+    
     returnType: string;
     getter: boolean;
     setter: boolean;
 }
 
-export const allTypes = typeDictionary();
+export interface Content {
+    insertions: ContentInsertion[];
+}
 
-function typeDictionary() {
+export interface ContentInsertion {
+    type: InsertionType;
+    text: string;
+    data: string | undefined;
+}
+
+export enum InsertionType {
+    PlainText = 0,
+    SiteLink,
+    LangKeyword,
+}
+
+export const allTypes = function() {
     var types: { [fullName: string]: Type } = {};
 
     for (const type of (data as Namespace[]).flatMap(o => o.types)) {
@@ -35,4 +52,4 @@ function typeDictionary() {
     }
 
     return types;
-}
+}();

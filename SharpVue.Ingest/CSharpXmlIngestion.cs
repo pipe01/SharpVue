@@ -25,11 +25,11 @@ namespace SharpVue.Ingest
                     switch (reader.Name)
                     {
                         case "summary":
-                            currentMember.Summary = reader.ReadAsString();
+                            currentMember.Summary = reader.ReadContent();
                             break;
 
                         case "remarks":
-                            currentMember.Remarks = reader.ReadAsString();
+                            currentMember.Remarks = reader.ReadContent();
                             break;
 
                         case "seealso":
@@ -50,7 +50,7 @@ namespace SharpVue.Ingest
 
                         case "returns":
                         case "value":
-                            currentMember.Returns = reader.ReadAsString();
+                            currentMember.Returns = reader.ReadContent();
                             break;
                     }
                 }

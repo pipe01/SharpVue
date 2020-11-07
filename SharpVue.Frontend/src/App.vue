@@ -13,4 +13,8 @@ html, body, #app {
     height: 100%;
     overflow-x: hidden;
 }
+
+.code-word, .code-word:hover {
+    color: #4dc5ff;
+}
 </style>

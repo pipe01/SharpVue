@@ -34,26 +34,19 @@ namespace SharpVue.Generator.Json
 
                 foreach (var type in group)
                 {
-                    ns.Types.Add(new TypeJson
-                    {
-                        FullName = type.FullName,
-                        Name = type.Name,
-                        Namespace = type.Namespace,
-                        Assembly = type.Assembly.GetName().Name + ".dll",
-                        Inherits = new List<string>(type.GetBaseTypes()),
-                        Implements = new List<string>(type.GetInterfaces().Select(o => o.FullName!)),
-                        Kind = type.IsClass ? "class" :
-                               type.IsValueType ? "struct" :
-                               type.IsEnum ? "enum" :
-                               type.IsInterface ? "interface" : "type"
-                    });
+                    var jsonType = TypeJson.FromType(type, ws);
+
+                    ns.Types.Add(jsonType);
                 }
                 ns.Types.Sort((a, b) => a.Name!.CompareTo(b.Name));
 
                 namespaces.Add(ns);
             }
 
-            JsonSerializer.Serialize(new Utf8JsonWriter(outFile), namespaces);
+            JsonSerializer.Serialize(new Utf8JsonWriter(outFile), namespaces, new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            });
         }
     }
 }

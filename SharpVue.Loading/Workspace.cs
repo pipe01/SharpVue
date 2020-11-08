@@ -2,7 +2,6 @@
 using SharpVue.Common.Documentation;
 using SharpVue.Logging;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 
@@ -11,8 +10,6 @@ namespace SharpVue.Loading
     public sealed class Workspace : IDisposable
     {
         public const string ConfigName = "sharpvue.yaml";
-
-        public IList<Article> Articles { get; } = new List<Article>();
 
         public string BaseFolder { get; }
         public Config Config { get; }
@@ -28,7 +25,7 @@ namespace SharpVue.Loading
             this.Config = Config.Load(configPath);
 
             this.AssemblyLoader = new AssemblyLoader(Config, BaseFolder);
-            this.ArticleLoader = new ArticleLoader();
+            this.ArticleLoader = new ArticleLoader(Config, BaseFolder);
         }
 
         public MemberData? GetDataFor(MemberInfo member)

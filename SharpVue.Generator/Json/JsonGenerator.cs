@@ -22,28 +22,9 @@ namespace SharpVue.Generator.Json
             using var outFile = File.OpenWrite(Path.Combine(outFolder, "data.json"));
 
             var json = new JsonData();
+            json.Articles = ws.ArticleLoader.Articles;
 
-            foreach (var group in ws.AssemblyLoader.ReferenceTypes.GroupBy(o => o.Namespace).OrderBy(o => o.Key))
-            {
-                Logger.Debug("Writing namespace {0}", group.Key);
-
-                var ns = new Namespace
-                {
-                    FullName = group.Key ?? "<Root>"
-                };
-
-                foreach (var type in group)
-                {
-                    Logger.Debug("Writing type {0}", type.FullName);
-
-                    var jsonType = TypeJson.FromType(type, ws);
-
-                    ns.Types.Add(jsonType);
-                }
-                ns.Types.Sort((a, b) => a.Name!.CompareTo(b.Name));
-
-                json.Namespaces.Add(ns);
-            }
+            AddNamespaces(json, ws);
 
             JsonSerializer.Serialize(new Utf8JsonWriter(outFile), json, new JsonSerializerOptions
             {
@@ -53,6 +34,31 @@ namespace SharpVue.Generator.Json
                 WriteIndented = true,
 #endif
             });
+
+            static void AddNamespaces(JsonData json, Workspace ws)
+            {
+                foreach (var group in ws.AssemblyLoader.ReferenceTypes.GroupBy(o => o.Namespace).OrderBy(o => o.Key))
+                {
+                    Logger.Debug("Writing namespace {0}", group.Key);
+
+                    var ns = new Namespace
+                    {
+                        FullName = group.Key ?? "<Root>"
+                    };
+
+                    foreach (var type in group)
+                    {
+                        Logger.Debug("Writing type {0}", type.FullName);
+
+                        var jsonType = TypeJson.FromType(type, ws);
+
+                        ns.Types.Add(jsonType);
+                    }
+                    ns.Types.Sort((a, b) => a.Name!.CompareTo(b.Name));
+
+                    json.Namespaces.Add(ns);
+                }
+            }
         }
     }
 }

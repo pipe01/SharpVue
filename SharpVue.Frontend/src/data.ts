@@ -14,6 +14,13 @@ interface Member extends Descriptable {
 
 export interface Data {
     namespaces: Namespace[];
+    articles: Article[];
+}
+
+export interface Article {
+    title: string;
+    content?: string;
+    children: Article[];
 }
 
 export interface Namespace {

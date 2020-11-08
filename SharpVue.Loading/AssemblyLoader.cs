@@ -32,15 +32,15 @@ namespace SharpVue.Loading
             this.ContextAssemblies = new HashSet<string>(runtimeAssemblies);
             Logger.Debug("Found {0} runtime assemblies", runtimeAssemblies.Length);
 
-            AddAssemblies();
+            AddContextAssemblies();
 
             this.Ingestion = new CSharpXmlIngestion();
             this.LoadContext = new MetadataLoadContext(new PathAssemblyResolver(ContextAssemblies));
 
-            LoadTypes();
+            LoadAllAssemblies();
         }
 
-        private void AddAssemblies()
+        private void AddContextAssemblies()
         {
             Logger.Debug("Loading context assemblies");
 
@@ -67,7 +67,7 @@ namespace SharpVue.Loading
             }
         }
 
-        private void LoadTypes()
+        private void LoadAllAssemblies()
         {
             var root = new DirectoryInfo(BaseFolder);
 
@@ -82,6 +82,8 @@ namespace SharpVue.Loading
 
         private void LoadAssembly(string dllPath)
         {
+            Logger.Verbose("Loading assembly at {0}", dllPath);
+
             var ass = LoadContext.LoadFromAssemblyPath(dllPath);
 
             var xmlFile = new FileInfo(Path.ChangeExtension(dllPath, "xml"));

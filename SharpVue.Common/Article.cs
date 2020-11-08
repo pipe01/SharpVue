@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SharpVue.Common
 {
     public sealed class Article
     {
+        public string ID { get; set; }
+
         public string Title { get; set; }
 
         /// <summary>

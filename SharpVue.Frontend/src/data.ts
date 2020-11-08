@@ -89,3 +89,23 @@ export const allTypes = function() {
 
     return types;
 }();
+
+export function findArticle(path: string[]): Article | null {
+    return findArticleIn(path, data.articles);
+}
+
+function findArticleIn(path: string[], haystack: Article[]): Article | null {
+    for (const item of haystack) {
+        if (path[0] == item.title) {
+            path.shift();
+
+            if (path.length == 0) {
+                return item;
+            }
+
+            return findArticleIn(path, item.children);
+        }
+    }
+
+    return null;
+}

@@ -6,10 +6,11 @@ ul(v-if="!collapsed")
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import { defineComponent, PropType, ref, watch } from 'vue';
 import { Namespace } from "@/data";
 
 import TypeItem from "./TypeItem.vue";
+import store from '@/store';
 
 export default defineComponent({
     name: "NamespaceItem",
@@ -19,9 +20,20 @@ export default defineComponent({
     props: {
         namespace: Object as PropType<Namespace>
     },
-    data() {
+    setup(props) {
+        const collapsed = ref(true);
+        
+        watch(() => store.currentType, (newType, oldValue) => {
+            if (!props.namespace?.types || !newType)
+                return;
+            
+            if (props.namespace.types.includes(newType)) {
+                collapsed.value = false;
+            }
+        })
+
         return {
-            collapsed: true
+            collapsed
         }
     }
 })

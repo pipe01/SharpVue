@@ -120,6 +120,7 @@ import { useRoute } from 'vue-router';
 
 import { Type } from '@/data'
 import Content from "@/components/Content.vue";
+import store from "@/store"
 
 export default defineComponent({
     components: {
@@ -138,18 +139,25 @@ export default defineComponent({
         const route = useRoute();
         const appName = inject("appName");
 
-        watch(() => props.type, () => document.title = `${props.type?.fullName} - ${appName} documentation`, { immediate: true });
+        watch(() => props.type, () => {
+            document.title = `${props.type?.fullName} - ${appName} documentation`;
+
+            // Use nextTick because we can't use immediate mode here and on the sidebar items at the same time
+            nextTick(() => store.currentType = props.type);
+        },
+        { immediate: true });
 
         watch(() => route.params["member"], (newValue, oldValue) => {
             if (newValue) {
                 nextTick(() => {
                     const el = document.getElementById(newValue as string);
-                
+
                     el?.scrollIntoView({ behavior: "smooth" });
                     el?.classList.add("highlight");
                 })
             }
-        }, { immediate: true })
+        },
+        { immediate: true })
 
         return { brokenName, showInherited }
     }

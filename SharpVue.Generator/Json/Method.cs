@@ -54,7 +54,7 @@ namespace SharpVue.Generator.Json
             var args = method.GetParameters();
             for (int i = 0; i < args.Length; i++)
             {
-                args[i].ParameterType.GenerateNameContent(c);
+                args[i].ParameterType.GenerateNameContent(c, true);
                 c.AddPlainText(" " + args[i].Name + (i < args.Length - 1 ? ", " : null));
             }
 

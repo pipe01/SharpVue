@@ -56,24 +56,24 @@ namespace SharpVue.Generator
             }
         }
 
-        public static Content GenerateNameContent(this Type type)
+        public static Content GenerateNameContent(this Type type, bool plainText = false)
         {
             var c = new Content();
-            type.GenerateNameContent(c);
+            type.GenerateNameContent(c, plainText);
             return c;
         }
 
-        public static void GenerateNameContent(this Type type, Content c)
+        public static void GenerateNameContent(this Type type, Content c, bool plainText = false)
         {
-            AddInsertions(type, c);
+            AddInsertions(type, c, plainText);
 
-            static void AddInsertions(Type type, Content c)
+            static void AddInsertions(Type type, Content c, bool plainText)
             {
                 if (type.IsGenericType)
                 {
                     string name = type.Name;
 
-                    c.Add(InsertionType.ReferenceType, $"{type.Namespace}.{type.Name}", type.GetGenericTypeDefinition().FullName);
+                    c.Add(plainText ? InsertionType.PlainText : InsertionType.ReferenceType, $"{type.Namespace}.{type.Name}", type.GetGenericTypeDefinition().FullName);
                     c.AddPlainText("<");
 
                     var args = type.GetGenericArguments();
@@ -81,7 +81,7 @@ namespace SharpVue.Generator
                     {
                         var arg = args[i];
 
-                        AddInsertions(arg, c);
+                        AddInsertions(arg, c, plainText);
 
                         if (i < args.Length - 1)
                             c.AddPlainText(", ");
@@ -91,17 +91,17 @@ namespace SharpVue.Generator
                 }
                 else if (type.IsArray)
                 {
-                    AddInsertions(type.GetElementType()!, c);
+                    AddInsertions(type.GetElementType()!, c, plainText);
                     c.AddPlainText("[]");
                 }
                 else if (type.IsPointer)
                 {
-                    AddInsertions(type.GetElementType()!, c);
+                    AddInsertions(type.GetElementType()!, c, plainText);
                     c.AddPlainText("*");
                 }
                 else if (type.IsByRef)
                 {
-                    AddInsertions(type.GetElementType()!, c);
+                    AddInsertions(type.GetElementType()!, c, plainText);
                     c.AddPlainText("&");
                 }
                 else if (type.IsGenericParameter)
@@ -110,7 +110,10 @@ namespace SharpVue.Generator
                 }
                 else
                 {
-                    c.AddReferenceType(type);
+                    if (plainText)
+                        c.AddPlainText(type.FullName ?? type.Name);
+                    else
+                        c.AddReferenceType(type);
                 }
             }
         }

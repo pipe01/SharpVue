@@ -56,6 +56,8 @@ namespace SharpVue.Ingest
                             break;
 
                         case "see" when reader.Name == "langword":
+                        case "typeparamref":
+                        case "paramref":
                             AddInsertion(InsertionType.LangKeyword, reader.Value);
                             break;
 

@@ -76,10 +76,10 @@ template.mb-4(v-if="type.methods.length > 0")
     h2 Methods
     
     template(v-for="member in type.methods")
-        div(v-if="!member.inheritedFrom || showInherited" :id="member.name + '!' + member.parameters.length" :key="type.fullName + member.name")
+        div(v-if="!member.inheritedFrom || showInherited" :id="methodId(member)" :key="type.fullName + member.name")
             //- Name
             h4
-                router-link.code-word(:to="'/ref/' + type.fullName + '/' + member.name + '!' + member.parameters.length")
+                router-link.code-word(:to="'/ref/' + type.fullName + '/' + methodId(member)")
                     Content(v-model="member.prettyName" element="span")
                 small.text-muted(v-if="member.inheritedFrom") &nbsp;(inherited)
             
@@ -118,7 +118,7 @@ template.mb-4(v-if="type.fields.length > 0")
 import { computed, defineComponent, inject, nextTick, onMounted, onUpdated, PropType, ref, watch } from 'vue'
 import { useRoute } from 'vue-router';
 
-import { Type } from '@/data'
+import { contentText, Method, Type } from '@/data'
 import Content from "@/components/Content.vue";
 import store from "@/store"
 
@@ -161,7 +161,11 @@ export default defineComponent({
         },
         { immediate: true })
 
-        return { brokenName, showInherited }
+        function methodId(method: Method) {
+            return method.name + "(" + method.parameters.map(p => contentText(p.type)).join(", ") + ")";
+        }
+
+        return { brokenName, showInherited, methodId }
     }
 })
 </script>

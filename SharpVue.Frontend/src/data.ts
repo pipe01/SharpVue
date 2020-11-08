@@ -53,6 +53,10 @@ export interface Content {
     insertions: ContentInsertion[];
 }
 
+export function contentText(c: Content) {
+    return c.insertions.map(o => o.text).join("");
+}
+
 export interface ContentInsertion {
     type: InsertionType;
     text: string;

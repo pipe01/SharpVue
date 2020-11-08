@@ -39,6 +39,7 @@ namespace SharpVue.Common.Documentation
                 'P' => MemberKind.Property,
                 'C' => MemberKind.Constructor,
                 'E' => MemberKind.Event,
+                'N' => MemberKind.Namespace,
                 _ => throw new FormatException($"Unknown member type '{xmlKey[0]}'")
             };
 

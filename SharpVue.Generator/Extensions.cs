@@ -24,24 +24,44 @@ namespace SharpVue.Generator
 
         public static string GetPrettyName(this Type type)
         {
-            if (type.ContainsGenericParameters)
+            using var _ = StringBuilderPool.Rent(out var name);
+
+            Write(type, name);
+
+            return name.ToString();
+
+            static void Write(Type type, StringBuilder str)
             {
-                var backtick = type.Name.IndexOf('`');
+                if (type.IsNested)
+                {
+                    str.Append(type.DeclaringType!.GetPrettyName());
+                    str.Append('+');
+                }
 
-                using var _ = StringBuilderPool.Rent(out var name);
-                name.Append(type.Name, 0, backtick);
-                name.Append("<");
+                if (type.ContainsGenericParameters)
+                {
+                    var backtick = type.Name.IndexOf('`');
 
-                var args = type.GetGenericArguments();
-                name.AppendNames(args);
+                    if (backtick == -1)
+                    {
+                        // Edge case: when a generic type has a nested regular type, the inner type will be considered generic,
+                        // even if it doesn't have any generic parameters itself.
+                        // TODO Handle better
+                        return;
+                    }
 
-                name.Append(">");
+                    str.Append(type.Name, 0, backtick);
+                    str.Append("<");
 
-                return name.ToString();
-            }
-            else
-            {
-                return type.Name;
+                    var args = type.GetGenericArguments();
+                    str.AppendNames(args);
+
+                    str.Append(">");
+                }
+                else
+                {
+                    str.Append(type.Name);
+                }
             }
         }
 

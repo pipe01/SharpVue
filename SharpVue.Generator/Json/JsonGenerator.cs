@@ -3,6 +3,7 @@ using SharpVue.Logging;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.Json;
 
 namespace SharpVue.Generator.Json
@@ -11,22 +12,29 @@ namespace SharpVue.Generator.Json
     {
         public void Generate(Workspace ws)
         {
-            Logger.Verbose("Generating JSON output");
-
             string outFolder = Path.Combine(ws.BaseFolder, ws.Config.OutFolder);
 
             if (Directory.Exists(outFolder))
                 Directory.Delete(outFolder, true);
             Directory.CreateDirectory(outFolder);
 
-            using var outFile = File.OpenWrite(Path.Combine(outFolder, "data.json"));
+            using var outFile = File.OpenWrite(Path.Combine(outFolder, "data.js"));
+
+            Generate(ws, outFile);
+        }
+
+        public void Generate(Workspace ws, Stream to)
+        {
+            Logger.Verbose("Generating JSON output");
+
+            to.Write(Encoding.UTF8.GetBytes("window.data="));
 
             var json = new JsonData();
             json.Articles = ws.ArticleLoader.Articles;
 
             AddNamespaces(json, ws);
 
-            JsonSerializer.Serialize(new Utf8JsonWriter(outFile), json, new JsonSerializerOptions
+            JsonSerializer.Serialize(new Utf8JsonWriter(to), json, new JsonSerializerOptions
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
                 IgnoreNullValues = true,

@@ -7,6 +7,7 @@
         Field,
         Property,
         Constructor,
-        Event
+        Event,
+        Namespace
     }
 }

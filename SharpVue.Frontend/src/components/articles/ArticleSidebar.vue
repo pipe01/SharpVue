@@ -7,7 +7,7 @@ ul
 import { defineComponent } from 'vue'
 
 import ArticleItem from "@/components/articles/ArticleItem.vue";
-import { articles } from "@/gen/data.json";
+import data from "@/data";
 
 export default defineComponent({
     components: {
@@ -15,7 +15,7 @@ export default defineComponent({
     },
     
     setup() {
-        return { articles }
+        return { articles: data.articles }
     }
 })
 </script>

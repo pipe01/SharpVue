@@ -48,6 +48,9 @@ namespace SharpVue.Ingest
                                     href = $"/ref/{cref.Root}/{cref.Name}";
                                     break;
 
+                                case MemberKind.Namespace:
+                                    continue;
+
                                 default:
                                     throw new System.Exception($"Unknown cref \"{reader.Value}\"");
                             }

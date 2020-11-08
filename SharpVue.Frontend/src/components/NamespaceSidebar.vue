@@ -6,7 +6,7 @@ ul
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { namespaces } from "@/gen/data.json";
+import data from "@/data";
 
 import NamespaceItem from "@/components/NamespaceItem.vue";
 
@@ -15,7 +15,7 @@ export default defineComponent({
         NamespaceItem
     },
     data() {
-        return { namespaces }
+        return { namespaces: data.namespaces }
     }
 })
 </script>

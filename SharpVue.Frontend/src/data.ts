@@ -1,4 +1,15 @@
-import data from "@/gen/data.json";
+declare global {
+    interface Window {
+        data: Data;
+    }
+}
+
+if (process.env.NODE_ENV == "development") {
+    require("@/gen/data.js");
+}
+
+const data = window.data;
+export default data;
 
 interface Descriptable {
     name: string;
@@ -83,7 +94,7 @@ export enum InsertionType {
 export const allTypes = function() {
     var types: { [fullName: string]: Type } = {};
 
-    for (const type of (data as Data).namespaces.flatMap(o => o.types)) {
+    for (const type of data.namespaces.flatMap(o => o.types)) {
         types[type.fullName] = type;
     }
 

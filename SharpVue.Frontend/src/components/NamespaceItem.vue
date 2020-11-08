@@ -32,9 +32,7 @@ export default defineComponent({
             }
         })
 
-        return {
-            collapsed
-        }
+        return { collapsed }
     }
 })
 </script>

@@ -61,12 +61,12 @@ template.mb-4(v-if="type.properties.length > 0")
     template(v-for="member in type.properties")
         div(v-if="!member.inheritedFrom || showInherited" :id="member.name" :key="type.fullName + member.name")
             //- Name
-            router-link.unlink(:to="'/ref/' + type.fullName + '/' + member.name")
-                h4
+            h4
+                router-link.code-word(:to="'/ref/' + type.fullName + '/' + member.name")
                     | {{member.name}}
-                    span.text-muted(v-if="member.getter && !member.setter") &nbsp;(read-only)
-                    span.text-muted(v-if="!member.getter && member.setter") &nbsp;(write-only)
-                    span.text-muted(v-if="member.inheritedFrom") &nbsp;(inherited)
+                small.text-muted(v-if="member.getter && !member.setter") &nbsp;(read-only)
+                small.text-muted(v-if="!member.getter && member.setter") &nbsp;(write-only)
+                small.text-muted(v-if="member.inheritedFrom") &nbsp;(inherited)
             
             +common
     hr
@@ -78,10 +78,10 @@ template.mb-4(v-if="type.methods.length > 0")
     template(v-for="member in type.methods")
         div(v-if="!member.inheritedFrom || showInherited" :id="member.name + '!' + member.parameters.length" :key="type.fullName + member.name")
             //- Name
-            router-link.unlink(:to="'/ref/' + type.fullName + '/' + member.name + '!' + member.parameters.length")
-                h4
+            h4
+                router-link.code-word(:to="'/ref/' + type.fullName + '/' + member.name + '!' + member.parameters.length")
                     Content(v-model="member.prettyName" element="span")
-                    span.text-muted(v-if="member.inheritedFrom") &nbsp;(inherited)
+                small.text-muted(v-if="member.inheritedFrom") &nbsp;(inherited)
             
             +common
             
@@ -106,10 +106,10 @@ template.mb-4(v-if="type.fields.length > 0")
     template(v-for="member in type.fields")
         div(v-if="!member.inheritedFrom || showInherited" :id="member.name" :key="type.fullName + member.name")
             //- Name
-            router-link.unlink(:to="'/ref/' + type.fullName + '/' + member.name")
-                h4
+            h4
+                router-link.code-word(:to="'/ref/' + type.fullName + '/' + member.name")
                     | {{member.name}}
-                    span.text-muted(v-if="member.inheritedFrom") &nbsp;(inherited)
+                small.text-muted(v-if="member.inheritedFrom") &nbsp;(inherited)
 
             +common
 </template>
@@ -148,6 +148,8 @@ export default defineComponent({
         { immediate: true });
 
         watch(() => route.params["member"], (newValue, oldValue) => {
+            Array.from(document.getElementsByClassName("highlight")).forEach(el => el.classList.remove("highlight"));
+            
             if (newValue) {
                 nextTick(() => {
                     const el = document.getElementById(newValue as string);
@@ -178,7 +180,7 @@ dt {
 }
 
 .unlink {
-    color: unset;
+    text-decoration: none;
 }
 
 tr.param {

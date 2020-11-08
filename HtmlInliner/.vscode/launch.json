@@ -12,7 +12,7 @@
             "program": "${workspaceFolder}",
             "cwd": "testing",
             "env": {},
-            "args": ["-html", "index.html", "-out", "out.html"]
+            "args": []
         }
     ]
 }

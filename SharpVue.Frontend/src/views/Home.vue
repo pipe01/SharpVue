@@ -2,7 +2,7 @@
 .container
     h1 {{appName}} documentation
 
-    p This is the main page for the {{appName}} documentation, you can go to #[router-link(:to="{name:'ViewReference'}") the API reference page] to browse the API.
+    p Welcome to the main page for the {{appName}} documentation, you can go to #[router-link(:to="{name:'ViewReference'}") the API reference page] to browse the API.
 </template>
 
 <script lang="ts">

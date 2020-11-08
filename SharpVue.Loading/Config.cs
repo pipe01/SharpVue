@@ -7,9 +7,20 @@ namespace SharpVue.Loading
 {
     public class Config
     {
+        /// <summary>
+        /// Globs that resolve to assemblies that will be scanned for reference.
+        /// </summary>
         public string[] Assemblies { get; set; } = Array.Empty<string>();
+
+        /// <summary>
+        /// Globs that resolve to assemblies that are needed to load the reference assemblies.
+        /// </summary>
         public string[] Dependencies { get; set; } = Array.Empty<string>();
-        public string[] Articles { get; set; } = new[] { "articles/**/*.md" };
+
+        /// <summary>
+        /// Folders that will be scanned for Markdown articles.
+        /// </summary>
+        public string[] Articles { get; set; } = new[] { "articles/" };
         public string OutFolder { get; set; } = "dist";
 
         public static Config Load(string file)

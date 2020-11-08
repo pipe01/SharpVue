@@ -12,6 +12,10 @@ interface Member extends Descriptable {
     inheritedFrom: string;
 }
 
+export interface Data {
+    namespaces: Namespace[];
+}
+
 export interface Namespace {
     fullName: string;
     types: Type[];
@@ -72,7 +76,7 @@ export enum InsertionType {
 export const allTypes = function() {
     var types: { [fullName: string]: Type } = {};
 
-    for (const type of (data as Namespace[]).flatMap(o => o.types)) {
+    for (const type of (data as Data).namespaces.flatMap(o => o.types)) {
         types[type.fullName] = type;
     }
 

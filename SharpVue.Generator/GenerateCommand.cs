@@ -19,7 +19,7 @@ namespace SharpVue.Generator
                 return;
             }
 
-            var ws = new Workspace(ConfigFile);
+            using var ws = new Workspace(ConfigFile);
             var gen = new JsonGenerator();
             gen.Generate(ws);
         }

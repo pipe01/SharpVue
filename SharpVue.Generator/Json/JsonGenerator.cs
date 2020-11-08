@@ -21,15 +21,15 @@ namespace SharpVue.Generator.Json
 
             using var outFile = File.OpenWrite(Path.Combine(outFolder, "data.json"));
 
-            var namespaces = new List<Namespace>();
+            var json = new JsonData();
 
-            foreach (var group in ws.ReferenceTypes.GroupBy(o => o.Namespace).Where(o => o.Key != null).OrderBy(o => o.Key))
+            foreach (var group in ws.AssemblyLoader.ReferenceTypes.GroupBy(o => o.Namespace).OrderBy(o => o.Key))
             {
                 Logger.Debug("Writing namespace {0}", group.Key);
 
                 var ns = new Namespace
                 {
-                    FullName = group.Key
+                    FullName = group.Key ?? "<Root>"
                 };
 
                 foreach (var type in group)
@@ -42,10 +42,10 @@ namespace SharpVue.Generator.Json
                 }
                 ns.Types.Sort((a, b) => a.Name!.CompareTo(b.Name));
 
-                namespaces.Add(ns);
+                json.Namespaces.Add(ns);
             }
 
-            JsonSerializer.Serialize(new Utf8JsonWriter(outFile), namespaces, new JsonSerializerOptions
+            JsonSerializer.Serialize(new Utf8JsonWriter(outFile), json, new JsonSerializerOptions
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
                 IgnoreNullValues = true,

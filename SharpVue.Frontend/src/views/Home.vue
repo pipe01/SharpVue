@@ -5,8 +5,14 @@
     p This is the main page for the {{appName}} documentation, you can go to #[router-link(:to="{name:'ViewReference'}") the API reference page] to browse the API.
 </template>
 
-<script lang="ts" setup>
-import { inject } from 'vue';
+<script lang="ts">
+import { defineComponent, inject } from 'vue';
 
-export const appName = inject("appName");
+export default defineComponent({
+    setup() {
+        const appName = inject("appName");
+
+        return { appName }
+    }
+})
 </script>

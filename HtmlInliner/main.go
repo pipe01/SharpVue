@@ -5,12 +5,10 @@ import (
 	"log"
 	"os"
 	"path"
-
-	"github.com/pipe01/SharpVue/HtmlInliner/transpiler"
 )
 
 func main() {
-	t := &transpiler.Transpiler{}
+	t := &Transpiler{}
 
 	var htmlPath, outPath string
 	flag.StringVar(&htmlPath, "html", "index.html", "The path of the HTML entrypoint file")

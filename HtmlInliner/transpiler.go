@@ -1,7 +1,8 @@
-package transpiler
+package main
 
 import (
 	"encoding/base64"
+	"errors"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -26,6 +27,9 @@ func (tr *Transpiler) Transpile(in io.Reader, out io.Writer) error {
 
 		switch t {
 		case html.ErrorToken:
+			if errors.Is(z.Err(), io.EOF) {
+				return nil
+			}
 			return z.Err()
 
 		case html.StartTagToken:

@@ -55,7 +55,7 @@ hr
     label.form-check-label.text-muted(for="showInherited") Show inherited members
 
 //- Properties
-template.mb-4(v-if="type.properties.length > 0")
+template.mb-4(v-if="type.properties.length > 0 && type.kind != 'enum'")
     h2 Properties
 
     template(v-for="member in type.properties")
@@ -72,7 +72,7 @@ template.mb-4(v-if="type.properties.length > 0")
     hr
 
 //- Methods
-template.mb-4(v-if="type.methods.length > 0")
+template.mb-4(v-if="type.methods.length > 0 && type.kind != 'enum'")
     h2 Methods
     
     template(v-for="member in type.methods")

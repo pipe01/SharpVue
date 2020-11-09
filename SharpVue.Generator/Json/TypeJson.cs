@@ -32,7 +32,7 @@ namespace SharpVue.Generator.Json
                 Namespace = type.Namespace,
                 Assembly = type.Assembly.GetName().Name + ".dll",
                 Inherits = new List<string>(type.GetBaseTypes()),
-                Implements = new List<string>(type.GetInterfaces().Where(o => o.IsPublic).Select(o => o.FullName!)),
+                Implements = new List<string>(type.GetInterfaces().Where(o => o.IsPublic && o.FullName != null).Select(o => o.FullName!)),
                 Kind = type.IsClass ? "class" :
                         type.IsEnum ? "enum" :
                         type.IsValueType ? "struct" :

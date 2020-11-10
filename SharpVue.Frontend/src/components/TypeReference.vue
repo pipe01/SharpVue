@@ -1,10 +1,11 @@
 <template lang="pug">
-mixin common
-    //- Type
-    dl
-        dt Value type:
-        dd
-            Content(v-model="member.returnType" element="span")
+mixin common(value=true)
+    if(value)
+        //- Type
+        dl
+            dt Value type:
+            dd
+                Content(v-model="member.returnType" element="span")
 
     //- Inheritance
     dl(v-if="member.inheritedFrom")
@@ -83,8 +84,15 @@ template.mb-4(v-if="type.methods.length > 0 && type.kind != 'enum'")
                 router-link.code-word(:to="'/ref/' + type.fullName + '/' + methodId(member)")
                     Content(v-model="member.prettyName" element="span")
                 small.text-muted(v-if="member.inheritedFrom") &nbsp;(inherited)
+
+            +common(false)
             
-            +common
+            dl
+                dt Returns:
+                dd
+                    Content(v-model="member.returnType" element="span")
+            
+            Content(v-if="member.returns" v-model="member.returns")
             
             //- Parameters
             template(v-if="member.parameters.length > 0")
@@ -141,7 +149,7 @@ export default defineComponent({
         const appName = inject("appName");
 
         watch(() => props.type, () => {
-            document.title = `${props.type?.fullName} - ${appName} documentation`;
+            document.title = `${props.type?.name} - ${appName} documentation`;
 
             // Use nextTick because we can't use immediate mode here and on the sidebar items at the same time
             nextTick(() => store.currentType = props.type);

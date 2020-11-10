@@ -26,6 +26,12 @@ interface Member extends Descriptable {
 export interface Data {
     namespaces: Namespace[];
     articles: Article[];
+    config: Configuration;
+}
+
+export interface Configuration {
+    appName: string;
+    dark: boolean;
 }
 
 export interface Article {

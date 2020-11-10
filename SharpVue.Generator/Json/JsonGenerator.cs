@@ -29,8 +29,15 @@ namespace SharpVue.Generator.Json
 
             to.Write(Encoding.UTF8.GetBytes("window.data="));
 
-            var json = new JsonData();
-            json.Articles = ws.ArticleLoader.Articles;
+            var json = new JsonData
+            {
+                Config = new Configuration
+                {
+                    AppName = ws.Config.Appearance.AppName,
+                    Dark = ws.Config.Appearance.DarkMode
+                },
+                Articles = ws.ArticleLoader.Articles
+            };
 
             AddNamespaces(json, ws);
 

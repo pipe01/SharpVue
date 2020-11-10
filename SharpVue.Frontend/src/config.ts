@@ -1,12 +1,12 @@
 import { App } from 'vue';
 
-import config from "./gen/config";
+import data from "./data";
 
-document.title = config.appName + " documentation";
+document.title = data.config.appName + " documentation";
 
 export const plugin = {
     install(app: App) {
-        app.provide("appName", config.appName);
-        app.provide("config", config);
+        app.provide("appName", data.config.appName);
+        app.provide("config", data.config);
     }
 }

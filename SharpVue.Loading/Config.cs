@@ -7,6 +7,16 @@ namespace SharpVue.Loading
 {
     public class Config
     {
+        public class AppearanceConfig
+        {
+            /// <summary>
+            /// The name that will be used when referring to the application in the documentation.
+            /// </summary>
+            public string AppName { get; set; } = "sharpvue";
+
+            public bool DarkMode { get; set; } = true;
+        }
+
         /// <summary>
         /// Globs that resolve to assemblies that will be scanned for reference.
         /// </summary>
@@ -22,6 +32,8 @@ namespace SharpVue.Loading
         /// </summary>
         public string[] Articles { get; set; } = new[] { "articles/" };
         public string OutFolder { get; set; } = "dist";
+
+        public AppearanceConfig Appearance { get; set; } = new AppearanceConfig();
 
         public static Config Load(string file)
         {

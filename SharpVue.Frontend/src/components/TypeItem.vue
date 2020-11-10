@@ -1,5 +1,5 @@
 <template lang="pug">
-router-link(:to="'/ref/' + type.fullName" :class="{'font-weight-bold': active}") {{type.name}}
+router-link(:to="'/ref/' + type.fullName" :class="{'font-weight-bold': active}" @click="goToTop") {{type.name}}
 </template>
 
 <script lang="ts">
@@ -16,7 +16,11 @@ export default defineComponent({
     setup(props) {
         const active = computed(() => store.currentType && props.type && (store.currentType == props.type));
 
-        return { active }
+        function goToTop() {
+            document.getElementById("top")?.scrollIntoView();
+        }
+
+        return { active, goToTop }
     }
 })
 </script>

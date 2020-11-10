@@ -1,5 +1,6 @@
 <template lang="pug">
 .d-flex.flex-column.h-100
+    #top
     Navbar
 
     router-view.flex-grow-1

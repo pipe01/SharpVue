@@ -1,23 +1,17 @@
 <template lang="pug">
 .d-flex.flex-column.h-100
-    nav.navbar.navbar-dark.bg-dark.justify-content-start
-        router-link.navbar-brand(to="/") {{appName}} documentation
-        ul.navbar-nav.flex-row
-            li.nav-item
-                router-link.nav-link(to="/ref") API reference
-            li.nav-item
-                router-link.nav-link(to="/articles") Articles
+    Navbar
 
     router-view.flex-grow-1
 </template>
 
 <script lang="ts">
-import { defineComponent, inject } from 'vue'
+import { defineComponent } from 'vue'
+
+import Navbar from "@/components/Navbar.vue";
 
 export default defineComponent({
-    setup() {
-        return { appName: inject("appName") }
-    }
+    components: { Navbar }
 })
 </script>
 

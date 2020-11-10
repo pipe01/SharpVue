@@ -10,3 +10,10 @@ export const plugin = {
         app.provide("config", data.config);
     }
 }
+
+export interface Configuration {
+    appName: string;
+    dark: boolean;
+    logoImage: string | null;
+    showAppName: boolean;
+}

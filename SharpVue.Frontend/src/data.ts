@@ -1,3 +1,5 @@
+import { Configuration } from './config';
+
 declare global {
     interface Window {
         data: Data;
@@ -27,11 +29,6 @@ export interface Data {
     namespaces: Namespace[];
     articles: Article[];
     config: Configuration;
-}
-
-export interface Configuration {
-    appName: string;
-    dark: boolean;
 }
 
 export interface Article {

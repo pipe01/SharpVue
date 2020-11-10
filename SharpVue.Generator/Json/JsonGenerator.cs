@@ -31,11 +31,7 @@ namespace SharpVue.Generator.Json
 
             var json = new JsonData
             {
-                Config = new Configuration
-                {
-                    AppName = ws.Config.Appearance.AppName,
-                    Dark = ws.Config.Appearance.DarkMode
-                },
+                Config = ws.Config.Appearance,
                 Articles = ws.ArticleLoader.Articles
             };
 

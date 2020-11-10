@@ -13,8 +13,13 @@ namespace SharpVue.Loading
             /// The name that will be used when referring to the application in the documentation.
             /// </summary>
             public string AppName { get; set; } = "sharpvue";
+            /// <summary>
+            /// If <see langword="true"/>, "{app name} documentation" will be shown on the navbar.
+            /// </summary>
+            public bool ShowAppName { get; set; } = true;
 
-            public bool DarkMode { get; set; } = true;
+            public bool Dark { get; set; } = true;
+            public string? LogoImage { get; set; }
         }
 
         /// <summary>

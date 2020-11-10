@@ -4,7 +4,7 @@ set -e
 INLINER=../HtmlInliner
 GENERATOR=../SharpVue.Generator
 
-#npm run build
+npm run build
 
 CUR=$PWD
 
@@ -14,7 +14,7 @@ fi
 
 ENTRY=$CUR/dist/index.html
 
-(cd $INLINER && go run . -html "$ENTRY" -out "$GENERATOR/Vue/Static/SingleFile/index.html")
+(cd $INLINER && go run . -html "$ENTRY" -out "$GENERATOR/Vue/Static/SingleFile.html")
 
 GENERATOR=$(readlink -f "$GENERATOR")
 

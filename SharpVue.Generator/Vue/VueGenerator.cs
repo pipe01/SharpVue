@@ -1,26 +1,17 @@
 ﻿using HtmlAgilityPack;
-using SharpCompress.Archives;
-using SharpCompress.Archives.GZip;
-using SharpCompress.Archives.Tar;
-using SharpCompress.Common;
-using SharpCompress.Compressors;
-using SharpCompress.Compressors.Deflate;
-using SharpCompress.Readers;
 using SharpCompress.Readers.Tar;
 using SharpVue.Generator.Json;
 using SharpVue.Loading;
-using System;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using System.Text;
 
 namespace SharpVue.Generator.Vue
 {
     public class VueGenerator : IGenerator
     {
         private const string RegularArchiveName = "SharpVue.Generator.Vue.Static.Regular.tar.gz";
-        private const string SingleFileName = "SharpVue.Generator.Vue.Static.SingleFile.index.html";
+        private const string SingleFileName = "SharpVue.Generator.Vue.Static.SingleFile.html";
 
         public void Generate(Workspace ws)
         {

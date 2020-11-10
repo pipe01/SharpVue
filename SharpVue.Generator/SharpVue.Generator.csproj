@@ -8,6 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove=".gitignore" />
+    <None Remove="Vue\index.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Vue\index.html" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Yaclip" Version="1.0.2" />
   </ItemGroup>
 

@@ -23,11 +23,11 @@ namespace SharpVue.Generator.Json
             Generate(ws, outFile);
         }
 
-        public void Generate(Workspace ws, Stream to)
+        public void Generate(Workspace ws, Stream jsonData)
         {
             Logger.Verbose("Generating JSON output");
 
-            to.Write(Encoding.UTF8.GetBytes("window.data="));
+            jsonData.Write(Encoding.UTF8.GetBytes("window.data="));
 
             var json = new JsonData
             {
@@ -37,7 +37,7 @@ namespace SharpVue.Generator.Json
 
             AddNamespaces(json, ws);
 
-            JsonSerializer.Serialize(new Utf8JsonWriter(to), json, new JsonSerializerOptions
+            JsonSerializer.Serialize(new Utf8JsonWriter(jsonData), json, new JsonSerializerOptions
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
                 IgnoreNullValues = true,

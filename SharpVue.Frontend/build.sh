@@ -2,5 +2,15 @@
 
 npm run build
 
-cd dist
-go run ../../HtmlInliner/
+INLINER=../HtmlInliner
+GENERATOR=../SharpVue.Generator
+
+CUR=$PWD
+
+if cygpath -V >/dev/null; then
+	CUR=$(cygpath -w $CUR)
+fi
+
+ENTRY=$CUR/dist/index.html
+
+(cd $INLINER && go run . -html "$ENTRY" -out "$GENERATOR/Vue/index.html")

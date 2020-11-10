@@ -30,11 +30,15 @@ namespace SharpVue.Generator
 
             string tempFolder = Path.Combine(Path.GetTempPath(), "sharpvue");
             if (Directory.Exists(tempFolder))
-                Directory.Delete(tempFolder);
+                Directory.Delete(tempFolder, true);
             Directory.CreateDirectory(tempFolder);
+
+            ws.OutFolder = tempFolder;
 
             var http = new HttpServer(tempFolder, 8080);
             http.Start();
+
+            gen.Generate(ws);
 
             Thread.Sleep(Timeout.Infinite);
         }

@@ -17,12 +17,15 @@ namespace SharpVue.Loading
         public AssemblyLoader AssemblyLoader { get; }
         public ArticleLoader ArticleLoader { get; }
 
+        public string OutFolder { get; set; }
+
         public Workspace(string configPath)
         {
             Logger.Verbose("Loading workspace at {0}", configPath);
 
             this.BaseFolder = Path.GetDirectoryName(configPath);
             this.Config = Config.Load(configPath);
+            this.OutFolder = Path.Combine(BaseFolder, Config.OutFolder);
 
             this.AssemblyLoader = new AssemblyLoader(Config, BaseFolder);
             this.ArticleLoader = new ArticleLoader(Config, BaseFolder);
@@ -32,21 +35,23 @@ namespace SharpVue.Loading
             => AssemblyLoader.ReferenceData.TryGetValue(member.GetKey(), out var data) ? data : null;
 
         /// <returns>The full path to the output folder.</returns>
-        public string PrepareOutputFolder()
+        public string PrepareOutputFolder(bool forceClean = false)
         {
-            string outFolder = Path.Combine(BaseFolder, Config.OutFolder);
+            if (Directory.Exists(OutFolder) && (forceClean || Config.ClearOutputFolderOnGen))
+                Directory.Delete(OutFolder, true);
 
-            if (Directory.Exists(outFolder) && Config.ClearOutputFolderOnGen)
-                Directory.Delete(outFolder, true);
+            Directory.CreateDirectory(OutFolder);
 
-            Directory.CreateDirectory(outFolder);
-
-            return Path.GetFullPath(outFolder);
+            return Path.GetFullPath(OutFolder);
         }
 
         public void Reload(bool reloadArticles = true, bool reloadReference = true)
         {
+            if (reloadArticles)
+                ArticleLoader.Reload();
 
+            if (reloadReference)
+                AssemblyLoader.Reload();
         }
 
         public void Dispose()

@@ -1,9 +1,10 @@
 #/bin/bash
-
-#npm run build
+set -e
 
 INLINER=../HtmlInliner
 GENERATOR=../SharpVue.Generator
+
+#npm run build
 
 CUR=$PWD
 
@@ -15,4 +16,6 @@ ENTRY=$CUR/dist/index.html
 
 (cd $INLINER && go run . -html "$ENTRY" -out "$GENERATOR/Vue/Static/SingleFile/index.html")
 
-cp -r dist/* $GENERATOR/Vue/Static/Regular/
+GENERATOR=$(readlink -f "$GENERATOR")
+
+(cd dist && tar czf $GENERATOR/Vue/Static/Regular.tar.gz *)

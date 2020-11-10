@@ -6,11 +6,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, inject } from 'vue';
+import { defineComponent, inject, onMounted } from 'vue';
 
 export default defineComponent({
     setup() {
-        const appName = inject("appName");
+        const appName = inject<string>("appName");
+
+        onMounted(() => document.title = appName + " documentation");
 
         return { appName }
     }

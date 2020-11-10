@@ -3,6 +3,7 @@ if (process.env.NODE_ENV != "development") {
         css: {
             extract: false,
         },
+        productionSourceMap: false,
         configureWebpack: {
             optimization: {
                 splitChunks: false

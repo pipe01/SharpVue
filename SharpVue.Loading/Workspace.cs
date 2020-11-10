@@ -31,6 +31,19 @@ namespace SharpVue.Loading
         public MemberData? GetDataFor(MemberInfo member)
             => AssemblyLoader.ReferenceData.TryGetValue(member.GetKey(), out var data) ? data : null;
 
+        /// <returns>The full path to the output folder.</returns>
+        public string PrepareOutputFolder()
+        {
+            string outFolder = Path.Combine(BaseFolder, Config.OutFolder);
+
+            if (Directory.Exists(outFolder) && Config.ClearOutputFolderOnGen)
+                Directory.Delete(outFolder, true);
+
+            Directory.CreateDirectory(outFolder);
+
+            return Path.GetFullPath(outFolder);
+        }
+
         public void Dispose()
         {
             this.AssemblyLoader.Dispose();

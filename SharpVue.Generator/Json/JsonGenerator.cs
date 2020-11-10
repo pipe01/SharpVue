@@ -8,15 +8,11 @@ using System.Text.Json;
 
 namespace SharpVue.Generator.Json
 {
-    public class JsonGenerator : IGenerator
+    public class JsonGenerator : IJsonGenerator
     {
         public void Generate(Workspace ws)
         {
-            string outFolder = Path.Combine(ws.BaseFolder, ws.Config.OutFolder);
-
-            if (Directory.Exists(outFolder))
-                Directory.Delete(outFolder, true);
-            Directory.CreateDirectory(outFolder);
+            string outFolder = ws.PrepareOutputFolder();
 
             using var outFile = File.OpenWrite(Path.Combine(outFolder, "data.js"));
 

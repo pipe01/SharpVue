@@ -1,4 +1,5 @@
 ﻿using SharpVue.Generator.Json;
+using SharpVue.Generator.Vue;
 using SharpVue.Loading;
 using System;
 using System.IO;
@@ -20,7 +21,13 @@ namespace SharpVue.Generator
             }
 
             using var ws = new Workspace(ConfigFile);
-            var gen = new JsonGenerator();
+            IGenerator gen;
+
+            if (ws.Config.JsonOnly)
+                gen = new JsonGenerator();
+            else
+                gen = new VueGenerator();
+
             gen.Generate(ws);
         }
     }

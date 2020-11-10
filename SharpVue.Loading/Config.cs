@@ -37,6 +37,10 @@ namespace SharpVue.Loading
         /// </summary>
         public string[] Articles { get; set; } = new[] { "articles/" };
         public string OutFolder { get; set; } = "dist";
+        public bool ClearOutputFolderOnGen { get; set; } = true;
+
+        public bool SingleFile { get; set; }
+        public bool JsonOnly { get; set; }
 
         public AppearanceConfig Appearance { get; set; } = new AppearanceConfig();
 

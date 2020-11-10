@@ -76,7 +76,8 @@ template.mb-4(v-if="type.methods.length > 0 && type.kind != 'enum'")
     h2 Methods
     
     template(v-for="member in type.methods")
-        div(v-if="!member.inheritedFrom || showInherited" :id="methodId(member)" :key="type.fullName + member.name")
+        div(v-if="!member.inheritedFrom || showInherited" :id="methodId(member)" :key="type.fullName + member.name"
+            :data-method-name="member.name")
             //- Name
             h4
                 router-link.code-word(:to="'/ref/' + type.fullName + '/' + methodId(member)")
@@ -152,7 +153,11 @@ export default defineComponent({
             
             if (newValue) {
                 nextTick(() => {
-                    const el = document.getElementById(newValue as string);
+                    var el = document.getElementById(newValue as string);
+
+                    if (!el) {
+                        el = document.querySelector(`[data-method-name="${newValue}"]`)
+                    }
 
                     el?.scrollIntoView({ behavior: "smooth" });
                     el?.classList.add("highlight");

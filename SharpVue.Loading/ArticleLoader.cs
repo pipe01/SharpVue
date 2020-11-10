@@ -11,7 +11,7 @@ using System.IO;
 
 namespace SharpVue.Loading
 {
-    public class ArticleLoader
+    public class ArticleLoader : ILoader
     {
         private const string FolderNameFile = ".name";
 
@@ -32,6 +32,14 @@ namespace SharpVue.Loading
                 .UseUrlRewriter(RewriteUrl)
                 .UseYamlFrontMatter()
                 .Build();
+
+            LoadAll();
+        }
+
+        public void Reload()
+        {
+            //TODO Only remove changed files
+            Articles.Clear();
 
             LoadAll();
         }

@@ -16,6 +16,10 @@ namespace SharpVue.Generator
                 .Command<GenerateCommand>("gen", o => o
                     .Callback(c => c.Execute())
                     .Argument(o => o.ConfigFile, o => o
+                        .Name("configFile")))
+                .Command<ServeCommand>("serve", o => o
+                    .Callback(o => o.Execute())
+                    .Argument(o => o.ConfigFile, o => o
                         .Name("configFile")));
 
             app.Build().Run(args);

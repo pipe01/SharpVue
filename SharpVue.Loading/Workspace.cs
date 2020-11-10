@@ -44,6 +44,11 @@ namespace SharpVue.Loading
             return Path.GetFullPath(outFolder);
         }
 
+        public void Reload(bool reloadArticles = true, bool reloadReference = true)
+        {
+
+        }
+
         public void Dispose()
         {
             this.AssemblyLoader.Dispose();

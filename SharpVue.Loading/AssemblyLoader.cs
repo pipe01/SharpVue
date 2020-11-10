@@ -4,6 +4,7 @@ using SharpVue.Ingest;
 using SharpVue.Logging;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -11,7 +12,7 @@ using System.Xml;
 
 namespace SharpVue.Loading
 {
-    public class AssemblyLoader : IDisposable
+    public class AssemblyLoader : IDisposable, ILoader
     {
         public IList<Type> ReferenceTypes { get; } = new List<Type>();
         public IDictionary<string, MemberData> ReferenceData { get; } = new Dictionary<string, MemberData>();
@@ -20,22 +21,30 @@ namespace SharpVue.Loading
         private readonly string BaseFolder;
 
         private readonly Ingestion Ingestion;
-        private readonly MetadataLoadContext LoadContext;
-        private readonly HashSet<string> ContextAssemblies;
+
+        private readonly DynamicAssemblyResolver AssemblyResolver;
+        private MetadataLoadContext? LoadContext;
 
         public AssemblyLoader(Config config, string baseFolder)
         {
             this.Config = config;
             this.BaseFolder = baseFolder;
+            this.Ingestion = new CSharpXmlIngestion();
+            this.AssemblyResolver = new DynamicAssemblyResolver();
 
-            string[] runtimeAssemblies = Directory.GetFiles(RuntimeEnvironment.GetRuntimeDirectory(), "*.dll");
-            this.ContextAssemblies = new HashSet<string>(runtimeAssemblies);
-            Logger.Debug("Found {0} runtime assemblies", runtimeAssemblies.Length);
+            Reload();
+        }
+
+        public void Reload()
+        {
+            ReferenceTypes.Clear();
+            ReferenceData.Clear();
+            AssemblyResolver.Clear();
+            LoadContext?.Dispose();
+
+            LoadContext = new MetadataLoadContext(AssemblyResolver);
 
             AddContextAssemblies();
-
-            this.Ingestion = new CSharpXmlIngestion();
-            this.LoadContext = new MetadataLoadContext(new PathAssemblyResolver(ContextAssemblies));
 
             LoadAllAssemblies();
         }
@@ -52,7 +61,7 @@ namespace SharpVue.Loading
                 {
                     Logger.Verbose("Adding dependency assembly at {0}", file);
 
-                    ContextAssemblies.Add(file.FullName);
+                    AssemblyResolver.Add(file.FullName);
                 }
             }
 
@@ -62,7 +71,7 @@ namespace SharpVue.Loading
                 {
                     Logger.Verbose("Adding reference assembly at {0}", file);
 
-                    ContextAssemblies.Add(file.FullName);
+                    AssemblyResolver.Add(file.FullName);
                 }
             }
         }
@@ -82,6 +91,8 @@ namespace SharpVue.Loading
 
         private void LoadAssembly(string dllPath)
         {
+            Debug.Assert(LoadContext != null);
+
             Logger.Verbose("Loading assembly at {0}", dllPath);
 
             var ass = LoadContext.LoadFromAssemblyPath(dllPath);
@@ -117,6 +128,8 @@ namespace SharpVue.Loading
 
         public void Dispose()
         {
+            Debug.Assert(LoadContext != null);
+
             this.LoadContext.Dispose();
         }
     }

@@ -1,5 +1,8 @@
 <template lang="pug">
+.marker(@click="collapsed = !collapsed") +
+
 a.name(href="#" @click.prevent="collapsed = !collapsed") {{namespace.fullName}}
+
 ul(v-if="!collapsed")
     li(v-for="item in namespace.types" :key="item.fullName")
         TypeItem(:type="item")
@@ -37,10 +40,19 @@ export default defineComponent({
 })
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .name {
     color: unset;
     font-weight: bold;
     font-size: 1.1rem;
+}
+
+.marker {
+    cursor: pointer;
+    user-select: none;
+    
+    position: absolute;
+    left: -.75rem;
+    top: .2rem;
 }
 </style>

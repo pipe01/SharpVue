@@ -1,6 +1,6 @@
 <template lang="pug">
 ul
-    li(v-for="item in namespaces" :key="item.fullName")
+    li.position-relative(v-for="item in namespaces" :key="item.fullName")
         NamespaceItem(:namespace="item")
 </template>
 

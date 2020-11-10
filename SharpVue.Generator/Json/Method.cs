@@ -44,7 +44,7 @@ namespace SharpVue.Generator.Json
 
             c.AddPlainText(method.Name);
 
-            if (method.ContainsGenericParameters)
+            if (method.IsGenericMethod)
             {
                 c.AddPlainText("<" + string.Join(", ", method.GetGenericArguments().Select(o => o.Name)) + ">");
             }
@@ -67,6 +67,7 @@ namespace SharpVue.Generator.Json
     public class Parameter
     {
         public string? Name { get; set; }
+        public string? DefaultValue { get; set; }
         public Content? Type { get; set; }
         public Content? Description { get; set; }
 
@@ -75,6 +76,12 @@ namespace SharpVue.Generator.Json
             return new Parameter
             {
                 Name = param.Name,
+                DefaultValue = (param.HasDefaultValue, param.RawDefaultValue) switch
+                {
+                    (false, _) => null,
+                    (true, null) => "null",
+                    (true, _) => "default"
+                },
                 Type = param.ParameterType.GenerateNameContent(),
                 Description = desc
             };

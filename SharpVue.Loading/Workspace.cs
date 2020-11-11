@@ -13,6 +13,7 @@ namespace SharpVue.Loading
 
         public string BaseFolder { get; }
         public Config Config { get; }
+        public IWatcher Watcher { get; }
 
         public AssemblyLoader AssemblyLoader { get; }
         public ArticleLoader ArticleLoader { get; }
@@ -23,9 +24,10 @@ namespace SharpVue.Loading
         {
             Logger.Verbose("Loading workspace at {0}", configPath);
 
-            this.BaseFolder = Path.GetDirectoryName(configPath);
+            this.BaseFolder = Path.GetFullPath(Path.GetDirectoryName(configPath));
             this.Config = Config.Load(configPath);
             this.OutFolder = Path.Combine(BaseFolder, Config.OutFolder);
+            this.Watcher = new Watcher(this);
 
             this.AssemblyLoader = new AssemblyLoader(Config, BaseFolder);
             this.ArticleLoader = new ArticleLoader(Config, BaseFolder);

@@ -1,6 +1,6 @@
 <template lang="pug">
 ul
-    li.position-relative(v-for="item in namespaces" :key="item.fullName")
+    li.position-relative(v-for="item in data.namespaces" :key="item.fullName")
         NamespaceItem(:namespace="item")
 </template>
 
@@ -15,7 +15,7 @@ export default defineComponent({
         NamespaceItem
     },
     data() {
-        return { namespaces: data.namespaces }
+        return { data }
     }
 })
 </script>

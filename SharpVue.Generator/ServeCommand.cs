@@ -1,4 +1,5 @@
-﻿using SharpVue.Generator.Util;
+﻿using SharpVue.Generator.Json;
+using SharpVue.Generator.Util;
 using SharpVue.Generator.Vue;
 using SharpVue.Loading;
 using System;
@@ -33,12 +34,32 @@ namespace SharpVue.Generator
                 Directory.Delete(tempFolder, true);
             Directory.CreateDirectory(tempFolder);
 
-            ws.OutFolder = tempFolder;
+            var vueOpts = new VueGenerator.Options(true, tempFolder, false);
 
+            ws.OutFolder = tempFolder;
+            gen.Generate(ws, vueOpts);
+
+            var dataEvent = new ManualResetEventSlim();
             var http = new HttpServer(tempFolder, 8080);
             http.Start();
 
-            gen.Generate(ws);
+            http.DataGetter = s =>
+            {
+                dataEvent.Reset();
+                dataEvent.Wait();
+
+                JsonGenerator.Instance.Generate(ws, s);
+            };
+
+            ws.Watcher.FileChanged += ev =>
+            {
+                var isDll = ev.Extension == ".dll";
+
+                ws.Reload(reloadArticles: !isDll, reloadReference: isDll);
+                gen.Generate(ws, vueOpts);
+
+                dataEvent.Set();
+            };
 
             Thread.Sleep(Timeout.Infinite);
         }

@@ -1,3 +1,5 @@
+import phin from 'phin';
+import { ref } from 'vue';
 import { Configuration } from './config';
 
 declare global {
@@ -10,8 +12,26 @@ if (process.env.NODE_ENV == "development") {
     require("@/gen/data.js");
 }
 
-const data = window.data;
+const data = ref(window.data);
 export default data;
+
+if ((window as any).reload || true) {
+    (async function startReload() {
+        var errored = false;
+
+        try {
+            var res = await phin({
+                url: new URL(`${location.protocol}//${location.host}/data`)
+            });
+            data.value = eval(res.body.toString());
+        } catch (e) {
+            console.error(e);
+            errored = true;
+        }
+
+        setTimeout(startReload, errored ? 5000 : 0);
+    })()
+}
 
 interface Descriptable {
     name: string;
@@ -97,7 +117,7 @@ export enum InsertionType {
 export const allTypes = function() {
     var types: { [fullName: string]: Type } = {};
 
-    for (const type of data.namespaces.flatMap(o => o.types)) {
+    for (const type of data.value.namespaces.flatMap(o => o.types)) {
         types[type.fullName] = type;
     }
 
@@ -105,7 +125,7 @@ export const allTypes = function() {
 }();
 
 export function findArticle(path: string[]): Article | null {
-    return findArticleIn(path, data.articles);
+    return findArticleIn(path, data.value.articles);
 }
 
 function findArticleIn(path: string[], haystack: Article[]): Article | null {

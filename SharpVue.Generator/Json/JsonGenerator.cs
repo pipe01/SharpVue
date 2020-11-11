@@ -1,6 +1,5 @@
 ﻿using SharpVue.Loading;
 using SharpVue.Logging;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -10,6 +9,8 @@ namespace SharpVue.Generator.Json
 {
     public class JsonGenerator : IJsonGenerator
     {
+        public static JsonGenerator Instance { get; } = new JsonGenerator();
+
         public void Generate(Workspace ws)
         {
             string outFolder = ws.PrepareOutputFolder();

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Text;
 using System.Threading;
 
 namespace SharpVue.Generator.Util
@@ -12,6 +13,8 @@ namespace SharpVue.Generator.Util
     {
         private readonly HttpListener Listener;
         private readonly string ContentRoot;
+
+        public Action<Stream>? DataGetter { get; set; }
 
         public HttpServer(string contentRoot, int port = 0)
         {
@@ -54,25 +57,51 @@ namespace SharpVue.Generator.Util
 
                 Logger.Debug($"Got request: {ctx.Request.HttpMethod} {ctx.Request.RawUrl}");
 
-                string requestFile = ctx.Request.Url.LocalPath;
-
-                if (requestFile == "/")
-                    requestFile = "index.html";
-
-                var filePath = Path.Combine(ContentRoot, requestFile);
-                ctx.Response.ContentType = GetMimeType(Path.GetExtension(filePath));
-
-                if (File.Exists(filePath))
+                ThreadPool.QueueUserWorkItem(_ =>
                 {
-                    using var file = File.OpenRead(filePath);
-                    file.CopyTo(ctx.Response.OutputStream);
-                }
-                else
-                {
-                    ctx.Response.StatusCode = 404;
-                }
+                    try
+                    {
+                        HandleContext(ctx);
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.Error("Exception when handling HTTP request: {0} {1}", e.GetType().Name, e.Message);
+                    }
+                    finally
+                    {
+                        ctx.Response.Close();
+                    }
+                });
+            }
+        }
 
-                ctx.Response.Close();
+        private void HandleContext(HttpListenerContext ctx)
+        {
+            string requestFile = ctx.Request.Url.LocalPath;
+
+            if (requestFile == "/data" && DataGetter != null)
+            {
+                ctx.Response.ContentType = "application/x-javascript";
+                DataGetter(ctx.Response.OutputStream);
+                return;
+            }
+
+            if (requestFile == "/")
+                requestFile = "index.html";
+            if (requestFile.StartsWith('/'))
+                requestFile = requestFile.Substring(1);
+
+            var filePath = Path.Combine(ContentRoot, requestFile);
+            ctx.Response.ContentType = GetMimeType(Path.GetExtension(filePath));
+
+            if (File.Exists(filePath))
+            {
+                using var file = File.OpenRead(filePath);
+                file.CopyTo(ctx.Response.OutputStream);
+            }
+            else
+            {
+                ctx.Response.StatusCode = 404;
             }
         }
 

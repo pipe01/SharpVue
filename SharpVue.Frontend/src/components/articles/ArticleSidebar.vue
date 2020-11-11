@@ -1,6 +1,6 @@
 <template lang="pug">
 ul
-    ArticleItem(v-for="item in articles" :article="item" :path="item.title")
+    ArticleItem(v-for="item in data.articles" :article="item" :path="item.title")
 </template>
 
 <script lang="ts">
@@ -15,7 +15,7 @@ export default defineComponent({
     },
     
     setup() {
-        return { articles: data.articles }
+        return { data }
     }
 })
 </script>
